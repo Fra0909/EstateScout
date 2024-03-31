@@ -1,6 +1,4 @@
-package com.estate.scout
-
--estate-scout;
+package com.estate.scout;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
