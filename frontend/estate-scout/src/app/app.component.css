@@ -1,0 +1,18 @@
+:host {
+  --primary-clr: #35A7FF;
+  --secondary-clr: #00243d;
+  --bg-clr: whitesmoke;
+  --text-clr: #4e4e4e;
+
+  --h1: 6.854rem;
+  --h2: 4.236rem;
+  --h3: 2.618rem;
+  --h4: 1.618rem;
+  --text: 1rem;
+
+  font-family: "Inter", serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
