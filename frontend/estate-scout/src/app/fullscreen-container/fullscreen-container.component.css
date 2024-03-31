@@ -1,0 +1,8 @@
+.fullscreen-container {
+  width: 100%;
+  background-color: var(--bg-clr);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
