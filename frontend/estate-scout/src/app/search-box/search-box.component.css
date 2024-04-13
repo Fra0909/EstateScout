@@ -1,0 +1,41 @@
+.sb-container {
+  position: relative;
+  z-index: 10;
+  height: 25vh;
+  width: 40vw;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+
+.sb-inner {
+  width: 90%;
+  height: 25%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+h2 {
+  font-size: var(--h4);
+  color: var(--secondary-clr);
+  font-weight: 500;
+  line-height: 0;
+}
+
+.search-input {
+  height: 45px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid var(--secondary-clr);
+  padding-left: 10px;
+  padding-right: 10px;
+  font: inherit;
+}
+
