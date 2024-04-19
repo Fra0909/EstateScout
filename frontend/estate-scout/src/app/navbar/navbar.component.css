@@ -81,7 +81,7 @@ a {
   color: dimgray;
 }
 
-.cta-button {
+.login-btn {
   position: relative;
   height: 45px;
   width: 125px;
@@ -104,11 +104,11 @@ a {
   -webkit-transition: 0.08s ease-in;
 }
 
-.fill:hover {
+.login-btn-fill:hover {
   color: whitesmoke;
 }
 
-.fill:before {
+.login-btn-fill:before {
   content: "";
   position: absolute;
   background: var(--secondary-clr);
@@ -120,6 +120,6 @@ a {
   -webkit-transition: top 0.09s ease-in;
 }
 
-.fill:hover:before {
+.login-btn-fill:hover:before {
   top: 0;
 }

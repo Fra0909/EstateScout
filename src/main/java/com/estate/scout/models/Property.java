@@ -71,7 +71,7 @@ public class Property {
 		this.addressLine3 = addressLine3;
 		this.postcode = postcode;
 		this.town = town;
-		this.number`OfBathrooms = numberOfBathrooms;
+		this.numberOfBathrooms = numberOfBathrooms;
 		this.numberOfBedrooms = numberOfBedrooms;
 		this.numberOfLivingRooms = numberOfLivingRooms;
 		this.hasGarden = hasGarden;
@@ -80,7 +80,7 @@ public class Property {
 		this.smokersAllowed = smokersAllowed;
 		this.studentsAllowed = studentsAllowed;
 		this.propertyType = propertyType;
-		this.images = images;`
+		this.images = images;
 	}
 
 	public Long getId() {
