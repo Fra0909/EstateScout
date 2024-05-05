@@ -5,7 +5,6 @@
   <div class="property-info">
     <p><b>{{ propertyListing.town }}</b></p>
     <p>{{ propertyListing.price | currency:"GBP" }}</p>
-    <p *ngIf="propertyListing.propertyType == 'FOR_SALE'">For Sale</p>
-    <p *ngIf="propertyListing.propertyType == 'FOR_RENT'">For Rent</p>
+    <p>{{ formatPropertyType(propertyListing.propertyType) }}</p>
   </div>
 </div>

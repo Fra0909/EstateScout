@@ -15,4 +15,8 @@ import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
 })
 export class PropertyListingComponent {
   @Input() propertyListing!: Property;
+
+  formatPropertyType(propertyType: string) : string {
+    return propertyType == "FOR_SALE" ? "For Sale" : "To Rent";
+  }
 }
