@@ -3,8 +3,7 @@
   background-image: url("/assets/imgs/girl-in-box.jpg");
   background-position: center;
   background-size: cover;
-  height: 70%;
-  position: fixed;
+  height: 85vh;
   top: 8%;
   left: 0;
   display: flex;
@@ -14,6 +13,21 @@
   row-gap: 50px;
 }
 
+.fullscreen-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.fullscreen-container > * {
+  position: relative;
+}
+
 h1 {
   font-size: var(--h1);
   color: var(--bg-clr);
@@ -21,15 +35,4 @@ h1 {
   z-index: 10;
   text-align: center;
   line-height: 0;
-}
-
-.fullscreen-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
 }

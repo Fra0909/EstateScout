@@ -1,0 +1,22 @@
+.property-box {
+  box-shadow: #b4b4b4 2px 2px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow ease-in-out .3s;
+}
+
+.property-box:hover {
+  box-shadow: #8a8a8a 2px 2px 25px;
+}
+
+.property-info {
+  gap: 15px;
+  color: var(--secondary-clr);
+  padding: 25px;
+}
+
+.property-img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}

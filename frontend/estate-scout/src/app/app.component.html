@@ -1,9 +1,16 @@
 <style>
 </style>
 <link href='https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;900&display=swap' rel='stylesheet'>
+<header><app-navbar></app-navbar></header>
 <main class="main">
-  <header><app-navbar></app-navbar></header>
   <app-fullscreen-container></app-fullscreen-container>
+  <div class="section">
+    <div class="properties-outer">
+      <app-property-listing class="property-container" *ngFor="let property of mockProperties"
+                            [propertyListing]="property"
+      ></app-property-listing>
+    </div>
+  </div>
 </main>
 
 <router-outlet />
