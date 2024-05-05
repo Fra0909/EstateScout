@@ -4,17 +4,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <!-- Update to the appropriate Spring Boot version -->
         <version>2.5.0</version>
         <relativePath/>
     </parent>
     <groupId>com.estate.scout</groupId>
-    <artifactId>demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>Demo project for Spring Boot</description>
+    <artifactId>estate-scout</artifactId>
+    <version>1.0</version>
+    <name>estate.scout</name>
+    <description>Estate Scout backend</description>
     <properties>
-        <!-- Update to the appropriate Java version -->
         <java.version>11</java.version>
     </properties>
     <dependencies>

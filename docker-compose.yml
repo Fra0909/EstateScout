@@ -1,0 +1,15 @@
+version: '3'
+services:
+  backend:
+    image: estate-scout-backend:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+  database:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: estate_scout
+    ports:
+      - "3306:3306"
