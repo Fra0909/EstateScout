@@ -3,8 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { FullscreenContainerComponent } from "./fullscreen-container/fullscreen-container.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { NgForOf } from "@angular/common";
-import { Property } from "./models/property";
 import { PropertyListingComponent } from "./property-listing/property-listing.component";
+import {Property} from "./models/property";
 
 @Component({
   selector: 'app-root',
@@ -15,4 +15,5 @@ import { PropertyListingComponent } from "./property-listing/property-listing.co
 })
 export class AppComponent {
   title = 'estate-scout';
+  mockProperties: Property[] = []
 }

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Property} from "../models/property";
-import {CurrencyPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-property-listing',
