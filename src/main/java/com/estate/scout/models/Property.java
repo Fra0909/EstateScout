@@ -23,8 +23,10 @@ public class Property {
 
 	@Column(name = "address_line3")
 	private String addressLine3;
+
 	@Column(name = "postcode")
 	private String postcode;
+
 	@Column(name = "town")
 	private String town;
 
@@ -55,6 +57,9 @@ public class Property {
 	@Column(name = "property_type")
 	private PropertyType propertyType;
 
+	@Column(name = "price")
+	private int price;
+
 	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
 	private List<Image> images;
 
@@ -62,9 +67,9 @@ public class Property {
 	}
 
 	public Property(Long id, String addressLine1, String addressLine2, String addressLine3, String postcode,
-	                String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms,
-	                boolean hasGarden, boolean hasParking, boolean petsAllowed, boolean smokersAllowed,
-	                boolean studentsAllowed, PropertyType propertyType, List<Image> images) {
+					String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms,
+					boolean hasGarden, boolean hasParking, boolean petsAllowed, boolean smokersAllowed,
+					boolean studentsAllowed, PropertyType propertyType, int price, List<Image> images) {
 		this.id = id;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
@@ -80,6 +85,7 @@ public class Property {
 		this.smokersAllowed = smokersAllowed;
 		this.studentsAllowed = studentsAllowed;
 		this.propertyType = propertyType;
+		this.price = price;
 		this.images = images;
 	}
 
@@ -202,6 +208,10 @@ public class Property {
 	public void setPropertyType(PropertyType propertyType) {
 		this.propertyType = propertyType;
 	}
+
+	public void setPrice(int price) { this.price = price; }
+
+	public int getPrice() { return price; }
 
 	public List<Image> getImages() {
 		return images;
