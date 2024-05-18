@@ -1,12 +1,9 @@
 package com.estate.scout.models;
 
 import com.estate.scout.enums.PropertyType;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
-
 @Entity
 public class Property {
 
@@ -53,9 +50,10 @@ public class Property {
 	private boolean studentsAllowed;
 
 	@Column(name = "property_type")
+	@Enumerated(EnumType.STRING)
 	private PropertyType propertyType;
 
-	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Image> images;
 
 	public Property() {
