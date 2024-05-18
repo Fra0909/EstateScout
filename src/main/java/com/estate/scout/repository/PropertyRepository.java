@@ -5,8 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -26,7 +24,8 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 			" AND (:petsAllowed is null OR p.petsAllowed = :petsAllowed)" +
 			" AND (:smokersAllowed is null OR p.smokersAllowed = :smokersAllowed)" +
 			" AND (:studentsAllowed is null OR p.studentsAllowed = :studentsAllowed)" +
-			" AND (:propertyType is null OR p.propertyType = :propertyType)")
+			" AND (:propertyType is null OR p.propertyType = :propertyType)" +
+			" AND (:minPrice is null OR :maxPrice is null OR p.priceInPence BETWEEN :minPrice AND :maxPrice)")
 	List<Property> findByFilter(@Param("addressLine1") String addressLine1,
 	                            @Param("addressLine2") String addressLine2,
 	                            @Param("addressLine3") String addressLine3,
@@ -40,5 +39,8 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 	                            @Param("petsAllowed") Boolean petsAllowed,
 	                            @Param("smokersAllowed") Boolean smokersAllowed,
 	                            @Param("studentsAllowed") Boolean studentsAllowed,
-	                            @Param("propertyType") String propertyType);
+	                            @Param("propertyType") String propertyType,
+	                            @Param("minPrice") Integer minPrice,
+	                            @Param("maxPrice") Integer maxPrice);
+
 }

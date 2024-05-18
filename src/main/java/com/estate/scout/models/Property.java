@@ -20,8 +20,10 @@ public class Property {
 
 	@Column(name = "address_line3")
 	private String addressLine3;
+
 	@Column(name = "postcode")
 	private String postcode;
+
 	@Column(name = "town")
 	private String town;
 
@@ -53,6 +55,9 @@ public class Property {
 	@Enumerated(EnumType.STRING)
 	private PropertyType propertyType;
 
+	@Column(name = "price_in_pence")
+	private int priceInPence;
+
 	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Image> images;
 
@@ -62,7 +67,7 @@ public class Property {
 	public Property(Long id, String addressLine1, String addressLine2, String addressLine3, String postcode,
 	                String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms,
 	                boolean hasGarden, boolean hasParking, boolean petsAllowed, boolean smokersAllowed,
-	                boolean studentsAllowed, PropertyType propertyType, List<Image> images) {
+	                boolean studentsAllowed, PropertyType propertyType, int priceInPence, List<Image> images) {
 		this.id = id;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
@@ -78,6 +83,7 @@ public class Property {
 		this.smokersAllowed = smokersAllowed;
 		this.studentsAllowed = studentsAllowed;
 		this.propertyType = propertyType;
+		this.priceInPence = priceInPence;
 		this.images = images;
 	}
 
@@ -200,6 +206,10 @@ public class Property {
 	public void setPropertyType(PropertyType propertyType) {
 		this.propertyType = propertyType;
 	}
+
+	public void setPriceInPence(int price) { this.priceInPence = price; }
+
+	public int getPriceInPence() { return priceInPence; }
 
 	public List<Image> getImages() {
 		return images;

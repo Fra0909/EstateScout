@@ -58,13 +58,17 @@ public class PropertyController {
 			@RequestParam(name = "petsAllowed", required = false) Boolean petsAllowed,
 			@RequestParam(name = "smokersAllowed", required = false) Boolean smokersAllowed,
 			@RequestParam(name = "studentsAllowed", required = false) Boolean studentsAllowed,
-			@RequestParam(name = "propertyType", required = false) String propertyType) {
+			@RequestParam(name = "propertyType", required = false) String propertyType,
+			@RequestParam(name = "minPrice", required = false) Integer minPrice,
+			@RequestParam(name = "maxPrice", required = false) Integer maxPrice) {
 
 		LOG.info("Retrieved properties with filter:");
 		return propertyRepository.findByFilter(
 				addressLine1, addressLine2, addressLine3, postcode, town,
 				noOfBathrooms, noOfBedrooms, noOfLivingRooms,
 				hasGarden, hasParking, petsAllowed, smokersAllowed,
-				studentsAllowed, propertyType);
+				studentsAllowed, propertyType,
+				minPrice, maxPrice);
 	}
+
 }

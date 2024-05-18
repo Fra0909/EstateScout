@@ -1,0 +1,10 @@
+<div class="property-box">
+  <div class="property-img-container">
+    <img src="{{ propertyListing.image[0].path }}" alt="primary property image" class="property-img">
+  </div>
+  <div class="property-info">
+    <p><b>{{ propertyListing.town }}</b></p>
+    <p>{{ propertyListing.price | currency:"GBP" }}</p>
+    <p>{{ formatPropertyType(propertyListing.propertyType) }}</p>
+  </div>
+</div>
