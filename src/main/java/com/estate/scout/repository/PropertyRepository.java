@@ -1,6 +1,6 @@
 package com.estate.scout.repository;
 
-import com.estate.scout.models.Property;
+import com.estate.scout.model.Property;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -25,7 +25,9 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 			" AND (:smokersAllowed is null OR p.smokersAllowed = :smokersAllowed)" +
 			" AND (:studentsAllowed is null OR p.studentsAllowed = :studentsAllowed)" +
 			" AND (:propertyType is null OR p.propertyType = :propertyType)" +
-			" AND (:minPrice is null OR :maxPrice is null OR p.priceInPence BETWEEN :minPrice AND :maxPrice)")
+			" AND (:minPrice is null OR :maxPrice is null OR p.priceInPence BETWEEN :minPrice AND :maxPrice)" +
+			" AND (:minLatitude is null OR :maxLatitude is null OR p.latitude BETWEEN :minLatitude AND :maxLatitude)" +
+			" AND (:minLongitude is null OR :maxLongitude is null OR p.longitude BETWEEN :minLongitude AND :maxLongitude)")
 	List<Property> findByFilter(@Param("addressLine1") String addressLine1,
 	                            @Param("addressLine2") String addressLine2,
 	                            @Param("addressLine3") String addressLine3,
@@ -41,6 +43,9 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 	                            @Param("studentsAllowed") Boolean studentsAllowed,
 	                            @Param("propertyType") String propertyType,
 	                            @Param("minPrice") Integer minPrice,
-	                            @Param("maxPrice") Integer maxPrice);
-
+	                            @Param("maxPrice") Integer maxPrice,
+	                            @Param("minLatitude") Double minLatitude,
+	                            @Param("maxLatitude") Double maxLatitude,
+	                            @Param("minLongitude") Double minLongitude,
+	                            @Param("maxLongitude") Double maxLongitude);
 }

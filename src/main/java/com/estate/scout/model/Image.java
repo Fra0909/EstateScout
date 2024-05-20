@@ -1,4 +1,4 @@
-package com.estate.scout.models;
+package com.estate.scout.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
