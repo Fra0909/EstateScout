@@ -6,9 +6,11 @@ docker network create estate-scout-network
 
 docker build -t estate-scout-mysql -f mysql.Dockerfile .
 
+docker run -d -p 3306:3306 --network estate-scout-network --name estate-scout-mysql estate-scout-mysql
+
 docker build -t estate-scout-backend .
 
-docker run -d -p 3306:3306 --network estate-scout-network --name estate-scout-mysql estate-scout-mysql
+timeout /t 5 > nul
 
 docker run -d -p 8080:8080 --network estate-scout-network --name estate-scout-backend estate-scout-backend
 
