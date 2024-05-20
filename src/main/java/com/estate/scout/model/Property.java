@@ -1,10 +1,8 @@
-package com.estate.scout.models;
+package com.estate.scout.model;
 
 import com.estate.scout.enums.PropertyType;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -55,21 +53,28 @@ public class Property {
 	private boolean studentsAllowed;
 
 	@Column(name = "property_type")
+	@Enumerated(EnumType.STRING)
 	private PropertyType propertyType;
 
-	@Column(name = "price")
-	private int price;
+	@Column(name = "price_in_pence")
+	private int priceInPence;
 
-	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Image> images;
+
+	@Column(name = "latitude")
+	private Double latitude;
+
+	@Column(name = "longitude")
+	private Double longitude;
 
 	public Property() {
 	}
 
 	public Property(Long id, String addressLine1, String addressLine2, String addressLine3, String postcode,
-					String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms,
-					boolean hasGarden, boolean hasParking, boolean petsAllowed, boolean smokersAllowed,
-					boolean studentsAllowed, PropertyType propertyType, int price, List<Image> images) {
+	                String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms, boolean hasGarden,
+	                boolean hasParking, boolean petsAllowed, boolean smokersAllowed, boolean studentsAllowed,
+	                PropertyType propertyType, int priceInPence, List<Image> images, Double latitude, Double longitude) {
 		this.id = id;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
@@ -85,8 +90,10 @@ public class Property {
 		this.smokersAllowed = smokersAllowed;
 		this.studentsAllowed = studentsAllowed;
 		this.propertyType = propertyType;
-		this.price = price;
+		this.priceInPence = priceInPence;
 		this.images = images;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public Long getId() {
@@ -209,9 +216,13 @@ public class Property {
 		this.propertyType = propertyType;
 	}
 
-	public void setPrice(int price) { this.price = price; }
+	public int getPriceInPence() {
+		return priceInPence;
+	}
 
-	public int getPrice() { return price; }
+	public void setPriceInPence(int priceInPence) {
+		this.priceInPence = priceInPence;
+	}
 
 	public List<Image> getImages() {
 		return images;
@@ -219,6 +230,47 @@ public class Property {
 
 	public void setImages(List<Image> images) {
 		this.images = images;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	@Override
+	public String toString() {
+		return "Property{" +
+				"id=" + id +
+				", addressLine1='" + addressLine1 + '\'' +
+				", addressLine2='" + addressLine2 + '\'' +
+				", addressLine3='" + addressLine3 + '\'' +
+				", postcode='" + postcode + '\'' +
+				", town='" + town + '\'' +
+				", numberOfBathrooms=" + numberOfBathrooms +
+				", numberOfBedrooms=" + numberOfBedrooms +
+				", numberOfLivingRooms=" + numberOfLivingRooms +
+				", hasGarden=" + hasGarden +
+				", hasParking=" + hasParking +
+				", petsAllowed=" + petsAllowed +
+				", smokersAllowed=" + smokersAllowed +
+				", studentsAllowed=" + studentsAllowed +
+				", propertyType=" + propertyType +
+				", priceInPence=" + priceInPence +
+				", images=" + images +
+				", latitude=" + latitude +
+				", longitude=" + longitude +
+				'}';
 	}
 }
 

@@ -6,13 +6,15 @@ import { NgForOf } from "@angular/common";
 import { PropertyListingComponent } from "./property-listing/property-listing.component";
 import { Property } from "./models/property";
 import { PropertyService } from "./services/property.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FullscreenContainerComponent, NavbarComponent, NgForOf, PropertyListingComponent],
+  imports: [RouterOutlet, FullscreenContainerComponent, NavbarComponent, NgForOf, PropertyListingComponent, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers: [PropertyService]
 })
 export class AppComponent implements OnInit {
 
@@ -23,7 +25,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // Temporary mock featured properties
-    this.propertyService.getProperty(0).subscribe(
-      property => this.featuredProperties.push(property));
+    this.propertyService.getAllProperties().subscribe(
+      property => this.featuredProperties.push(...property));
   }
 }

@@ -13,7 +13,10 @@ export class PropertyService {
   constructor(private http: HttpClient) { }
 
   getProperty(id: number) : Observable<Property> {
-    return this.http.get<Property>(`${this.baseURL}/api/properties/${id}`);
+    return this.http.get<Property>(`${this.baseURL}/api/property/${id}`);
   }
 
+  getAllProperties() : Observable<Property[]> {
+    return this.http.get<Property[]>(`${this.baseURL}/api/property`);
+  }
 }

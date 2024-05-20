@@ -2,6 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {PropertyService} from './property.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {Property} from "../models/property";
 
 describe('PropertyService', () => {
   let service: PropertyService;
@@ -21,7 +22,7 @@ describe('PropertyService', () => {
   });
 
   it("should get a property", () => {
-    const mockProperties = [
+    const mockProperties: Property[] = [
       {
         id: 0,
         addressLine1: "12 Bellington",
@@ -39,6 +40,7 @@ describe('PropertyService', () => {
         studentsAllowed: true,
         propertyType: "FOR_SALE",
         price: 733425,
+        image: []
       },
     ];
 

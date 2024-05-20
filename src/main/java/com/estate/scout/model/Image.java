@@ -1,5 +1,7 @@
-package com.estate.scout.models;
+package com.estate.scout.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -14,6 +16,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name = "property_id")
+    @JsonIgnore
     private Property property;
 
     public Image() {
