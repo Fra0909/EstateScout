@@ -1,6 +1,6 @@
 package com.estate.scout.dto;
 
-public class PropertyFilter {
+public class PropertyFilterDTO {
 	private String addressLine1;
 	private String addressLine2;
 	private String addressLine3;
@@ -22,7 +22,7 @@ public class PropertyFilter {
 	private Double maxLatitude;
 	private Double maxLongitude;
 
-	public PropertyFilter(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude) {
+	public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude) {
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.addressLine3 = addressLine3;

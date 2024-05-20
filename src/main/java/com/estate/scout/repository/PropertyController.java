@@ -1,6 +1,7 @@
 package com.estate.scout.repository;
 
-import com.estate.scout.dto.PropertyFilter;
+import com.estate.scout.dto.PropertyDTO;
+import com.estate.scout.dto.PropertyFilterDTO;
 import com.estate.scout.model.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +28,9 @@ public class PropertyController {
 	}
 
 	@GetMapping("/{id}")
-	public Property getPropertyById(@PathVariable Long id) {
+	public PropertyDTO getPropertyById(@PathVariable Long id) {
 		LOG.info("Retrieved property with ID: " + id);
-		return propertyRepository.getById(id);
+		return PropertyDTO.convertToDTO(propertyRepository.getById(id));
 	}
 
 	@PostMapping
@@ -45,7 +46,7 @@ public class PropertyController {
 	}
 
 	@GetMapping("/filter")
-	public List<Property> getPropertiesByFilter(PropertyFilter filter) {
+	public List<Property> getPropertiesByFilter(PropertyFilterDTO filter) {
 		LOG.info("Retrieved properties with filter: " + filter);
 		return propertyRepository.findByFilter(
 				filter.getAddressLine1(), filter.getAddressLine2(), filter.getAddressLine3(), filter.getPostcode(), filter.getTown(),
