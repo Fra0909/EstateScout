@@ -16,6 +16,8 @@ export interface Property {
   smokersAllowed: boolean;
   studentsAllowed: boolean;
   propertyType: string;
-  image: Array<Image>;
+  images: Image[];
   price: number;
+  latitude: number;
+  longitude: number;
 }

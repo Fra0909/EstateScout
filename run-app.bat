@@ -1,6 +1,5 @@
-docker stop $(docker ps -aq)
-docker rm $(docker ps -aq)
-docker rmi $(docker images -aq)
+docker rm -vf $(docker ps -aq)
+docker rmi -f $(docker images -aq)
 
 docker network create estate-scout-network
 
