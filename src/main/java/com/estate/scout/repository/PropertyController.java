@@ -1,6 +1,6 @@
 package com.estate.scout.repository;
 
-import com.estate.scout.converter.PropertyToPropertyDtoConverter;
+import com.estate.scout.converter.PropertyConverter;
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
 import com.estate.scout.model.Property;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/property")
@@ -23,21 +24,23 @@ public class PropertyController {
 	}
 
 	@GetMapping
-	public List<Property> getAllProperties() {
+	public List<PropertyDTO> getAllProperties() {
 		LOG.info("Retrieved all properties");
-		return propertyRepository.findAll();
+		return propertyRepository.findAll().stream()
+				.map(PropertyConverter::convert)
+				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/{id}")
 	public PropertyDTO getPropertyById(@PathVariable Long id) {
 		LOG.info("Retrieved property with ID: " + id);
-		return PropertyToPropertyDtoConverter.convertToDTO(propertyRepository.getById(id));
+		return PropertyConverter.convert(propertyRepository.getById(id));
 	}
 
 	@PostMapping
-	public Property createProperty(@RequestBody Property property) {
-		LOG.info("Creating property: " + property.toString());
-		return propertyRepository.save(property);
+	public Property createProperty(@RequestBody PropertyDTO propertyDTO) {
+		LOG.info("Creating property: " + propertyDTO.toString());
+		return propertyRepository.save(PropertyConverter.convert(propertyDTO));
 	}
 
 	@DeleteMapping("/{id}")

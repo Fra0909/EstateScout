@@ -27,5 +27,13 @@ public class ImageDTO {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	@Override
+	public String toString() {
+		return "ImageDTO{" +
+				"id=" + id +
+				", path='" + path + '\'' +
+				'}';
+	}
 }
 
