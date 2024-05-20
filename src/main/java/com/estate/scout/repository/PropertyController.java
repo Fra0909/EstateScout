@@ -1,5 +1,6 @@
 package com.estate.scout.repository;
 
+import com.estate.scout.converter.PropertyToPropertyDtoConverter;
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
 import com.estate.scout.model.Property;
@@ -30,7 +31,7 @@ public class PropertyController {
 	@GetMapping("/{id}")
 	public PropertyDTO getPropertyById(@PathVariable Long id) {
 		LOG.info("Retrieved property with ID: " + id);
-		return PropertyDTO.convertToDTO(propertyRepository.getById(id));
+		return PropertyToPropertyDtoConverter.convertToDTO(propertyRepository.getById(id));
 	}
 
 	@PostMapping
@@ -56,5 +57,4 @@ public class PropertyController {
 				filter.getMinPrice(), filter.getMaxPrice(), filter.getMinLatitude(), filter.getMaxLatitude(),
 				filter.getMinLongitude(), filter.getMaxLongitude());
 	}
-
 }

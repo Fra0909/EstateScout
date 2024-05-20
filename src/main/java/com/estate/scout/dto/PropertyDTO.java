@@ -6,6 +6,7 @@ import com.estate.scout.model.Property;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PropertyDTO {
 	private Long id;
@@ -203,20 +204,5 @@ public class PropertyDTO {
 
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
-	}
-
-	public static PropertyDTO convertToDTO(Property property) {
-		PropertyDTO dto = new PropertyDTO();
-		dto.setId(property.getId());
-		dto.setAddressLine1(property.getAddressLine1());
-		List<ImageDTO> imageDTOs = new ArrayList<>();
-		for (Image image : property.getImages()) {
-			ImageDTO imageDTO = new ImageDTO();
-			imageDTO.setId(image.getId());
-			imageDTO.setPath(image.getPath());
-			imageDTOs.add(imageDTO);
-		}
-		dto.setImages(imageDTOs);
-		return dto;
 	}
 }

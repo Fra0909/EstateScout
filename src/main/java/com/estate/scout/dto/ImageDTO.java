@@ -3,15 +3,13 @@ package com.estate.scout.dto;
 public class ImageDTO {
 	private Long id;
 	private String path;
-	private Long propertyId;
 
 	public ImageDTO() {
 	}
 
-	public ImageDTO(Long id, String path, Long propertyId) {
+	public ImageDTO(Long id, String path) {
 		this.id = id;
 		this.path = path;
-		this.propertyId = propertyId;
 	}
 
 	public Long getId() {
@@ -28,14 +26,6 @@ public class ImageDTO {
 
 	public void setPath(String path) {
 		this.path = path;
-	}
-
-	public Long getPropertyId() {
-		return propertyId;
-	}
-
-	public void setPropertyId(Long propertyId) {
-		this.propertyId = propertyId;
 	}
 }
 
