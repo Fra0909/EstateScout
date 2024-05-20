@@ -205,4 +205,29 @@ public class PropertyDTO {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
+
+	@Override
+	public String toString() {
+		return "PropertyDTO{" +
+				"id=" + id +
+				", addressLine1='" + addressLine1 + '\'' +
+				", addressLine2='" + addressLine2 + '\'' +
+				", addressLine3='" + addressLine3 + '\'' +
+				", postcode='" + postcode + '\'' +
+				", town='" + town + '\'' +
+				", numberOfBathrooms=" + numberOfBathrooms +
+				", numberOfBedrooms=" + numberOfBedrooms +
+				", numberOfLivingRooms=" + numberOfLivingRooms +
+				", hasGarden=" + hasGarden +
+				", hasParking=" + hasParking +
+				", petsAllowed=" + petsAllowed +
+				", smokersAllowed=" + smokersAllowed +
+				", studentsAllowed=" + studentsAllowed +
+				", propertyType=" + propertyType +
+				", priceInPence=" + priceInPence +
+				", images=" + images +
+				", latitude=" + latitude +
+				", longitude=" + longitude +
+				'}';
+	}
 }
