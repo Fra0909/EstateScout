@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Repository
@@ -29,23 +30,24 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 			" AND (:minLatitude is null OR :maxLatitude is null OR p.latitude BETWEEN :minLatitude AND :maxLatitude)" +
 			" AND (:minLongitude is null OR :maxLongitude is null OR p.longitude BETWEEN :minLongitude AND :maxLongitude)")
 	List<Property> findByFilter(@Param("addressLine1") String addressLine1,
-	                            @Param("addressLine2") String addressLine2,
-	                            @Param("addressLine3") String addressLine3,
-	                            @Param("postcode") String postcode,
-	                            @Param("town") String town,
-	                            @Param("noOfBathrooms") Integer noOfBathrooms,
-	                            @Param("noOfBedrooms") Integer noOfBedrooms,
-	                            @Param("noOfLivingRooms") Integer noOfLivingRooms,
-	                            @Param("hasGarden") Boolean hasGarden,
-	                            @Param("hasParking") Boolean hasParking,
-	                            @Param("petsAllowed") Boolean petsAllowed,
-	                            @Param("smokersAllowed") Boolean smokersAllowed,
-	                            @Param("studentsAllowed") Boolean studentsAllowed,
-	                            @Param("propertyType") String propertyType,
-	                            @Param("minPrice") Integer minPrice,
-	                            @Param("maxPrice") Integer maxPrice,
-	                            @Param("minLatitude") Double minLatitude,
-	                            @Param("maxLatitude") Double maxLatitude,
-	                            @Param("minLongitude") Double minLongitude,
-	                            @Param("maxLongitude") Double maxLongitude);
+								@Param("addressLine2") String addressLine2,
+								@Param("addressLine3") String addressLine3,
+								@Param("postcode") String postcode,
+								@Param("town") String town,
+								@Param("noOfBathrooms") Integer noOfBathrooms,
+								@Param("noOfBedrooms") Integer noOfBedrooms,
+								@Param("noOfLivingRooms") Integer noOfLivingRooms,
+								@Param("hasGarden") Boolean hasGarden,
+								@Param("hasParking") Boolean hasParking,
+								@Param("petsAllowed") Boolean petsAllowed,
+								@Param("smokersAllowed") Boolean smokersAllowed,
+								@Param("studentsAllowed") Boolean studentsAllowed,
+								@Param("propertyType") String propertyType,
+								@Param("minPrice") Integer minPrice,
+								@Param("maxPrice") Integer maxPrice,
+								@Param("minLatitude") Double minLatitude,
+								@Param("maxLatitude") Double maxLatitude,
+								@Param("minLongitude") Double minLongitude,
+								@Param("maxLongitude") Double maxLongitude,
+								Pageable pageable);
 }

@@ -19,4 +19,8 @@ export class PropertyService {
   getAllProperties() : Observable<Property[]> {
     return this.http.get<Property[]>(`${this.baseURL}/api/property`);
   }
+
+  getFeaturedProperties() : Observable<Property[]>{
+    return this.http.get<Property[]>(`${this.baseURL}/api/property/filter`);
+  }
 }

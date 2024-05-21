@@ -21,8 +21,9 @@ public class PropertyFilterDTO {
 	private Double minLongitude;
 	private Double maxLatitude;
 	private Double maxLongitude;
+	private Integer limit;
 
-	public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude) {
+	public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude, Integer limit) {
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.addressLine3 = addressLine3;
@@ -43,6 +44,7 @@ public class PropertyFilterDTO {
 		this.minLongitude = minLongitude;
 		this.maxLatitude = maxLatitude;
 		this.maxLongitude = maxLongitude;
+		this.limit = limit;
 	}
 
 	public String getAddressLine1() {
@@ -205,9 +207,17 @@ public class PropertyFilterDTO {
 		this.maxLongitude = maxLongitude;
 	}
 
+	public Integer getLimit() {
+		return limit;
+	}
+
+	public void setLimit(Integer limit) {
+		this.limit = limit;
+	}
+
 	@Override
 	public String toString() {
-		return "PropertyFilter{" +
+		return "PropertyFilterDTO{" +
 				"addressLine1='" + addressLine1 + '\'' +
 				", addressLine2='" + addressLine2 + '\'' +
 				", addressLine3='" + addressLine3 + '\'' +
@@ -228,6 +238,7 @@ public class PropertyFilterDTO {
 				", minLongitude=" + minLongitude +
 				", maxLatitude=" + maxLatitude +
 				", maxLongitude=" + maxLongitude +
+				", limit=" + limit +
 				'}';
 	}
 }

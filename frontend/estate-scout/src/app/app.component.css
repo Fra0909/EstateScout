@@ -16,3 +16,33 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-section {
+  position: relative;
+}
+
+.featured-properties-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  padding-top: 6%;
+  padding-bottom: 6%;
+}
+
+.properties-outer {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 50px;
+  height: 100%;
+}
+
+
