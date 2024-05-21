@@ -6,6 +6,7 @@ import com.estate.scout.model.Property;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PropertyDTO {
@@ -229,5 +230,35 @@ public class PropertyDTO {
 				", latitude=" + latitude +
 				", longitude=" + longitude +
 				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		PropertyDTO that = (PropertyDTO) o;
+		return numberOfBathrooms == that.numberOfBathrooms && numberOfBedrooms == that.numberOfBedrooms
+				&& numberOfLivingRooms == that.numberOfLivingRooms && hasGarden == that.hasGarden
+				&& hasParking == that.hasParking && petsAllowed == that.petsAllowed
+				&& smokersAllowed == that.smokersAllowed && studentsAllowed == that.studentsAllowed
+				&& priceInPence == that.priceInPence && Objects.equals(id, that.id)
+				&& Objects.equals(addressLine1, that.addressLine1) && Objects.equals(
+				addressLine2, that.addressLine2) && Objects.equals(addressLine3, that.addressLine3)
+				&& Objects.equals(postcode, that.postcode) && Objects.equals(town,
+				that.town) && propertyType == that.propertyType && Objects.equals(images,
+				that.images) && Objects.equals(latitude, that.latitude) && Objects.equals(
+				longitude, that.longitude);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, addressLine1, addressLine2, addressLine3, postcode, town,
+				numberOfBathrooms, numberOfBedrooms, numberOfLivingRooms, hasGarden, hasParking,
+				petsAllowed,
+				smokersAllowed, studentsAllowed, propertyType, priceInPence, images, latitude, longitude);
 	}
 }

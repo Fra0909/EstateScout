@@ -3,6 +3,7 @@ package com.estate.scout.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -50,5 +51,32 @@ public class Image {
 
     public void setProperty(Property property) {
         this.property = property;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+            "id=" + id +
+            ", path='" + path + '\'' +
+            ", property=" + property +
+            '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Image image = (Image) o;
+        return Objects.equals(id, image.id) && Objects.equals(path, image.path)
+            && Objects.equals(property, image.property);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, path, property);
     }
 }
