@@ -24,10 +24,8 @@ export class AppComponent implements OnInit {
   featuredProperties: Property[] = [];
 
   ngOnInit() {
-    // Temporary mock featured properties
     this.propertyService.getAllProperties().subscribe(
       property => {
-        console.log(property)
         this.featuredProperties.push(...property)
       });
 

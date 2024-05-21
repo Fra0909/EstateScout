@@ -3,6 +3,9 @@
   border-radius: 5px;
   cursor: pointer;
   transition: box-shadow ease-in-out .3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .property-box:hover {
@@ -13,14 +16,18 @@
   gap: 15px;
   color: var(--secondary-clr);
   padding: 25px;
+  height: 40%;
+  width: 100%;
 }
 
 .property-img-container {
+  height: 60%;
   width: 100%;
 }
 
 .property-img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
 }

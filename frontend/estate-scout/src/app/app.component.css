@@ -26,17 +26,18 @@
   position: relative;
 }
 
-.section {
+.featured-properties-section {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50vh;
+  padding-top: 6%;
+  padding-bottom: 6%;
 }
 
 .properties-outer {
   width: 80%;
-  padding-top: 6%;
-  padding-bottom: 6%;
   display: flex;
   justify-content: center;
   align-items: stretch;
