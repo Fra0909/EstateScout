@@ -1,12 +1,13 @@
 package com.estate.scout.repository;
 
 import com.estate.scout.model.Property;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Repository
@@ -29,7 +30,7 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 			" AND (:minPrice is null OR :maxPrice is null OR p.priceInPence BETWEEN :minPrice AND :maxPrice)" +
 			" AND (:minLatitude is null OR :maxLatitude is null OR p.latitude BETWEEN :minLatitude AND :maxLatitude)" +
 			" AND (:minLongitude is null OR :maxLongitude is null OR p.longitude BETWEEN :minLongitude AND :maxLongitude)")
-	List<Property> findByFilter(@Param("addressLine1") String addressLine1,
+	Page<Property> findByFilter(@Param("addressLine1") String addressLine1,
 								@Param("addressLine2") String addressLine2,
 								@Param("addressLine3") String addressLine3,
 								@Param("postcode") String postcode,

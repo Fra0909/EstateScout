@@ -1,245 +1,262 @@
 package com.estate.scout.dto;
 
 public class PropertyFilterDTO {
-	private String addressLine1;
-	private String addressLine2;
-	private String addressLine3;
-	private String postcode;
-	private String town;
-	private Integer numberOfBathrooms;
-	private Integer numberOfBedrooms;
-	private Integer numberOfLivingRooms;
-	private Boolean hasGarden;
-	private Boolean hasParking;
-	private Boolean petsAllowed;
-	private Boolean smokersAllowed;
-	private Boolean studentsAllowed;
-	private String propertyType;
-	private Integer minPrice;
-	private Integer maxPrice;
-	private Double minLatitude;
-	private Double minLongitude;
-	private Double maxLatitude;
-	private Double maxLongitude;
-	private Integer limit;
 
-	public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude, Integer limit) {
-		this.addressLine1 = addressLine1;
-		this.addressLine2 = addressLine2;
-		this.addressLine3 = addressLine3;
-		this.postcode = postcode;
-		this.town = town;
-		this.numberOfBathrooms = numberOfBathrooms;
-		this.numberOfBedrooms = numberOfBedrooms;
-		this.numberOfLivingRooms = numberOfLivingRooms;
-		this.hasGarden = hasGarden;
-		this.hasParking = hasParking;
-		this.petsAllowed = petsAllowed;
-		this.smokersAllowed = smokersAllowed;
-		this.studentsAllowed = studentsAllowed;
-		this.propertyType = propertyType;
-		this.minPrice = minPrice;
-		this.maxPrice = maxPrice;
-		this.minLatitude = minLatitude;
-		this.minLongitude = minLongitude;
-		this.maxLatitude = maxLatitude;
-		this.maxLongitude = maxLongitude;
-		this.limit = limit;
-	}
+  private String addressLine1;
+  private String addressLine2;
+  private String addressLine3;
+  private String postcode;
+  private String town;
+  private Integer numberOfBathrooms;
+  private Integer numberOfBedrooms;
+  private Integer numberOfLivingRooms;
+  private Boolean hasGarden;
+  private Boolean hasParking;
+  private Boolean petsAllowed;
+  private Boolean smokersAllowed;
+  private Boolean studentsAllowed;
+  private String propertyType;
+  private Integer minPrice;
+  private Integer maxPrice;
+  private Double minLatitude;
+  private Double minLongitude;
+  private Double maxLatitude;
+  private Double maxLongitude;
+  private Integer pageSize;
+  private Integer page;
 
-	public String getAddressLine1() {
-		return addressLine1;
-	}
+  public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3,
+      String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms,
+      Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed,
+      Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice,
+      Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude,
+      Double maxLongitude, Integer pageSize, Integer page) {
+    this.addressLine1 = addressLine1;
+    this.addressLine2 = addressLine2;
+    this.addressLine3 = addressLine3;
+    this.postcode = postcode;
+    this.town = town;
+    this.numberOfBathrooms = numberOfBathrooms;
+    this.numberOfBedrooms = numberOfBedrooms;
+    this.numberOfLivingRooms = numberOfLivingRooms;
+    this.hasGarden = hasGarden;
+    this.hasParking = hasParking;
+    this.petsAllowed = petsAllowed;
+    this.smokersAllowed = smokersAllowed;
+    this.studentsAllowed = studentsAllowed;
+    this.propertyType = propertyType;
+    this.minPrice = minPrice;
+    this.maxPrice = maxPrice;
+    this.minLatitude = minLatitude;
+    this.minLongitude = minLongitude;
+    this.maxLatitude = maxLatitude;
+    this.maxLongitude = maxLongitude;
+    this.pageSize = pageSize;
+    this.page = page;
+  }
 
-	public void setAddressLine1(String addressLine1) {
-		this.addressLine1 = addressLine1;
-	}
+  public String getAddressLine1() {
+    return addressLine1;
+  }
 
-	public String getAddressLine2() {
-		return addressLine2;
-	}
+  public void setAddressLine1(String addressLine1) {
+    this.addressLine1 = addressLine1;
+  }
 
-	public void setAddressLine2(String addressLine2) {
-		this.addressLine2 = addressLine2;
-	}
+  public String getAddressLine2() {
+    return addressLine2;
+  }
 
-	public String getAddressLine3() {
-		return addressLine3;
-	}
+  public void setAddressLine2(String addressLine2) {
+    this.addressLine2 = addressLine2;
+  }
 
-	public void setAddressLine3(String addressLine3) {
-		this.addressLine3 = addressLine3;
-	}
+  public String getAddressLine3() {
+    return addressLine3;
+  }
 
-	public String getPostcode() {
-		return postcode;
-	}
+  public void setAddressLine3(String addressLine3) {
+    this.addressLine3 = addressLine3;
+  }
 
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
+  public String getPostcode() {
+    return postcode;
+  }
 
-	public String getTown() {
-		return town;
-	}
+  public void setPostcode(String postcode) {
+    this.postcode = postcode;
+  }
 
-	public void setTown(String town) {
-		this.town = town;
-	}
+  public String getTown() {
+    return town;
+  }
 
-	public Integer getNumberOfBathrooms() {
-		return numberOfBathrooms;
-	}
+  public void setTown(String town) {
+    this.town = town;
+  }
 
-	public void setNumberOfBathrooms(Integer numberOfBathrooms) {
-		this.numberOfBathrooms = numberOfBathrooms;
-	}
+  public Integer getNumberOfBathrooms() {
+    return numberOfBathrooms;
+  }
 
-	public Integer getNumberOfBedrooms() {
-		return numberOfBedrooms;
-	}
+  public void setNumberOfBathrooms(Integer numberOfBathrooms) {
+    this.numberOfBathrooms = numberOfBathrooms;
+  }
 
-	public void setNumberOfBedrooms(Integer numberOfBedrooms) {
-		this.numberOfBedrooms = numberOfBedrooms;
-	}
+  public Integer getNumberOfBedrooms() {
+    return numberOfBedrooms;
+  }
 
-	public Integer getNumberOfLivingRooms() {
-		return numberOfLivingRooms;
-	}
+  public void setNumberOfBedrooms(Integer numberOfBedrooms) {
+    this.numberOfBedrooms = numberOfBedrooms;
+  }
 
-	public void setNumberOfLivingRooms(Integer numberOfLivingRooms) {
-		this.numberOfLivingRooms = numberOfLivingRooms;
-	}
+  public Integer getNumberOfLivingRooms() {
+    return numberOfLivingRooms;
+  }
 
-	public Boolean getHasGarden() {
-		return hasGarden;
-	}
+  public void setNumberOfLivingRooms(Integer numberOfLivingRooms) {
+    this.numberOfLivingRooms = numberOfLivingRooms;
+  }
 
-	public void setHasGarden(Boolean hasGarden) {
-		this.hasGarden = hasGarden;
-	}
+  public Boolean getHasGarden() {
+    return hasGarden;
+  }
 
-	public Boolean getHasParking() {
-		return hasParking;
-	}
+  public void setHasGarden(Boolean hasGarden) {
+    this.hasGarden = hasGarden;
+  }
 
-	public void setHasParking(Boolean hasParking) {
-		this.hasParking = hasParking;
-	}
+  public Boolean getHasParking() {
+    return hasParking;
+  }
 
-	public Boolean getPetsAllowed() {
-		return petsAllowed;
-	}
+  public void setHasParking(Boolean hasParking) {
+    this.hasParking = hasParking;
+  }
 
-	public void setPetsAllowed(Boolean petsAllowed) {
-		this.petsAllowed = petsAllowed;
-	}
+  public Boolean getPetsAllowed() {
+    return petsAllowed;
+  }
 
-	public Boolean getSmokersAllowed() {
-		return smokersAllowed;
-	}
+  public void setPetsAllowed(Boolean petsAllowed) {
+    this.petsAllowed = petsAllowed;
+  }
 
-	public void setSmokersAllowed(Boolean smokersAllowed) {
-		this.smokersAllowed = smokersAllowed;
-	}
+  public Boolean getSmokersAllowed() {
+    return smokersAllowed;
+  }
 
-	public Boolean getStudentsAllowed() {
-		return studentsAllowed;
-	}
+  public void setSmokersAllowed(Boolean smokersAllowed) {
+    this.smokersAllowed = smokersAllowed;
+  }
 
-	public void setStudentsAllowed(Boolean studentsAllowed) {
-		this.studentsAllowed = studentsAllowed;
-	}
+  public Boolean getStudentsAllowed() {
+    return studentsAllowed;
+  }
 
-	public String getPropertyType() {
-		return propertyType;
-	}
+  public void setStudentsAllowed(Boolean studentsAllowed) {
+    this.studentsAllowed = studentsAllowed;
+  }
 
-	public void setPropertyType(String propertyType) {
-		this.propertyType = propertyType;
-	}
+  public String getPropertyType() {
+    return propertyType;
+  }
 
-	public Integer getMinPrice() {
-		return minPrice;
-	}
+  public void setPropertyType(String propertyType) {
+    this.propertyType = propertyType;
+  }
 
-	public void setMinPrice(Integer minPrice) {
-		this.minPrice = minPrice;
-	}
+  public Integer getMinPrice() {
+    return minPrice;
+  }
 
-	public Integer getMaxPrice() {
-		return maxPrice;
-	}
+  public void setMinPrice(Integer minPrice) {
+    this.minPrice = minPrice;
+  }
 
-	public void setMaxPrice(Integer maxPrice) {
-		this.maxPrice = maxPrice;
-	}
+  public Integer getMaxPrice() {
+    return maxPrice;
+  }
 
-	public Double getMinLatitude() {
-		return minLatitude;
-	}
+  public void setMaxPrice(Integer maxPrice) {
+    this.maxPrice = maxPrice;
+  }
 
-	public void setMinLatitude(Double minLatitude) {
-		this.minLatitude = minLatitude;
-	}
+  public Double getMinLatitude() {
+    return minLatitude;
+  }
 
-	public Double getMinLongitude() {
-		return minLongitude;
-	}
+  public void setMinLatitude(Double minLatitude) {
+    this.minLatitude = minLatitude;
+  }
 
-	public void setMinLongitude(Double minLongitude) {
-		this.minLongitude = minLongitude;
-	}
+  public Double getMinLongitude() {
+    return minLongitude;
+  }
 
-	public Double getMaxLatitude() {
-		return maxLatitude;
-	}
+  public void setMinLongitude(Double minLongitude) {
+    this.minLongitude = minLongitude;
+  }
 
-	public void setMaxLatitude(Double maxLatitude) {
-		this.maxLatitude = maxLatitude;
-	}
+  public Double getMaxLatitude() {
+    return maxLatitude;
+  }
 
-	public Double getMaxLongitude() {
-		return maxLongitude;
-	}
+  public void setMaxLatitude(Double maxLatitude) {
+    this.maxLatitude = maxLatitude;
+  }
 
-	public void setMaxLongitude(Double maxLongitude) {
-		this.maxLongitude = maxLongitude;
-	}
+  public Double getMaxLongitude() {
+    return maxLongitude;
+  }
 
-	public Integer getLimit() {
-		return limit;
-	}
+  public void setMaxLongitude(Double maxLongitude) {
+    this.maxLongitude = maxLongitude;
+  }
 
-	public void setLimit(Integer limit) {
-		this.limit = limit;
-	}
+  public Integer getPageSize() {
+    return pageSize;
+  }
 
-	@Override
-	public String toString() {
-		return "PropertyFilterDTO{" +
-				"addressLine1='" + addressLine1 + '\'' +
-				", addressLine2='" + addressLine2 + '\'' +
-				", addressLine3='" + addressLine3 + '\'' +
-				", postcode='" + postcode + '\'' +
-				", town='" + town + '\'' +
-				", numberOfBathrooms=" + numberOfBathrooms +
-				", numberOfBedrooms=" + numberOfBedrooms +
-				", numberOfLivingRooms=" + numberOfLivingRooms +
-				", hasGarden=" + hasGarden +
-				", hasParking=" + hasParking +
-				", petsAllowed=" + petsAllowed +
-				", smokersAllowed=" + smokersAllowed +
-				", studentsAllowed=" + studentsAllowed +
-				", propertyType='" + propertyType + '\'' +
-				", minPrice=" + minPrice +
-				", maxPrice=" + maxPrice +
-				", minLatitude=" + minLatitude +
-				", minLongitude=" + minLongitude +
-				", maxLatitude=" + maxLatitude +
-				", maxLongitude=" + maxLongitude +
-				", limit=" + limit +
-				'}';
-	}
+  public void setPageSize(Integer pageSize) {
+    this.pageSize = pageSize;
+  }
+
+  public Integer getPage() {
+    return page;
+  }
+
+  public void setPage(Integer page) {
+    this.page = page;
+  }
+
+  @Override
+  public String toString() {
+    return "PropertyFilterDTO{" +
+        "addressLine1='" + addressLine1 + '\'' +
+        ", addressLine2='" + addressLine2 + '\'' +
+        ", addressLine3='" + addressLine3 + '\'' +
+        ", postcode='" + postcode + '\'' +
+        ", town='" + town + '\'' +
+        ", numberOfBathrooms=" + numberOfBathrooms +
+        ", numberOfBedrooms=" + numberOfBedrooms +
+        ", numberOfLivingRooms=" + numberOfLivingRooms +
+        ", hasGarden=" + hasGarden +
+        ", hasParking=" + hasParking +
+        ", petsAllowed=" + petsAllowed +
+        ", smokersAllowed=" + smokersAllowed +
+        ", studentsAllowed=" + studentsAllowed +
+        ", propertyType='" + propertyType + '\'' +
+        ", minPrice=" + minPrice +
+        ", maxPrice=" + maxPrice +
+        ", minLatitude=" + minLatitude +
+        ", minLongitude=" + minLongitude +
+        ", maxLatitude=" + maxLatitude +
+        ", maxLongitude=" + maxLongitude +
+        ", pageSize=" + pageSize +
+        ", page=" + page +
+        '}';
+  }
 }
 
