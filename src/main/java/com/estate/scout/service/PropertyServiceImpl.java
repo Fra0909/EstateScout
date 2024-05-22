@@ -4,6 +4,7 @@ import com.estate.scout.converter.PropertyConverter;
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
 import com.estate.scout.exception.InvalidParamException;
+import com.estate.scout.helper.DistanceCalculator;
 import com.estate.scout.model.Property;
 import com.estate.scout.repository.PropertyRepository;
 import java.util.List;
@@ -70,7 +71,7 @@ public class PropertyServiceImpl implements PropertyService {
   }
 
   @Override
-  public List<Property> getPropertiesByFilter(PropertyFilterDTO filter) {
+  public List<PropertyDTO> getPropertiesByFilter(PropertyFilterDTO filter) {
     List<Property> properties = propertyRepository.findByFilter(
         filter.getAddressLine1(), filter.getAddressLine2(), filter.getAddressLine3(),
         filter.getPostcode(), filter.getTown(),
@@ -85,6 +86,18 @@ public class PropertyServiceImpl implements PropertyService {
         PageRequest.of(filter.getPage() != null ? filter.getPage() : 0,
             filter.getPageSize() != null ? filter.getPageSize() : 10)).getContent();
     LOG.info("Retrieved properties with filter: " + filter);
-    return properties;
+    return properties.stream().map(PropertyConverter::convert).collect(Collectors.toList());
+
+  }
+
+  @Override
+  public List<PropertyDTO> getPropertiesWithinDistance(long latitude, long longitude,
+      int distanceInKilometres) {
+    double[] boundingBox = DistanceCalculator.calculateBoundingBox(latitude, longitude,
+        distanceInKilometres);
+    PropertyFilterDTO propertyFilterDTO = new PropertyFilterDTO(boundingBox[0], boundingBox[1],
+        boundingBox[2], boundingBox[3]);
+
+    return getPropertiesByFilter(propertyFilterDTO);
   }
 }

@@ -55,6 +55,14 @@ public class PropertyFilterDTO {
     this.page = page;
   }
 
+  public PropertyFilterDTO(Double minLatitude, Double minLongitude, Double maxLatitude,
+      Double maxLongitude) {
+    this.minLatitude = minLatitude;
+    this.minLongitude = minLongitude;
+    this.maxLatitude = maxLatitude;
+    this.maxLongitude = maxLongitude;
+  }
+
   public String getAddressLine1() {
     return addressLine1;
   }

@@ -1,4 +1,4 @@
-package com.estate.scout.controller;
+package com.estate.scout.repository;
 
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
@@ -43,7 +43,13 @@ public class PropertyController {
   }
 
   @GetMapping("/filter")
-  public List<Property> getPropertiesByFilter(PropertyFilterDTO filter) {
+  public List<PropertyDTO> getPropertiesByFilter(@RequestBody PropertyFilterDTO filter) {
     return propertyService.getPropertiesByFilter(filter);
+  }
+
+  @GetMapping("/distance")
+  private List<PropertyDTO> getPropertiesWithinDistance(@RequestParam long latitude,
+      @RequestParam long longitude, @RequestParam int distanceInKilometres) {
+    return propertyService.getPropertiesWithinDistance(latitude, longitude, distanceInKilometres);
   }
 }
