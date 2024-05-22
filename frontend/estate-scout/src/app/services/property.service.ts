@@ -21,6 +21,6 @@ export class PropertyService {
   }
 
   getFeaturedProperties() : Observable<Property[]>{
-    return this.http.get<Property[]>(`${this.baseURL}/api/property/filter`);
+    return this.http.get<Property[]>(`${this.baseURL}/api/property/filter?page=0&pageSize=3`);
   }
 }

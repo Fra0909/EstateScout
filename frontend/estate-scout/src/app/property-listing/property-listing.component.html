@@ -4,7 +4,7 @@
   </div>
   <div class="property-info">
     <p><b>{{ propertyListing.town }}</b></p>
-    <p>{{ propertyListing.price | currency:"GBP" }}</p>
+    <p>{{ propertyListing.priceInPence | currency:"GBP" }}</p>
     <p>{{ formatPropertyType(propertyListing.propertyType) }}</p>
   </div>
 </div>
