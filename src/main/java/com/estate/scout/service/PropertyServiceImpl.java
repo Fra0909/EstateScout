@@ -52,7 +52,7 @@ public class PropertyServiceImpl implements PropertyService {
         || propertyDTO.getNumberOfLivingRooms() < 1 || propertyDTO.getPriceInPence() < 1
         || propertyDTO.getPropertyType() == null || propertyDTO.getPostcode() == null) {
       throw new InvalidParamException(
-          "The property has invalid/missing values. Not creating new property.");
+          "The request body has invalid/missing values. Not creating new property.");
     }
     Property newProperty = propertyRepository.save(PropertyConverter.convert(propertyDTO));
     LOG.info("Created property: " + propertyDTO);
