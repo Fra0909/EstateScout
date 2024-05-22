@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-section {
+  position: relative;
+}
+
+.featured-properties-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  padding-top: 6%;
+  padding-bottom: 6%;
+}
+
+.properties-outer {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 75px;
+  height: 100%;
+}

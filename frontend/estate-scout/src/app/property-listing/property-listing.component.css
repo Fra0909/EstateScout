@@ -1,5 +1,5 @@
 .property-box {
-  box-shadow: #b4b4b4 2px 2px 15px;
+  box-shadow: #d5d5d5 0 0 30px 0;
   border-radius: 5px;
   cursor: pointer;
   transition: box-shadow ease-in-out .3s;
@@ -9,7 +9,7 @@
 }
 
 .property-box:hover {
-  box-shadow: #8a8a8a 2px 2px 25px;
+  box-shadow: #adadad 0 0 40px 0;
 }
 
 .property-info {
