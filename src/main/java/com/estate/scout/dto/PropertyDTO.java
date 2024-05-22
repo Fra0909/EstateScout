@@ -1,13 +1,9 @@
 package com.estate.scout.dto;
 
 import com.estate.scout.enums.PropertyType;
-import com.estate.scout.model.Image;
-import com.estate.scout.model.Property;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class PropertyDTO {
 	private Long id;
@@ -127,7 +123,7 @@ public class PropertyDTO {
 		this.numberOfLivingRooms = numberOfLivingRooms;
 	}
 
-	public boolean isHasGarden() {
+	public boolean hasGarden() {
 		return hasGarden;
 	}
 
@@ -135,7 +131,7 @@ public class PropertyDTO {
 		this.hasGarden = hasGarden;
 	}
 
-	public boolean isHasParking() {
+	public boolean hasParking() {
 		return hasParking;
 	}
 
@@ -143,7 +139,7 @@ public class PropertyDTO {
 		this.hasParking = hasParking;
 	}
 
-	public boolean isPetsAllowed() {
+	public boolean arePetsAllowed() {
 		return petsAllowed;
 	}
 
@@ -151,7 +147,7 @@ public class PropertyDTO {
 		this.petsAllowed = petsAllowed;
 	}
 
-	public boolean isSmokersAllowed() {
+	public boolean areSmokersAllowed() {
 		return smokersAllowed;
 	}
 
@@ -159,7 +155,7 @@ public class PropertyDTO {
 		this.smokersAllowed = smokersAllowed;
 	}
 
-	public boolean isStudentsAllowed() {
+	public boolean areStudentsAllowed() {
 		return studentsAllowed;
 	}
 

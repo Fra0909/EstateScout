@@ -3,8 +3,6 @@ package com.estate.scout.converter;
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.model.Property;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class PropertyConverter {
@@ -46,11 +44,11 @@ public class PropertyConverter {
     property.setNumberOfBathrooms(propertyDTO.getNumberOfBathrooms());
     property.setNumberOfBedrooms(propertyDTO.getNumberOfBedrooms());
     property.setNumberOfLivingRooms(propertyDTO.getNumberOfLivingRooms());
-    property.setHasGarden(propertyDTO.isHasGarden());
-    property.setHasParking(propertyDTO.isHasParking());
-    property.setPetsAllowed(propertyDTO.isPetsAllowed());
-    property.setSmokersAllowed(propertyDTO.isSmokersAllowed());
-    property.setStudentsAllowed(propertyDTO.isStudentsAllowed());
+    property.setHasGarden(propertyDTO.hasGarden());
+    property.setHasParking(propertyDTO.hasParking());
+    property.setPetsAllowed(propertyDTO.arePetsAllowed());
+    property.setSmokersAllowed(propertyDTO.areSmokersAllowed());
+    property.setStudentsAllowed(propertyDTO.areStudentsAllowed());
     property.setPropertyType(propertyDTO.getPropertyType());
     property.setPriceInPence(propertyDTO.getPriceInPence());
     property.setLatitude(propertyDTO.getLatitude());
