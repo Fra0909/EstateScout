@@ -13,7 +13,5 @@ public interface PropertyService {
   PropertyDTO createProperty(PropertyDTO propertyDTO);
   void deletePropertyById(Long id);
   List<PropertyDTO> getPropertiesByFilter(PropertyFilterDTO filter);
-
-  List<PropertyDTO> getPropertiesWithinDistance(long latitude, long longitude, int distanceInKilometres);
-
+  List<PropertyDTO> getPropertiesWithinDistance(PropertyInDistanceDTO propertyInDistanceDTO);
 }

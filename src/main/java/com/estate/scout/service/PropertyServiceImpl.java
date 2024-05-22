@@ -3,6 +3,7 @@ package com.estate.scout.service;
 import com.estate.scout.converter.PropertyConverter;
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
+import com.estate.scout.dto.PropertyInDistanceDTO;
 import com.estate.scout.exception.InvalidParamException;
 import com.estate.scout.helper.DistanceCalculator;
 import com.estate.scout.model.Property;
@@ -91,10 +92,10 @@ public class PropertyServiceImpl implements PropertyService {
   }
 
   @Override
-  public List<PropertyDTO> getPropertiesWithinDistance(long latitude, long longitude,
-      int distanceInKilometres) {
-    double[] boundingBox = DistanceCalculator.calculateBoundingBox(latitude, longitude,
-        distanceInKilometres);
+  public List<PropertyDTO> getPropertiesWithinDistance(
+      PropertyInDistanceDTO propertyInDistanceDTO) {
+    double[] boundingBox = DistanceCalculator.calculateBoundingBox(propertyInDistanceDTO.getLatitude(), propertyInDistanceDTO.getLongitude(),
+        propertyInDistanceDTO.getDistanceInKilometres());
     PropertyFilterDTO propertyFilterDTO = new PropertyFilterDTO(boundingBox[0], boundingBox[1],
         boundingBox[2], boundingBox[3]);
 

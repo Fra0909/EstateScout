@@ -2,13 +2,18 @@ package com.estate.scout.repository;
 
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
-import com.estate.scout.model.Property;
+import com.estate.scout.dto.PropertyInDistanceDTO;
 import com.estate.scout.service.PropertyService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/property")
@@ -48,8 +53,7 @@ public class PropertyController {
   }
 
   @GetMapping("/distance")
-  private List<PropertyDTO> getPropertiesWithinDistance(@RequestParam long latitude,
-      @RequestParam long longitude, @RequestParam int distanceInKilometres) {
-    return propertyService.getPropertiesWithinDistance(latitude, longitude, distanceInKilometres);
+  private List<PropertyDTO> getPropertiesWithinDistance(@RequestBody PropertyInDistanceDTO propertyInDistanceDTO) {
+    return propertyService.getPropertiesWithinDistance(propertyInDistanceDTO);
   }
 }

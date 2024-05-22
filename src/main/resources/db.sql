@@ -40,18 +40,19 @@ INSERT INTO property (address_line1, address_line2, address_line3, postcode, tow
                       no_of_bedrooms, no_of_living_rooms, has_garden, has_parking, pets_allowed,
                       smokers_allowed,
                       students_allowed, property_type, price_in_pence, latitude, longitude)
-VALUES ('12 Bellington', '', '', 'SE108DA', 'Greenwich', 2, 2, 1, TRUE, TRUE, TRUE, TRUE, TRUE,
-        'FOR_SALE', 733425, 51.4826, -0.0077),
-       ('9 Illison', '', '', 'SE104JW', 'Lewisham', 2, 2, 1, TRUE, TRUE, TRUE, TRUE, TRUE,
-        'FOR_SALE', 335212, 51.4597, -0.0188),
-       ('98 Hedgeway', '', '', 'SE152JK', 'Isle of Dogs', 2, 2, 1, TRUE, TRUE, TRUE, TRUE, TRUE,
-        'FOR_SALE', 515232, 51.5095, -0.0243),
-       ('20 River Road', '', '', 'SE115MN', 'Thamesmead', 3, 4, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
-        'FOR_SALE', 650000, 51.4911, 0.0728),
-       ('35 Oak Lane', '', '', 'SE126AB', 'Peckham', 1, 3, 2, FALSE, FALSE, TRUE, FALSE, FALSE,
-        'FOR_SALE', 290000, 51.4743, -0.0560),
-       ('48 Pine Court', '', '', 'SE137QP', 'Blackheath', 2, 3, 1, TRUE, TRUE, TRUE, TRUE, TRUE,
-        'FOR_SALE', 410000, 51.4653, -0.0121);
+VALUES ('221B Baker Street', '', '', 'NW1 6XE', 'London', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
+        'FOR_SALE', 1000000, 51.523771, -0.158539),
+       ('10 Downing Street', '', '', 'SW1A 2AA', 'London', 2, 4, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
+        'FOR_SALE', 1500000, 51.503363, -0.127625),
+       ('30 St Mary Axe', '', '', 'EC3A 8BF', 'London', 3, 5, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
+        'FOR_SALE', 2000000, 51.514463, -0.080338),
+       ('160 Tooley Street', '', '', 'SE1 2QH', 'London', 1, 2, 1, TRUE, TRUE, TRUE, TRUE, TRUE,
+        'FOR_SALE', 800000, 51.504733, -0.080775),
+       ('1 Canada Square', '', '', 'E14 5AB', 'London', 3, 4, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
+        'FOR_SALE', 1800000, 51.504500, -0.019501),
+       ('2 Savoy Place', '', '', 'WC2R 0BL', 'London', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
+        'FOR_SALE', 1300000, 51.510894, -0.119668);
+
 
 INSERT INTO image (id, path, property_id)
 VALUES (1, 'assets/imgs/1_1.webp', 1),

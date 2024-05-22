@@ -2,29 +2,29 @@ package com.estate.scout.dto;
 
 public class PropertyInDistanceDTO {
 
-  long latitude;
-  long longitude;
+  double latitude;
+  double longitude;
   int distanceInKilometres;
 
-  public PropertyInDistanceDTO(long latitude, long longitude, int distanceInKilometres) {
+  public PropertyInDistanceDTO(double latitude, double longitude, int distanceInKilometres) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.distanceInKilometres = distanceInKilometres;
   }
 
-  public long getLatitude() {
+  public double getLatitude() {
     return latitude;
   }
 
-  public void setLatitude(long latitude) {
+  public void setLatitude(double latitude) {
     this.latitude = latitude;
   }
 
-  public long getLongitude() {
+  public double getLongitude() {
     return longitude;
   }
 
-  public void setLongitude(long longitude) {
+  public void setLongitude(double longitude) {
     this.longitude = longitude;
   }
 
@@ -34,5 +34,14 @@ public class PropertyInDistanceDTO {
 
   public void setDistanceInKilometres(int distanceInKilometres) {
     this.distanceInKilometres = distanceInKilometres;
+  }
+
+  @Override
+  public String toString() {
+    return "PropertyInDistanceDTO{" +
+        "latitude=" + latitude +
+        ", longitude=" + longitude +
+        ", distanceInKilometres=" + distanceInKilometres +
+        '}';
   }
 }
