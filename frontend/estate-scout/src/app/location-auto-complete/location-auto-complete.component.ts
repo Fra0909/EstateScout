@@ -87,13 +87,6 @@ export class LocationAutoCompleteComponent implements OnDestroy {
         } else {
           this.searchOptions.next([]);
         }
-      },
-      error: (error) => {
-        console.error("Subscription error: ", error);
-        this.searchOptions.next([]);
-      },
-      complete: () => {
-        console.log("Locations retrieved");
       }
     })
   }
