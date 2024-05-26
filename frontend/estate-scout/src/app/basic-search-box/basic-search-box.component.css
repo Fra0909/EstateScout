@@ -17,7 +17,7 @@
   height: 25%;
   border-radius: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: 15px;
 }
@@ -29,13 +29,6 @@ h2 {
   line-height: 0;
 }
 
-.search-input {
-  height: 45px;
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid var(--secondary-clr);
-  padding-left: 10px;
-  padding-right: 10px;
-  font: inherit;
+.location-search-field {
+  flex-grow: 1;
 }
-

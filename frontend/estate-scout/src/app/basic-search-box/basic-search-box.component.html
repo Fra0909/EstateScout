@@ -1,7 +1,8 @@
 <div class="sb-container">
   <h2>Search below to see homes you can rent or buy</h2>
   <div class="sb-inner">
-    <input class="search-input search-" type="text" placeholder="e.g. Greenwich or SE10">
+    <app-location-auto-complete-field (locationChange)="locationAutoCompleteChanged($event)" class="location-search-field">
+    </app-location-auto-complete-field>
     <app-cta-button text="To Rent"></app-cta-button>
     <app-cta-button text="For Sale"></app-cta-button>
   </div>
