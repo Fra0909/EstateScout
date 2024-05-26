@@ -13,11 +13,15 @@
 }
 
 .property-info {
-  gap: 15px;
   color: var(--secondary-clr);
+  font: var(--text);
   padding: 25px;
   height: 40%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  line-height: 0;
+  gap: 10px;
 }
 
 .property-img-container {
@@ -30,4 +34,19 @@
   height: 100%;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
+}
+
+.property-icons-container {
+  gap: 15px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.property-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 5px;
 }

@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cta-button',
@@ -9,4 +10,10 @@ import {Component, Input} from '@angular/core';
 })
 export class CtaButtonComponent {
   @Input() text = "";
+
+  constructor(private router: Router) {}
+
+  goToSearchResults() {
+    this.router.navigate(["/search-results"])
+  }
 }

@@ -1,0 +1,15 @@
+.field-title {
+  color: var(--secondary-clr);
+  font: var(--text);
+  line-height: 0;
+}
+
+.search-input {
+  height: 45px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid var(--secondary-clr);
+  padding-left: 10px;
+  padding-right: 10px;
+  font: inherit;
+}

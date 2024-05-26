@@ -3,8 +3,23 @@
     <img src="{{ propertyListing.images[0].path }}" alt="primary property image" class="property-img">
   </div>
   <div class="property-info">
-    <p><b>{{ propertyListing.town }}</b></p>
-    <p>{{ propertyListing.priceInPence | currency:"GBP" }}</p>
+    <p><b>{{ propertyListing.town }}, {{ propertyListing.postcode }}</b></p>
+    <div class="property-icons-container">
+      <div class="property-icon">
+        <mat-icon svgIcon="bed"></mat-icon>
+        <p>{{ propertyListing.numberOfBedrooms }}</p>
+      </div>
+      <div class="property-icon">
+        <mat-icon svgIcon="bath"></mat-icon>
+        <p>{{ propertyListing.numberOfBathrooms }}</p>
+      </div>
+      <div class="property-icon">
+        <mat-icon svgIcon="couch"></mat-icon>
+        <p>{{ propertyListing.numberOfLivingRooms }}</p>
+      </div>
+    </div>
+
+    <p>{{ propertyListing.priceInPence | currency:"GBP"  : 'symbol' :'1.0-0' }}</p>
     <p>{{ formatPropertyType(propertyListing.propertyType) }}</p>
   </div>
 </div>
