@@ -1,0 +1,15 @@
+.advanced-search-section {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 1%;
+}
+
+.advanced-search-container {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
