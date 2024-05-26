@@ -4,12 +4,12 @@ public class PropertyInDistanceDTO {
 
   double latitude;
   double longitude;
-  int distanceInKilometres;
+  int distanceInMiles;
 
-  public PropertyInDistanceDTO(double latitude, double longitude, int distanceInKilometres) {
+  public PropertyInDistanceDTO(double latitude, double longitude, int distanceInMiles) {
     this.latitude = latitude;
     this.longitude = longitude;
-    this.distanceInKilometres = distanceInKilometres;
+    this.distanceInMiles = distanceInMiles;
   }
 
   public double getLatitude() {
@@ -28,12 +28,12 @@ public class PropertyInDistanceDTO {
     this.longitude = longitude;
   }
 
-  public int getDistanceInKilometres() {
-    return distanceInKilometres;
+  public int getDistanceInMiles() {
+    return distanceInMiles;
   }
 
-  public void setDistanceInKilometres(int distanceInKilometres) {
-    this.distanceInKilometres = distanceInKilometres;
+  public void setDistanceInMiles(int distanceInMiles) {
+    this.distanceInMiles = distanceInMiles;
   }
 
   @Override
@@ -41,7 +41,7 @@ public class PropertyInDistanceDTO {
     return "PropertyInDistanceDTO{" +
         "latitude=" + latitude +
         ", longitude=" + longitude +
-        ", distanceInKilometres=" + distanceInKilometres +
+        ", distanceInMiles=" + distanceInMiles +
         '}';
   }
 }

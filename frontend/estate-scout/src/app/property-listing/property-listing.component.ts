@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
+import {CurrencyPipe, NgIf, NgOptimizedImage, TitleCasePipe} from "@angular/common";
 import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
@@ -13,7 +13,8 @@ import {Property} from "../models/property";
     NgOptimizedImage,
     CurrencyPipe,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    TitleCasePipe
   ],
   templateUrl: './property-listing.component.html',
   styleUrl: './property-listing.component.css',

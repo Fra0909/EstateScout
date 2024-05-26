@@ -5,7 +5,7 @@ package com.estate.scout.helper;
  */
 public class DistanceCalculator {
 
-  private static final double EARTH_RADIUS_KM = 6371; // Radius of the earth in kilometers
+  private static final double EARTH_RADIUS_MILES = 3959; // Radius of the earth in miles
 
   /**
    * Converts degrees to radians.
@@ -24,7 +24,7 @@ public class DistanceCalculator {
    * @param lon1 longitude of point 1
    * @param lat2 latitude of point 2
    * @param lon2 longitude of point 2
-   * @return the distance between the two points in kilometers
+   * @return the distance between the two points in miles
    */
   public static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
     double dLat = toRadians(lat2 - lat1);
@@ -33,7 +33,7 @@ public class DistanceCalculator {
         Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
             Math.sin(dLon / 2) * Math.sin(dLon / 2);
     double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return EARTH_RADIUS_KM * c; // Distance in kilometers
+    return EARTH_RADIUS_MILES * c; // Distance in miles
   }
 
   /**
@@ -41,11 +41,11 @@ public class DistanceCalculator {
    *
    * @param lat      latitude of the center point
    * @param lon      longitude of the center point
-   * @param distance distance from the center point in kilometers
+   * @param distance distance from the center point in miles
    * @return an array containing [minLat, minLon, maxLat, maxLon] representing the bounding box
    */
   public static double[] calculateBoundingBox(double lat, double lon, double distance) {
-    double radDist = distance / EARTH_RADIUS_KM;
+    double radDist = distance / EARTH_RADIUS_MILES;
 
     double minLat = lat - Math.toDegrees(radDist);
     double maxLat = lat + Math.toDegrees(radDist);

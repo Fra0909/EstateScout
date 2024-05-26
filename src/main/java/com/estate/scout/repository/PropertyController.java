@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,12 +49,12 @@ public class PropertyController {
   }
 
   @GetMapping("/filter")
-  public List<PropertyDTO> getPropertiesByFilter(@RequestBody PropertyFilterDTO filter) {
+  public List<PropertyDTO> getPropertiesByFilter(@ModelAttribute PropertyFilterDTO filter) {
     return propertyService.getPropertiesByFilter(filter);
   }
 
   @GetMapping("/distance")
-  private List<PropertyDTO> getPropertiesWithinDistance(@RequestBody PropertyInDistanceDTO propertyInDistanceDTO) {
+  private List<PropertyDTO> getPropertiesWithinDistance(@ModelAttribute PropertyInDistanceDTO propertyInDistanceDTO) {
     return propertyService.getPropertiesWithinDistance(propertyInDistanceDTO);
   }
 }

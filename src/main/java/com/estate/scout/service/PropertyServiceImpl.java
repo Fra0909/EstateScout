@@ -88,14 +88,13 @@ public class PropertyServiceImpl implements PropertyService {
             filter.getPageSize() != null ? filter.getPageSize() : 10)).getContent();
     LOG.info("Retrieved properties with filter: " + filter);
     return properties.stream().map(PropertyConverter::convert).collect(Collectors.toList());
-
   }
 
   @Override
   public List<PropertyDTO> getPropertiesWithinDistance(
       PropertyInDistanceDTO propertyInDistanceDTO) {
     double[] boundingBox = DistanceCalculator.calculateBoundingBox(propertyInDistanceDTO.getLatitude(), propertyInDistanceDTO.getLongitude(),
-        propertyInDistanceDTO.getDistanceInKilometres());
+        propertyInDistanceDTO.getDistanceInMiles());
     PropertyFilterDTO propertyFilterDTO = new PropertyFilterDTO(boundingBox[0], boundingBox[1],
         boundingBox[2], boundingBox[3]);
 

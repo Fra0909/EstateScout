@@ -40,17 +40,17 @@ INSERT INTO property (address_line1, address_line2, address_line3, postcode, tow
                       no_of_bedrooms, no_of_living_rooms, has_garden, has_parking, pets_allowed,
                       smokers_allowed,
                       students_allowed, property_type, price_in_pence, latitude, longitude)
-VALUES ('221B Baker Street', '', '', 'NW1 6XE', 'London', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
+VALUES ('221B Baker Street', '', '', 'NW1 6XE', 'Greater London', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 1000000, 51.523771, -0.158539),
-       ('10 Downing Street', '', '', 'SW1A 2AA', 'London', 2, 4, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
+       ('10 Downing Street', '', '', 'SW1A 2AA', 'Westminster', 2, 4, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 1500000, 51.503363, -0.127625),
-       ('30 St Mary Axe', '', '', 'EC3A 8BF', 'London', 3, 5, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
+       ('30 St Mary Axe', '', '', 'EC3A 8BF', 'Cannon Street', 3, 5, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 2000000, 51.514463, -0.080338),
-       ('160 Tooley Street', '', '', 'SE1 2QH', 'London', 1, 2, 1, TRUE, TRUE, TRUE, TRUE, TRUE,
+       ('160 Tooley Street', '', '', 'SE10 0AH', 'Greenwich', 1, 2, 1, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 800000, 51.504733, -0.080775),
-       ('1 Canada Square', '', '', 'E14 5AB', 'London', 3, 4, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
+       ('1 Canada Square', '', '', 'E14 5AB', 'Canada Water', 3, 4, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 1800000, 51.504500, -0.019501),
-       ('2 Savoy Place', '', '', 'WC2R 0BL', 'London', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
+       ('2 Savoy Place', '', '', 'WC2R 0BL', 'Aylesbury', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 1300000, 51.510894, -0.119668);
 
 

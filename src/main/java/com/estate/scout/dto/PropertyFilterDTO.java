@@ -25,6 +25,9 @@ public class PropertyFilterDTO {
   private Integer pageSize;
   private Integer page;
 
+  public PropertyFilterDTO() {
+  }
+
   public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3,
       String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms,
       Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed,
