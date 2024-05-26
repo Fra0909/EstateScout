@@ -5,10 +5,7 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {catchError, of, Subject, Subscription} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {GeoJSON} from "geojson";
 import {GeoService} from "../services/geo-service.service";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {MatOptionSelectionChange} from "@angular/material/core";
 
 @Component({
@@ -36,6 +33,7 @@ export class LocationAutoCompleteComponent implements OnDestroy {
   private chosenOption: PlaceSuggestion | undefined;
   private userInputTimeout: number | undefined;
   private requestSub: Subscription | undefined;
+  private MIN_LETTERS_FOR_SEARCH = 3;
 
   constructor(private geoService: GeoService) {
     this.valueChangesSub = this.inputFieldFormControl.valueChanges.subscribe((value) => {
@@ -57,6 +55,7 @@ export class LocationAutoCompleteComponent implements OnDestroy {
       }, 300)
     })
   }
+
   ngOnDestroy() {
     this.valueChangesSub.unsubscribe();
   }
@@ -66,33 +65,40 @@ export class LocationAutoCompleteComponent implements OnDestroy {
       this.requestSub.unsubscribe();
     }
 
-    this.requestSub = this.geoService.getPlaceSuggestions(text).pipe(
-      catchError(error => {
-        console.error(error);
-        return of(null);
-      })
-    ).subscribe({
-      next: (data) => {
-        if (data) {
-          const placeSuggestions = data.features.map(feature => {
-            const properties: GeocodingFeatureProperties = feature.properties as GeocodingFeatureProperties;
+    if (text.length >= this.MIN_LETTERS_FOR_SEARCH){
+      this.requestSub = this.geoService.getPlaceSuggestions(text).pipe(
+        catchError(error => {
+          console.error(error);
+          return of(null);
+        })
+      ).subscribe({
+        next: (data) => {
+          const uniqueShortAddresses = new Set<string>()
 
-            return {
-              shortAddress: this.generateShortAddress(properties),
-              data: properties
-            };
-          });
+          if (data) {
+            const placeSuggestions = data.features.map(feature => {
+              const property = feature.properties as GeocodingFeatureProperty;
 
-          this.searchOptions.next(placeSuggestions.length ? placeSuggestions : []);
-        } else {
-          this.searchOptions.next([]);
+              return {
+                shortAddress: this.generateShortAddress(property),
+                data: property
+              };
+            }).filter(suggestion => {
+              const isDuplicate = uniqueShortAddresses.has(suggestion.shortAddress);
+              uniqueShortAddresses.add(suggestion.shortAddress);
+              return !isDuplicate;
+            }).filter(suggestion => {
+              return suggestion.data.county && suggestion.data.city;
+            });
+            this.searchOptions.next(placeSuggestions);
+          }
         }
-      }
-    })
+      })
+    }
   }
 
-  private generateShortAddress(properties: GeocodingFeatureProperties): string {
-    return properties.city + ", " + properties.county;
+  private generateShortAddress(property: GeocodingFeatureProperty): string {
+    return property.city + ", " + property.county;
   }
 
   public optionSelectionChange(option: PlaceSuggestion, event: MatOptionSelectionChange) {
@@ -106,10 +112,10 @@ export class LocationAutoCompleteComponent implements OnDestroy {
 
 export interface PlaceSuggestion {
   shortAddress: string;
-  data: GeocodingFeatureProperties;
+  data: GeocodingFeatureProperty;
 }
 
-interface GeocodingFeatureProperties {
+interface GeocodingFeatureProperty {
   city: string;
   county: string;
   postcode: string;
