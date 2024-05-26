@@ -3,10 +3,10 @@ import {Image} from "./image";
 export interface Property {
   id: number;
   addressLine1: string;
-  addressLine2: string;
-  addressLine3: string;
+  addressLine2?: string;
+  addressLine3?: string;
   postcode: string;
-  town: string;
+  town?: string;
   numberOfBathrooms: number;
   numberOfBedrooms: number;
   numberOfLivingRooms: number;
@@ -16,8 +16,8 @@ export interface Property {
   smokersAllowed: boolean;
   studentsAllowed: boolean;
   propertyType: string;
-  images: Image[];
   priceInPence: number;
-  latitude: number;
-  longitude: number;
+  images?: Image[];
+  latitude?: number;
+  longitude?: number;
 }

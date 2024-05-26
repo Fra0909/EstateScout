@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {Property} from "../models/property";
 import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
 import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {Property} from "../models/property";
 
 @Component({
   selector: 'app-property-listing',
