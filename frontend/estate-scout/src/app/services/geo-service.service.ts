@@ -13,9 +13,10 @@ private apiKey = "e26445111d42404a8a9b3694835f179c";
 
   getPlaceSuggestions(text: string): Observable<FeatureCollection> {
     const params = new HttpParams()
-    .set('text', text)
-    .set('filter', 'countrycode:gb')
-    .set('apiKey', this.apiKey);
+      .set('text', text)
+      .set('filter', 'countrycode:gb')
+      .set('limit', '10')
+      .set('apiKey', this.apiKey);
 
     const url = 'https://api.geoapify.com/v1/geocode/autocomplete';
 

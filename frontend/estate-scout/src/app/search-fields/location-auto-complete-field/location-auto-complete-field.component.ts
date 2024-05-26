@@ -1,15 +1,15 @@
-import {Component, EventEmitter, OnDestroy, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {catchError, of, Subject, Subscription} from "rxjs";
-import {GeoService} from "../services/geo-service.service";
+import {GeoService} from "../../services/geo-service.service";
 import {MatOptionSelectionChange} from "@angular/material/core";
 
 @Component({
-  selector: 'app-location-auto-complete',
+  selector: 'app-location-auto-complete-field',
   standalone: true,
   imports: [
     MatFormField,
@@ -21,10 +21,10 @@ import {MatOptionSelectionChange} from "@angular/material/core";
     NgForOf,
     MatAutocompleteTrigger
   ],
-  templateUrl: './location-auto-complete.component.html',
-  styleUrl: './location-auto-complete.component.css'
+  templateUrl: './location-auto-complete-field.component.html',
+  styleUrl: './location-auto-complete-field.component.css'
 })
-export class LocationAutoCompleteComponent implements OnDestroy {
+export class LocationAutoCompleteFieldComponent implements OnDestroy {
   @Output() locationChange: EventEmitter<PlaceSuggestion> = new EventEmitter<PlaceSuggestion>();
 
   searchOptions: Subject<PlaceSuggestion[]> = new Subject<PlaceSuggestion[]>();

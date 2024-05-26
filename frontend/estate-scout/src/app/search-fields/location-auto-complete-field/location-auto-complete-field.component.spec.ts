@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationAutoCompleteComponent } from './location-auto-complete.component';
+import { LocationAutoCompleteFieldComponent } from './location-auto-complete-field.component';
 
 describe('LocationAutoCompleteComponent', () => {
-  let component: LocationAutoCompleteComponent;
-  let fixture: ComponentFixture<LocationAutoCompleteComponent>;
+  let component: LocationAutoCompleteFieldComponent;
+  let fixture: ComponentFixture<LocationAutoCompleteFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LocationAutoCompleteComponent]
+      imports: [LocationAutoCompleteFieldComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(LocationAutoCompleteComponent);
+
+    fixture = TestBed.createComponent(LocationAutoCompleteFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

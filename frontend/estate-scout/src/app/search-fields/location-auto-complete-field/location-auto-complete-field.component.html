@@ -1,10 +1,11 @@
-<mat-form-field>
+<b><p class="field-title">Enter a location</p></b>
+<form class="location-auto-complete-field">
   <input matInput [matAutocomplete]="auto" [formControl]="inputFieldFormControl"
          class="search-input" type="text" placeholder="e.g. Greenwich or SE10">
-  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+  <mat-autocomplete #auto="matAutocomplete" style="margin-top: 10px">
     <mat-option *ngFor="let option of searchOptions | async" [value]="option.shortAddress"
     (onSelectionChange)="optionSelectionChange(option, $event)">
       {{ option.shortAddress }}
     </mat-option>
   </mat-autocomplete>
-</mat-form-field>
+</form>

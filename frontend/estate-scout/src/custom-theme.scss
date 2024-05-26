@@ -26,7 +26,11 @@ $estate-scout-theme: mat.define-light-theme((
     accent: $estate-scout-accent,
     warn: $estate-scout-warn,
   ),
-  typography: mat.define-typography-config(),
+  typography: (
+    brand-family: 'Inter',
+    bold-weight: 700
+
+  ),
   density: 0
 ));
 
