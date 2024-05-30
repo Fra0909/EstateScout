@@ -2,7 +2,17 @@
   <div class="advanced-search-container">
     <div class="advanced-search-field-box">
       <b><p class="field-title">Enter a location</p></b>
-      <app-location-auto-complete-field (locationChange)="locationAutoCompleteChanged($event)"></app-location-auto-complete-field>
+      <app-location-auto-complete-field  (locationChange)="locationAutoCompleteChanged($event)"></app-location-auto-complete-field>
+    </div>
+    <div class="advanced-search-field-box">
+      <b><p class="field-title">Radius</p></b>
+      <app-dropdown-field [dropdownValues]="radiusVariations"></app-dropdown-field>
+    </div>
+    <div class="advanced-search-field-box">
+      <b><p class="field-title">Bedrooms</p></b>
+      <app-field-menu fieldMenuStartingValue="Any beds" leftSubDropdownTitle="Minimum beds"
+      rightSubDropdownTitle="Maximum beds" [leftSubDropdownValues]="minimumBedVariations"
+      [rightSubDropdownValues]="maximumBedVariations"></app-field-menu>
     </div>
   </div>
 </div>

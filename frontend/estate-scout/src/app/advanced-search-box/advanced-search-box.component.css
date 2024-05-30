@@ -12,10 +12,13 @@
   justify-content: flex-start;
   align-items: flex-start;
   height: 100%;
+  gap: 20px;
 }
 
-.field-title {
-  color: var(--secondary-clr);
-  font: var(--text);
-  line-height: 0;
+.advanced-search-field-box {
+  /*flex-grow: 1;*/
+}
+
+.test {
+  width: 500px !important;
 }

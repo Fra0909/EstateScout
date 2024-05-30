@@ -1,3 +1,22 @@
+:root {
+  --primary-clr: #35A7FF;
+  --secondary-clr: #00243d;
+  --bg-clr: #ffffff;
+  --text-clr: #4e4e4e;
+
+  --h1: 6.854rem;
+  --h2: 4.236rem;
+  --h3: 2.618rem;
+  --h4: 1.618rem;
+  --text: 1rem;
+
+  font-family: "Inter", serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html, body {
   height: 100%;
 }
@@ -5,4 +24,79 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   overflow-y: scroll;
+}
+
+.search-field {
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid var(--secondary-clr);
+  padding-left: 10px;
+  padding-right: 10px;
+  font: inherit;
+  outline: none;
+}
+
+.search-field:focus {
+  box-shadow: 0 0 1px 2px rgba(53, 167, 255, 0.42);
+}
+
+.field-title {
+  color: var(--secondary-clr);
+  font: var(--text);
+  line-height: 0 !important;
+}
+
+.dropdown-field mat-select > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cdk-overlay-pane {
+  margin-top: 10px;
+}
+
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after {
+  color: #00243d !important;
+}
+
+div.mat-mdc-select-panel {
+  padding: 0 !important;
+}
+
+div.mat-mdc-autocomplete-panel {
+  padding: 0 !important;
+}
+
+.mat-mdc-option.mdc-list-item {
+  background-color: white !important;
+  margin: 5px;
+  border: 1px solid white !important;
+  border-radius: 5px !important;
+  color: #00243d !important;
+}
+
+.mat-mdc-option.mdc-list-item:hover {
+  border: 1px solid #35A7FF !important;
+}
+
+.mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+  border: 1px solid #35A7FF !important;
+}
+
+.text-clr {
+  color: #00243d !important;
+}
+
+.mat-mdc-select {
+  color: var(--secondary-clr) !important;
+}
+
+.mat-mdc-menu-content {
+  display: flex;
+  gap: 20px;
+  padding: 10px !important;
+}
+
+.mat-mdc-menu-panel {
+  max-width: none !important;
 }

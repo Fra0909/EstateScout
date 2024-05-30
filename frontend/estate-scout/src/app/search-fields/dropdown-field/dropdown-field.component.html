@@ -1,0 +1,7 @@
+<form class="dropdown-field">
+  <mat-select [(value)]="dropdownValues[0].value">
+    @for (value of dropdownValues; track value) {
+      <mat-option [value]="value.value">{{ value.viewValue }}</mat-option>
+    }
+  </mat-select>
+</form>
