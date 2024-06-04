@@ -10,9 +10,15 @@
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Bedrooms</p></b>
-      <app-field-menu fieldMenuStartingValue="Any beds" leftSubDropdownTitle="Minimum beds"
-      rightSubDropdownTitle="Maximum beds" [leftSubDropdownValues]="minimumBedVariations"
-      [rightSubDropdownValues]="maximumBedVariations"></app-field-menu>
+      <app-field-menu defaultMenuValue="Any beds" minSubDropdownTitle="Min beds"
+      maxSubDropdownTitle="Max beds" [minSubDropdownValues]="minBedVariations"
+      [maxSubDropdownValues]="maxBedVariations"></app-field-menu>
+    </div>
+    <div class="advanced-search-field-box">
+      <b><p class="field-title">Price</p></b>
+      <app-field-menu defaultMenuValue="Any price" minSubDropdownTitle="Min price"
+                      maxSubDropdownTitle="Max price" [minSubDropdownValues]="minForSalePriceVariations"
+                      [maxSubDropdownValues]="maxForSalePriceVariations"></app-field-menu>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {MatFormField, MatOption, MatSelect} from "@angular/material/select";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {MatFormField, MatOption, MatSelect, MatSelectChange} from "@angular/material/select";
 import {DropdownValue} from "../../models/dropdown-value";
 
 @Component({
@@ -16,5 +16,11 @@ import {DropdownValue} from "../../models/dropdown-value";
 
 export class DropdownFieldComponent {
   @Input() dropdownValues: DropdownValue[] = []
+  selectedValue: number = 0;
+  @Output() selectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
+
+  public onSelectionChange(event: MatSelectChange) {
+    this.selectionChange.emit(event);
+  }
 
 }
