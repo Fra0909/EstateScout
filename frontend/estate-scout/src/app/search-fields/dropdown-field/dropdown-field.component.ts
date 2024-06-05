@@ -16,7 +16,7 @@ import {DropdownValue} from "../../models/dropdown-value";
 
 export class DropdownFieldComponent {
   @Input() dropdownValues: DropdownValue[] = []
-  selectedValue: number = 0;
+  @Input() selectedValue: number = 0;
   @Output() selectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
 
   public onSelectionChange(event: MatSelectChange) {

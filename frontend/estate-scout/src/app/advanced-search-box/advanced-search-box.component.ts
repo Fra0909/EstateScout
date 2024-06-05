@@ -8,6 +8,7 @@ import {DropdownValue} from "../models/dropdown-value";
 import {NgClass} from "@angular/common";
 import {FieldMenuComponent} from "../search-fields/field-menu/field-menu.component";
 import {CurrencyService} from "../services/currency.service";
+import {DropdownFieldMenuType} from "../enums/dropdown-field-menu-type";
 
 @Component({
   selector: 'app-advanced-search-box',
@@ -104,4 +105,5 @@ export class AdvancedSearchBoxComponent {
     }
   }
 
+  protected readonly DropdownFieldMenuType = DropdownFieldMenuType;
 }
