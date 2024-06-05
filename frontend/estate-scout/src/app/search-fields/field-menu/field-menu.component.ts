@@ -36,10 +36,10 @@ export class FieldMenuComponent implements OnInit {
   }
 
   public subDropdownValueChanged(selectChange: MatSelectChange, sideOfSubDropdown: string) {
-    if (sideOfSubDropdown === "leftSubDropdown") {
+    if (sideOfSubDropdown === "minSubDropdown") {
       this.minSelectedDropdownValue = selectChange.value;
     }
-    else if (sideOfSubDropdown === "rightSubDropdown") {
+    else if (sideOfSubDropdown === "maxSubDropdown") {
       this.maxSelectedDropdownValue = selectChange.value;
     }
 

@@ -98,7 +98,7 @@ export class AdvancedSearchBoxComponent {
     this.minBedVariations.push({value: 0, viewValue: "No min"});
     this.maxBedVariations.push({value: 0, viewValue: "No max"})
 
-    for (let i: number = 0; i <= 6; i++) {
+    for (let i: number = 1; i <= 6; i++) {
       this.minBedVariations.push({value: i, viewValue: `${i === 6 ? "6+" : i}`})
       this.maxBedVariations.push({value: i, viewValue: `${i === 6 ? "6+" : i}`});
     }
