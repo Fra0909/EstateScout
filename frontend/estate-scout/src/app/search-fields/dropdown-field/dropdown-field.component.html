@@ -1,3 +1,4 @@
+<div class="dropdown-field-container">
 <form class="dropdown-field">
   <mat-select [(value)]="selectedValue" (selectionChange)="onSelectionChange($event)">
     @for (dropdownValue of dropdownValues; track dropdownValue) {
@@ -5,3 +6,4 @@
     }
   </mat-select>
 </form>
+</div>

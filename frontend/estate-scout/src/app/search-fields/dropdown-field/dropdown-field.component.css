@@ -5,6 +5,7 @@
   outline: none;
   display: flex;
   width: 250px;
+  flex-grow: 1;
 }
 
 .dropdown-field * {
@@ -14,4 +15,8 @@
 
 .dropdown-field:focus-within {
   box-shadow: 0 0 1px 2px rgba(53, 167, 255, 0.42);
+}
+
+.dropdown-field-container {
+  display: flex;
 }
