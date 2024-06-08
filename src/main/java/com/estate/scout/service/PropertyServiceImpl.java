@@ -90,12 +90,10 @@ public class PropertyServiceImpl implements PropertyService {
     if (filter.getPostcode() != null && filter.getRadius() != null) {
       HashMap<String, Double> coordinates = getCoordinatesFromPostcode(filter.getPostcode());
       double[] boundingBox = DistanceCalculator.calculateBoundingBox(coordinates.get("latitude"), coordinates.get("longitude"), filter.getRadius());
-      System.out.println(Arrays.toString(boundingBox));
       filter.setMinLatitude(boundingBox[0]);
       filter.setMinLongitude(boundingBox[1]);
       filter.setMaxLatitude(boundingBox[2]);
       filter.setMaxLongitude(boundingBox[3]);
-      System.out.println(filter);
     }
 
     List<Property> properties = propertyRepository.findByFilter(
