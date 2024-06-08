@@ -45,15 +45,26 @@ public class DistanceCalculator {
    * @return an array containing [minLat, minLon, maxLat, maxLon] representing the bounding box
    */
   public static double[] calculateBoundingBox(double lat, double lon, double distance) {
+    final double EARTH_RADIUS_MILES = 3958.8;  // Earth radius in miles
     double radDist = distance / EARTH_RADIUS_MILES;
 
+    // Calculate the min and max latitude
     double minLat = lat - Math.toDegrees(radDist);
     double maxLat = lat + Math.toDegrees(radDist);
 
-    double deltaLon = Math.toDegrees(Math.asin(Math.sin(radDist) / Math.cos(Math.toRadians(lat))));
+    // Calculate the min and max longitude
+    double deltaLon = Math.toDegrees(radDist / Math.cos(Math.toRadians(lat)));
     double minLon = lon - deltaLon;
     double maxLon = lon + deltaLon;
 
+    // Formatting to 5 decimal places
+    minLat = Math.round(minLat * 100000.0) / 100000.0;
+    minLon = Math.round(minLon * 100000.0) / 100000.0;
+    maxLat = Math.round(maxLat * 100000.0) / 100000.0;
+    maxLon = Math.round(maxLon * 100000.0) / 100000.0;
+
     return new double[]{minLat, minLon, maxLat, maxLon};
   }
+
+
 }

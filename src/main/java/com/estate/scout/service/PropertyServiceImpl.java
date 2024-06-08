@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -31,7 +32,10 @@ import org.springframework.stereotype.Service;
 public class PropertyServiceImpl implements PropertyService {
 
   private final PropertyRepository propertyRepository;
+  private final static HttpClient httpClient = HttpClient.newBuilder().build();
+
   Logger LOG = Logger.getLogger(PropertyServiceImpl.class.getName());
+
 
   @Autowired
   public PropertyServiceImpl(PropertyRepository propertyRepository) {
@@ -83,13 +87,15 @@ public class PropertyServiceImpl implements PropertyService {
 
   @Override
   public List<PropertyDTO> getPropertiesByFilter(PropertyFilterDTO filter) {
-    if (filter.getPostcode() != null && !filter.getPostcode().isEmpty()) {
+    if (filter.getPostcode() != null && filter.getRadius() != null) {
       HashMap<String, Double> coordinates = getCoordinatesFromPostcode(filter.getPostcode());
       double[] boundingBox = DistanceCalculator.calculateBoundingBox(coordinates.get("latitude"), coordinates.get("longitude"), filter.getRadius());
+      System.out.println(Arrays.toString(boundingBox));
       filter.setMinLatitude(boundingBox[0]);
-      filter.setMaxLatitude(boundingBox[1]);
-      filter.setMinLongitude(boundingBox[2]);
+      filter.setMinLongitude(boundingBox[1]);
+      filter.setMaxLatitude(boundingBox[2]);
       filter.setMaxLongitude(boundingBox[3]);
+      System.out.println(filter);
     }
 
     List<Property> properties = propertyRepository.findByFilter(
@@ -110,14 +116,11 @@ public class PropertyServiceImpl implements PropertyService {
 
   public HashMap<String, Double> getCoordinatesFromPostcode(String postcode) {
     HashMap<String, Double> geoCoordinates = new HashMap<>();
-    HttpClient httpClient = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder(URI.create("https://api.postcodes.io/postcodes/" + postcode)).GET().build();
-
     try {
       HttpResponse<InputStream> response = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
 
       int statusCode = response.statusCode();
-      System.out.println("HTTP status: " + statusCode);
 
       if (statusCode == 200) {
         InputStream responseBody = response.body();
