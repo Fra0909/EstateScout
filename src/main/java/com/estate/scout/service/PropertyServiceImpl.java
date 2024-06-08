@@ -94,7 +94,6 @@ public class PropertyServiceImpl implements PropertyService {
       filter.setMinLongitude(boundingBox[1]);
       filter.setMaxLatitude(boundingBox[2]);
       filter.setMaxLongitude(boundingBox[3]);
-      System.out.println(filter);
     }
 
     List<Property> properties = propertyRepository.findByFilter(
