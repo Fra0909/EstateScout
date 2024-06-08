@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgClass} from "@angular/common";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
 
 @Component({
@@ -12,13 +12,23 @@ import {filter} from "rxjs";
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   @Input() boxShadowEnabled = true;
 
   constructor(private router: Router) {
+    this.checkRoute();
+  }
+
+  ngOnInit(): void {
     this.router.events.pipe(
-      
-    )
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.checkRoute();
+    })
+  }
+
+  checkRoute(): void {
+    this.boxShadowEnabled = this.router.url !== '/';
   }
 
 }

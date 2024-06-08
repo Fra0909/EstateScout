@@ -3,15 +3,25 @@ package com.estate.scout.service;
 import com.estate.scout.converter.PropertyConverter;
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
-import com.estate.scout.dto.PropertyInDistanceDTO;
 import com.estate.scout.exception.InvalidParamException;
 import com.estate.scout.helper.DistanceCalculator;
 import com.estate.scout.model.Property;
 import com.estate.scout.repository.PropertyRepository;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
@@ -73,10 +83,18 @@ public class PropertyServiceImpl implements PropertyService {
 
   @Override
   public List<PropertyDTO> getPropertiesByFilter(PropertyFilterDTO filter) {
+    if (filter.getPostcode() != null && !filter.getPostcode().isEmpty()) {
+      HashMap<String, Double> coordinates = getCoordinatesFromPostcode(filter.getPostcode());
+      double[] boundingBox = DistanceCalculator.calculateBoundingBox(coordinates.get("latitude"), coordinates.get("longitude"), filter.getRadius());
+      filter.setMinLatitude(boundingBox[0]);
+      filter.setMaxLatitude(boundingBox[1]);
+      filter.setMinLongitude(boundingBox[2]);
+      filter.setMaxLongitude(boundingBox[3]);
+    }
+
     List<Property> properties = propertyRepository.findByFilter(
-        filter.getAddressLine1(), filter.getAddressLine2(), filter.getAddressLine3(),
-        filter.getPostcode(), filter.getTown(),
-        filter.getNumberOfBathrooms(), filter.getNumberOfBedrooms(),
+        filter.getAddressLine1(), filter.getAddressLine2(), filter.getAddressLine3(), filter.getTown(),
+        filter.getNumberOfBathrooms(), filter.getMinBeds(), filter.getMaxBeds(),
         filter.getNumberOfLivingRooms(),
         filter.getHasGarden(), filter.getHasParking(), filter.getPetsAllowed(),
         filter.getSmokersAllowed(),
@@ -90,14 +108,36 @@ public class PropertyServiceImpl implements PropertyService {
     return properties.stream().map(PropertyConverter::convert).collect(Collectors.toList());
   }
 
-  @Override
-  public List<PropertyDTO> getPropertiesWithinDistance(
-      PropertyInDistanceDTO propertyInDistanceDTO) {
-    double[] boundingBox = DistanceCalculator.calculateBoundingBox(propertyInDistanceDTO.getLatitude(), propertyInDistanceDTO.getLongitude(),
-        propertyInDistanceDTO.getDistanceInMiles());
-    PropertyFilterDTO propertyFilterDTO = new PropertyFilterDTO(boundingBox[0], boundingBox[1],
-        boundingBox[2], boundingBox[3]);
+  public HashMap<String, Double> getCoordinatesFromPostcode(String postcode) {
+    HashMap<String, Double> geoCoordinates = new HashMap<>();
+    HttpClient httpClient = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder(URI.create("https://api.postcodes.io/postcodes/" + postcode)).GET().build();
 
-    return getPropertiesByFilter(propertyFilterDTO);
+    try {
+      HttpResponse<InputStream> response = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
+
+      int statusCode = response.statusCode();
+      System.out.println("HTTP status: " + statusCode);
+
+      if (statusCode == 200) {
+        InputStream responseBody = response.body();
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(responseBody);
+
+        double latitude = jsonNode.at("/result/latitude").asDouble();
+        double longitude = jsonNode.at("/result/longitude").asDouble();
+
+        geoCoordinates.put("latitude", latitude);
+        geoCoordinates.put("longitude", longitude);
+
+      }
+
+    }
+    catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+
+    return geoCoordinates;
   }
+
 }

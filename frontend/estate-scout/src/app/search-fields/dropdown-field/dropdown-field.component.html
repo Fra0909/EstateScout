@@ -1,0 +1,9 @@
+<div class="dropdown-field-container">
+<form class="dropdown-field">
+  <mat-select [(value)]="selectedValue" (selectionChange)="onSelectionChange($event)">
+    @for (dropdownValue of dropdownValues; track dropdownValue) {
+      <mat-option [value]="dropdownValue.value">{{ dropdownValue.viewValue }}</mat-option>
+    }
+  </mat-select>
+</form>
+</div>

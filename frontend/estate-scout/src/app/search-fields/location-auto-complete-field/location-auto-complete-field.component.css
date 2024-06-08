@@ -1,0 +1,8 @@
+.location-auto-complete-field {
+  display: flex;
+}
+
+.auto-complete-input {
+  flex-grow: 1;
+}
+

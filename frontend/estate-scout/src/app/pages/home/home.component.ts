@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FullscreenContainerComponent} from "../../fullscreen-container/fullscreen-container.component";
 import {NgForOf} from "@angular/common";
 import {PropertyListingComponent} from "../../property-listing/property-listing.component";
@@ -16,7 +16,7 @@ import {Property} from "../../models/property";
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   constructor(private propertyService: PropertyService) { }
 
@@ -28,6 +28,5 @@ export class HomeComponent {
       property => {
         this.featuredProperties.push(...property)
       });
-
   }
 }

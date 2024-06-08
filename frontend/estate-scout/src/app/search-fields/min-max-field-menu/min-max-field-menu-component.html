@@ -1,0 +1,19 @@
+<div class="field-menu-container">
+  <div class="field-menu" [matMenuTriggerFor]="fieldMenu">
+    <span class="text-clr">{{ fieldMenuValue }}</span>
+    <mat-icon fontIcon="arrow_drop_down" style="color: #757575;"></mat-icon>
+    <mat-menu #fieldMenu="matMenu">
+      <div class="left-container" (click)="$event.stopPropagation()">
+        <b><p class="field-title">{{ minSubDropdownTitle }}</p></b>
+        <app-dropdown-field (selectionChange)="minSubDropdownValueChanged($event)"
+                            [dropdownValues]="minSubDropdownValues"></app-dropdown-field>
+      </div>
+      <div class="right-container" (click)="$event.stopPropagation()">
+        <b><p class="field-title">{{ maxSubDropdownTitle }}</p></b>
+        <app-dropdown-field (selectionChange)="maxSubDropdownValueChanged($event)"
+                            [dropdownValues]="maxSubDropdownValues"
+                            [selectedValue]="maxSelectedDropdownValue"></app-dropdown-field>
+      </div>
+    </mat-menu>
+  </div>
+</div>
