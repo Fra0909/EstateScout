@@ -2,7 +2,6 @@ package com.estate.scout.repository;
 
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
-import com.estate.scout.dto.PropertyInDistanceDTO;
 import com.estate.scout.service.PropertyService;
 import java.util.List;
 import java.util.logging.Logger;
@@ -53,8 +52,4 @@ public class PropertyController {
     return propertyService.getPropertiesByFilter(filter);
   }
 
-  @GetMapping("/distance")
-  private List<PropertyDTO> getPropertiesWithinDistance(@ModelAttribute PropertyInDistanceDTO propertyInDistanceDTO) {
-    return propertyService.getPropertiesWithinDistance(propertyInDistanceDTO);
-  }
 }

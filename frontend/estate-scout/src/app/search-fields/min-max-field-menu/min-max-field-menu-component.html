@@ -5,12 +5,14 @@
     <mat-menu #fieldMenu="matMenu">
       <div class="left-container" (click)="$event.stopPropagation()">
         <b><p class="field-title">{{ minSubDropdownTitle }}</p></b>
-        <app-dropdown-field (selectionChange)="subDropdownValueChanged($event, 'minSubDropdown')" [dropdownValues]="minSubDropdownValues"></app-dropdown-field>
+        <app-dropdown-field (selectionChange)="minSubDropdownValueChanged($event)"
+                            [dropdownValues]="minSubDropdownValues"></app-dropdown-field>
       </div>
       <div class="right-container" (click)="$event.stopPropagation()">
         <b><p class="field-title">{{ maxSubDropdownTitle }}</p></b>
-        <app-dropdown-field (selectionChange)="subDropdownValueChanged($event, 'maxSubDropdown')" [dropdownValues]="maxSubDropdownValues"
-        [selectedValue]="maxSelectedDropdownValue"></app-dropdown-field>
+        <app-dropdown-field (selectionChange)="maxSubDropdownValueChanged($event)"
+                            [dropdownValues]="maxSubDropdownValues"
+                            [selectedValue]="maxSelectedDropdownValue"></app-dropdown-field>
       </div>
     </mat-menu>
   </div>

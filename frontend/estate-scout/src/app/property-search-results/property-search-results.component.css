@@ -1,0 +1,20 @@
+.property-search-results-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.property-search-results {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.property-container {
+  width: calc(50% - 25px);
+}

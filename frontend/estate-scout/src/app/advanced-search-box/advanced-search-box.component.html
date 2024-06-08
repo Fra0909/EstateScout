@@ -6,19 +6,21 @@
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Radius</p></b>
-      <app-dropdown-field [dropdownValues]="radiusVariations"></app-dropdown-field>
+      <app-dropdown-field [dropdownValues]="radiusVariations" (selectionChange)="radiusSelectionChanged($event)"></app-dropdown-field>
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Bedrooms</p></b>
-      <app-field-menu defaultMenuValue="Any beds" minSubDropdownTitle="Min beds"
-      maxSubDropdownTitle="Max beds" [minSubDropdownValues]="minBedVariations"
-      [maxSubDropdownValues]="maxBedVariations" [fieldMenuType]="DropdownFieldMenuType.Bedrooms"></app-field-menu>
+      <app-min-max-field-menu defaultMenuValue="Any beds" minSubDropdownTitle="Min beds"
+                      maxSubDropdownTitle="Max beds" [minSubDropdownValues]="minBedVariations"
+                      [maxSubDropdownValues]="maxBedVariations" [fieldMenuType]="DropdownFieldMenuType.Bedrooms"
+                      (minSelectionChange)="minBedsSelectionChanged($event)" (maxSelectionChange)="maxBedsSelectionChanged($event)"></app-min-max-field-menu>
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Price</p></b>
-      <app-field-menu defaultMenuValue="Any price" minSubDropdownTitle="Min price"
-      maxSubDropdownTitle="Max price" [minSubDropdownValues]="minForSalePriceVariations"
-      [maxSubDropdownValues]="maxForSalePriceVariations" [fieldMenuType]="DropdownFieldMenuType.Price"></app-field-menu>
+      <app-min-max-field-menu defaultMenuValue="Any price" minSubDropdownTitle="Min price"
+                      maxSubDropdownTitle="Max price" [minSubDropdownValues]="minForSalePriceVariations"
+                      [maxSubDropdownValues]="maxForSalePriceVariations" [fieldMenuType]="DropdownFieldMenuType.Price"
+                      (minSelectionChange)="minPriceSelectionChanged($event)" (maxSelectionChange)="maxPriceSelectionChanged($event)"></app-min-max-field-menu>
     </div>
   </div>
 </div>

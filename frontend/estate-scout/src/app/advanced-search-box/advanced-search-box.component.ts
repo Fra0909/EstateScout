@@ -6,9 +6,11 @@ import {
 import {DropdownFieldComponent} from "../search-fields/dropdown-field/dropdown-field.component";
 import {DropdownValue} from "../models/dropdown-value";
 import {NgClass} from "@angular/common";
-import {FieldMenuComponent} from "../search-fields/field-menu/field-menu.component";
+import {MinMaxFieldMenuComponent} from "../search-fields/min-max-field-menu/min-max-field-menu-component";
 import {CurrencyService} from "../services/currency.service";
 import {DropdownFieldMenuType} from "../enums/dropdown-field-menu-type";
+import {PropertySearchFilter} from "../models/property-search-filter";
+import {MatSelectChange} from "@angular/material/select";
 
 @Component({
   selector: 'app-advanced-search-box',
@@ -17,14 +19,18 @@ import {DropdownFieldMenuType} from "../enums/dropdown-field-menu-type";
     LocationAutoCompleteFieldComponent,
     DropdownFieldComponent,
     NgClass,
-    FieldMenuComponent
+    MinMaxFieldMenuComponent
   ],
   templateUrl: './advanced-search-box.component.html',
   styleUrl: './advanced-search-box.component.css'
 })
 
 export class AdvancedSearchBoxComponent {
-  selectedLocationPostcode: string = "";
+  protected readonly DropdownFieldMenuType = DropdownFieldMenuType;
+
+  propertySearchFilter: PropertySearchFilter = {
+    postcode: "", minBeds: 0, maxBeds: 0, minPrice: 0, maxPrice: 0, radius: 0
+  };
 
   radiusValues: number[] = [0, 0.5, 1, 3, 5, 10, 15, 20, 25, 30];
   radiusVariations: DropdownValue[] = [];
@@ -37,10 +43,6 @@ export class AdvancedSearchBoxComponent {
 
   forRentPriceValues: number[] = [];
   forRentPriceVariations: DropdownValue[] = [];
-
-  locationAutoCompleteChanged(value: PlaceSuggestion) {
-    this.selectedLocationPostcode = value.data.postcode;
-  }
 
   constructor(private currencyService: CurrencyService) {
     this.radiusVariations = this.radiusValues.map(value => ({
@@ -68,7 +70,6 @@ export class AdvancedSearchBoxComponent {
         forRentValue += 2500;
       }
     }
-
   }
 
   private initForSalePriceVariations() {
@@ -105,5 +106,28 @@ export class AdvancedSearchBoxComponent {
     }
   }
 
-  protected readonly DropdownFieldMenuType = DropdownFieldMenuType;
+  locationAutoCompleteChanged(value: PlaceSuggestion) {
+    this.propertySearchFilter.postcode = value.data.postcode;
+  }
+
+  radiusSelectionChanged(event: MatSelectChange) {
+    this.propertySearchFilter.radius = event.value;
+  }
+
+  minBedsSelectionChanged(event: MatSelectChange) {
+    this.propertySearchFilter.minBeds = event.value;
+  }
+
+  maxBedsSelectionChanged(event: MatSelectChange) {
+    this.propertySearchFilter.maxBeds = event.value;
+    console.log(this.propertySearchFilter);
+  }
+
+  minPriceSelectionChanged(event: MatSelectChange) {
+    this.propertySearchFilter.minPrice = event.value;
+  }
+
+  maxPriceSelectionChanged(event: MatSelectChange) {
+    this.propertySearchFilter.maxPrice = event.value;
+  }
 }

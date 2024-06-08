@@ -16,10 +16,10 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 			"(:addressLine1 is null OR p.addressLine1 LIKE %:addressLine1%)" +
 			" AND (:addressLine2 is null OR p.addressLine2 LIKE %:addressLine2%)" +
 			" AND (:addressLine3 is null OR p.addressLine3 LIKE %:addressLine3%)" +
-			" AND (:postcode is null OR p.postcode LIKE %:postcode%)" +
 			" AND (:town is null OR p.town LIKE %:town%)" +
 			" AND (:noOfBathrooms is null OR p.numberOfBathrooms = :noOfBathrooms)" +
-			" AND (:noOfBedrooms is null OR p.numberOfBedrooms = :noOfBedrooms)" +
+			" AND (:minBeds is null OR p.numberOfBedrooms >= :minBeds)" +
+			" AND (:maxBeds is null OR p.numberOfBedrooms <= :maxBeds)" +
 			" AND (:noOfLivingRooms is null OR p.numberOfLivingRooms = :noOfLivingRooms)" +
 			" AND (:hasGarden is null OR p.hasGarden = :hasGarden)" +
 			" AND (:hasParking is null OR p.hasParking = :hasParking)" +
@@ -27,16 +27,17 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 			" AND (:smokersAllowed is null OR p.smokersAllowed = :smokersAllowed)" +
 			" AND (:studentsAllowed is null OR p.studentsAllowed = :studentsAllowed)" +
 			" AND (:propertyType is null OR p.propertyType = :propertyType)" +
-			" AND (:minPrice is null OR :maxPrice is null OR p.priceInPence BETWEEN :minPrice AND :maxPrice)" +
+			" AND (:minPrice is null OR p.priceInPence >= :minPrice)" +
+			" AND (:maxPrice is null OR p.priceInPence >= :maxPrice)" +
 			" AND (:minLatitude is null OR :maxLatitude is null OR p.latitude BETWEEN :minLatitude AND :maxLatitude)" +
 			" AND (:minLongitude is null OR :maxLongitude is null OR p.longitude BETWEEN :minLongitude AND :maxLongitude)")
 	Page<Property> findByFilter(@Param("addressLine1") String addressLine1,
 								@Param("addressLine2") String addressLine2,
 								@Param("addressLine3") String addressLine3,
-								@Param("postcode") String postcode,
 								@Param("town") String town,
 								@Param("noOfBathrooms") Integer noOfBathrooms,
-								@Param("noOfBedrooms") Integer noOfBedrooms,
+								@Param("minBeds") Integer minBeds,
+								@Param("maxBeds") Integer maxBeds,
 								@Param("noOfLivingRooms") Integer noOfLivingRooms,
 								@Param("hasGarden") Boolean hasGarden,
 								@Param("hasParking") Boolean hasParking,

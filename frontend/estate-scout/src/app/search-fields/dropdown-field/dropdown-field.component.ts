@@ -19,7 +19,7 @@ export class DropdownFieldComponent {
   @Input() selectedValue: number = 0;
   @Output() selectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
 
-  public onSelectionChange(event: MatSelectChange) {
+  onSelectionChange(event: MatSelectChange) {
     this.selectionChange.emit(event);
   }
 

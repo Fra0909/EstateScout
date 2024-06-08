@@ -8,7 +8,8 @@ public class PropertyFilterDTO {
   private String postcode;
   private String town;
   private Integer numberOfBathrooms;
-  private Integer numberOfBedrooms;
+  private Integer minBeds;
+  private Integer maxBeds;
   private Integer numberOfLivingRooms;
   private Boolean hasGarden;
   private Boolean hasParking;
@@ -24,23 +25,17 @@ public class PropertyFilterDTO {
   private Double maxLongitude;
   private Integer pageSize;
   private Integer page;
+  private Double radius;
 
-  public PropertyFilterDTO() {
-  }
-
-  public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3,
-      String postcode, String town, Integer numberOfBathrooms, Integer numberOfBedrooms,
-      Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed,
-      Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice,
-      Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude,
-      Double maxLongitude, Integer pageSize, Integer page) {
+  public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer minBeds, Integer maxBeds, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude, Integer pageSize, Integer page, Double radius) {
     this.addressLine1 = addressLine1;
     this.addressLine2 = addressLine2;
     this.addressLine3 = addressLine3;
     this.postcode = postcode;
     this.town = town;
     this.numberOfBathrooms = numberOfBathrooms;
-    this.numberOfBedrooms = numberOfBedrooms;
+    this.minBeds = minBeds;
+    this.maxBeds = maxBeds;
     this.numberOfLivingRooms = numberOfLivingRooms;
     this.hasGarden = hasGarden;
     this.hasParking = hasParking;
@@ -56,14 +51,7 @@ public class PropertyFilterDTO {
     this.maxLongitude = maxLongitude;
     this.pageSize = pageSize;
     this.page = page;
-  }
-
-  public PropertyFilterDTO(Double minLatitude, Double minLongitude, Double maxLatitude,
-      Double maxLongitude) {
-    this.minLatitude = minLatitude;
-    this.minLongitude = minLongitude;
-    this.maxLatitude = maxLatitude;
-    this.maxLongitude = maxLongitude;
+    this.radius = radius;
   }
 
   public String getAddressLine1() {
@@ -114,12 +102,20 @@ public class PropertyFilterDTO {
     this.numberOfBathrooms = numberOfBathrooms;
   }
 
-  public Integer getNumberOfBedrooms() {
-    return numberOfBedrooms;
+  public Integer getMinBeds() {
+    return minBeds;
   }
 
-  public void setNumberOfBedrooms(Integer numberOfBedrooms) {
-    this.numberOfBedrooms = numberOfBedrooms;
+  public void setMinBeds(Integer minBeds) {
+    this.minBeds = minBeds;
+  }
+
+  public Integer getMaxBeds() {
+    return maxBeds;
+  }
+
+  public void setMaxBeds(Integer maxBeds) {
+    this.maxBeds = maxBeds;
   }
 
   public Integer getNumberOfLivingRooms() {
@@ -242,32 +238,44 @@ public class PropertyFilterDTO {
     this.page = page;
   }
 
+  public Double getRadius() {
+    return radius;
+  }
+
+  public void setRadius(Double radius) {
+    this.radius = radius;
+  }
+
   @Override
   public String toString() {
     return "PropertyFilterDTO{" +
-        "addressLine1='" + addressLine1 + '\'' +
-        ", addressLine2='" + addressLine2 + '\'' +
-        ", addressLine3='" + addressLine3 + '\'' +
-        ", postcode='" + postcode + '\'' +
-        ", town='" + town + '\'' +
-        ", numberOfBathrooms=" + numberOfBathrooms +
-        ", numberOfBedrooms=" + numberOfBedrooms +
-        ", numberOfLivingRooms=" + numberOfLivingRooms +
-        ", hasGarden=" + hasGarden +
-        ", hasParking=" + hasParking +
-        ", petsAllowed=" + petsAllowed +
-        ", smokersAllowed=" + smokersAllowed +
-        ", studentsAllowed=" + studentsAllowed +
-        ", propertyType='" + propertyType + '\'' +
-        ", minPrice=" + minPrice +
-        ", maxPrice=" + maxPrice +
-        ", minLatitude=" + minLatitude +
-        ", minLongitude=" + minLongitude +
-        ", maxLatitude=" + maxLatitude +
-        ", maxLongitude=" + maxLongitude +
-        ", pageSize=" + pageSize +
-        ", page=" + page +
-        '}';
+            "addressLine1='" + addressLine1 + '\'' +
+            ", addressLine2='" + addressLine2 + '\'' +
+            ", addressLine3='" + addressLine3 + '\'' +
+            ", postcode='" + postcode + '\'' +
+            ", town='" + town + '\'' +
+            ", numberOfBathrooms=" + numberOfBathrooms +
+            ", minBeds=" + minBeds +
+            ", maxBeds=" + maxBeds +
+            ", numberOfLivingRooms=" + numberOfLivingRooms +
+            ", hasGarden=" + hasGarden +
+            ", hasParking=" + hasParking +
+            ", petsAllowed=" + petsAllowed +
+            ", smokersAllowed=" + smokersAllowed +
+            ", studentsAllowed=" + studentsAllowed +
+            ", propertyType='" + propertyType + '\'' +
+            ", minPrice=" + minPrice +
+            ", maxPrice=" + maxPrice +
+            ", minLatitude=" + minLatitude +
+            ", minLongitude=" + minLongitude +
+            ", maxLatitude=" + maxLatitude +
+            ", maxLongitude=" + maxLongitude +
+            ", pageSize=" + pageSize +
+            ", page=" + page +
+            ", radius=" + radius +
+            '}';
   }
 }
+
+
 

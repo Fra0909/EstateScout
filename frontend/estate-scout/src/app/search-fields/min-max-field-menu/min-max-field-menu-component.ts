@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatMenu, MatMenuTrigger} from "@angular/material/menu";
 import {MatIcon} from "@angular/material/icon";
@@ -9,7 +9,7 @@ import {CurrencyService} from "../../services/currency.service";
 import {DropdownValue} from "../../models/dropdown-value";
 
 @Component({
-  selector: 'app-field-menu',
+  selector: 'app-min-max-field-menu',
   standalone: true,
   imports: [
     MatButton,
@@ -18,10 +18,10 @@ import {DropdownValue} from "../../models/dropdown-value";
     MatIcon,
     DropdownFieldComponent
   ],
-  templateUrl: './field-menu.component.html',
-  styleUrl: './field-menu.component.css'
+  templateUrl: './min-max-field-menu-component.html',
+  styleUrl: './min-max-field-menu-component.css'
 })
-export class FieldMenuComponent implements OnInit {
+export class MinMaxFieldMenuComponent implements OnInit {
   @Input() fieldMenuType!: DropdownFieldMenuType;
   @Input() defaultMenuValue: string = "";
   @Input() fieldMenuValue: string = "";
@@ -34,6 +34,9 @@ export class FieldMenuComponent implements OnInit {
   @Input() maxSubDropdownValues: any = [];
   maxSelectedDropdownValue: number = 0;
 
+  @Output() minSelectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
+  @Output() maxSelectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
+
   constructor(private currencyService: CurrencyService) {
   }
 
@@ -41,12 +44,8 @@ export class FieldMenuComponent implements OnInit {
     this.fieldMenuValue = this.defaultMenuValue;
   }
 
-  public subDropdownValueChanged(selectChange: MatSelectChange, subDropdown: string) {
-    if (subDropdown === "minSubDropdown") {
-      this.minSelectedDropdownValue = selectChange.value;
-    } else if (subDropdown === "maxSubDropdown") {
-      this.maxSelectedDropdownValue = selectChange.value;
-    }
+  minSubDropdownValueChanged(selectChange: MatSelectChange) {
+    this.minSelectedDropdownValue = selectChange.value;
 
     this.maxSubDropdownValues = this.minSubDropdownValues.filter(
       (bed: DropdownValue) => bed.value >= this.minSelectedDropdownValue);
@@ -55,6 +54,13 @@ export class FieldMenuComponent implements OnInit {
       this.maxSelectedDropdownValue = this.minSelectedDropdownValue;
     }
 
+    this.minSelectionChange.emit(selectChange);
+    this.createViewValueForFieldMenu();
+  }
+
+  maxSubDropdownValueChanged(selectChange: MatSelectChange) {
+    this.maxSelectedDropdownValue = selectChange.value;
+    this.maxSelectionChange.emit(selectChange);
     this.createViewValueForFieldMenu();
   }
 
