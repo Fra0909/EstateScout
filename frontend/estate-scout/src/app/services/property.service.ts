@@ -26,13 +26,15 @@ export class PropertyService {
   }
 
   getPropertiesByFilter(searchFilter: PropertySearchFilter) : Observable<Property[]> {
-    const params = new HttpParams()
-      .set("postcode", searchFilter.postcode)
-      .set("radius", searchFilter.radius)
-      .set("minPrice", searchFilter.minPrice)
-      .set("maxPrice", searchFilter.maxPrice)
-      .set("minBeds", searchFilter.minBeds)
-      .set("maxBeds", searchFilter.maxPrice)
+    let params = new HttpParams()
+
+
+    Object.keys(searchFilter).forEach(key => {
+      const value = searchFilter[key];
+      if (value) {
+        params = params.set(key, String(value))
+      }
+    });
 
     return this.http.get<Property[]>(`${this.baseURL}/api/property/filter`, { params });
   }

@@ -6,7 +6,7 @@
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Radius</p></b>
-      <app-dropdown-field [dropdownValues]="radiusVariations" (selectionChange)="radiusSelectionChanged($event)"></app-dropdown-field>
+      <app-dropdown-field [dropdownValues]="radiusVariations" [selectedValue]="radiusValues[0]" (selectionChange)="radiusSelectionChanged($event)"></app-dropdown-field>
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Bedrooms</p></b>

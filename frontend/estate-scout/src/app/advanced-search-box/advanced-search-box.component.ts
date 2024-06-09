@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   LocationAutoCompleteFieldComponent,
   PlaceSuggestion
@@ -11,6 +11,9 @@ import {CurrencyService} from "../services/currency.service";
 import {DropdownFieldMenuType} from "../enums/dropdown-field-menu-type";
 import {PropertySearchFilter} from "../models/property-search-filter";
 import {MatSelectChange} from "@angular/material/select";
+import {PropertyService} from "../services/property.service";
+import {Property} from "../models/property";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-advanced-search-box',
@@ -28,11 +31,9 @@ import {MatSelectChange} from "@angular/material/select";
 export class AdvancedSearchBoxComponent {
   protected readonly DropdownFieldMenuType = DropdownFieldMenuType;
 
-  propertySearchFilter: PropertySearchFilter = {
-    postcode: "", minBeds: 0, maxBeds: 0, minPrice: 0, maxPrice: 0, radius: 0
-  };
+  propertySearchFilter: PropertySearchFilter = { minBeds: 0, maxBeds: 0, minPrice: 0, maxPrice: 0, radius: 0.1 };
 
-  radiusValues: number[] = [0, 0.5, 1, 3, 5, 10, 15, 20, 25, 30];
+  radiusValues: number[] = [0.1, 0.5, 1, 3, 5, 10, 15, 20, 25, 30];
   radiusVariations: DropdownValue[] = [];
 
   minBedVariations: DropdownValue[] = [];
@@ -44,14 +45,19 @@ export class AdvancedSearchBoxComponent {
   forRentPriceValues: number[] = [];
   forRentPriceVariations: DropdownValue[] = [];
 
-  constructor(private currencyService: CurrencyService) {
-    this.radiusVariations = this.radiusValues.map(value => ({
-      value, viewValue: !!value ? `Within ${value} mile${value != 1 ? "s" : ""}` : "This area only"
-    }));
+  @Output() propertySearchResults: EventEmitter<Property[]> = new EventEmitter<Property[]>();
 
+  constructor(private currencyService: CurrencyService, private propertyService: PropertyService) {
+    this.initRadiusVariations();
     this.initForSalePriceVariations();
     this.initForRentPriceVariations();
     this.initMinMaxBedVariations();
+  }
+
+  private initRadiusVariations() {
+    this.radiusVariations = this.radiusValues.map(value => ({
+      value, viewValue: value > 0.1 ? `Within ${value} mile${value != 1 ? "s" : ""}` : "This area only"
+    }));
   }
 
   private initForRentPriceVariations() {
@@ -106,28 +112,51 @@ export class AdvancedSearchBoxComponent {
     }
   }
 
-  locationAutoCompleteChanged(value: PlaceSuggestion) {
-    this.propertySearchFilter.postcode = value.data.postcode;
+  locationAutoCompleteChanged(place: PlaceSuggestion) {
+    if (place.data.bbox) {
+      // bbox = left,bottom,right,top
+      this.propertySearchFilter.minLongitude = place.data.bbox[0];
+      this.propertySearchFilter.minLatitude = place.data.bbox[1];
+      this.propertySearchFilter.maxLongitude = place.data.bbox[2];
+      this.propertySearchFilter.maxLatitude = place.data.bbox[3];
+    }
+    this.sendPropertySearchResultsToParent();
   }
 
   radiusSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.radius = event.value;
+    this.sendPropertySearchResultsToParent();
   }
 
   minBedsSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minBeds = event.value;
+    if (this.propertySearchFilter.minBeds > this.propertySearchFilter.maxBeds) {
+      this.propertySearchFilter.maxBeds = this.propertySearchFilter.minBeds;
+    }
+    this.sendPropertySearchResultsToParent();
   }
 
   maxBedsSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.maxBeds = event.value;
-    console.log(this.propertySearchFilter);
+    this.sendPropertySearchResultsToParent();
   }
 
   minPriceSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minPrice = event.value;
+    if (this.propertySearchFilter.minPrice > this.propertySearchFilter.maxPrice) {
+      this.propertySearchFilter.maxPrice = this.propertySearchFilter.minPrice;
+    }
+    this.sendPropertySearchResultsToParent();
   }
 
   maxPriceSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.maxPrice = event.value;
+    this.sendPropertySearchResultsToParent();
+  }
+
+  sendPropertySearchResultsToParent() {
+    this.propertyService.getPropertiesByFilter(this.propertySearchFilter).subscribe(properties => {
+      this.propertySearchResults.emit(properties);
+    });
   }
 }

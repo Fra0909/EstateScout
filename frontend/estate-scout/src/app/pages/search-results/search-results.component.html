@@ -1,2 +1,2 @@
-<app-advanced-search-box></app-advanced-search-box>
-<app-property-search-results></app-property-search-results>
+<app-advanced-search-box (propertySearchResults)="propertySearchResultsChanged($event)"></app-advanced-search-box>
+<app-property-search-results [propertySearchResults]="propertySearchResults"></app-property-search-results>

@@ -28,7 +28,7 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 			" AND (:studentsAllowed is null OR p.studentsAllowed = :studentsAllowed)" +
 			" AND (:propertyType is null OR p.propertyType = :propertyType)" +
 			" AND (:minPrice is null OR p.priceInPence >= :minPrice)" +
-			" AND (:maxPrice is null OR p.priceInPence >= :maxPrice)" +
+			" AND (:maxPrice is null OR p.priceInPence <= :maxPrice)" +
 			" AND (:minLatitude is null OR :maxLatitude is null OR (p.latitude BETWEEN :minLatitude AND :maxLatitude))" +
 			" AND (:minLongitude is null OR :maxLongitude is null OR (p.longitude BETWEEN :minLongitude AND :maxLongitude))")
 	Page<Property> findByFilter(@Param("addressLine1") String addressLine1,

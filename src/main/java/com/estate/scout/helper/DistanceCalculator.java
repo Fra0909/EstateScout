@@ -36,34 +36,32 @@ public class DistanceCalculator {
     return EARTH_RADIUS_MILES * c; // Distance in miles
   }
 
-  /**
-   * Calculates the bounding box coordinates given a center point and distance.
-   *
-   * @param lat      latitude of the center point
-   * @param lon      longitude of the center point
-   * @param distance distance from the center point in miles
-   * @return an array containing [minLat, minLon, maxLat, maxLon] representing the bounding box
-   */
-  public static double[] calculateBoundingBox(double lat, double lon, double distance) {
+  public static double[] expandBoundingBox(double minLat, double minLon, double maxLat, double maxLon, double distance) {
     final double EARTH_RADIUS_MILES = 3958.8;  // Earth radius in miles
+
+    // Calculate the center of the bounding box
+    double centerLat = (minLat + maxLat) / 2;
+    double centerLon = (minLon + maxLon) / 2;
+
+    // Convert distance to radians
     double radDist = distance / EARTH_RADIUS_MILES;
 
-    // Calculate the min and max latitude
-    double minLat = lat - Math.toDegrees(radDist);
-    double maxLat = lat + Math.toDegrees(radDist);
+    // Calculate new min and max latitude
+    double newMinLat = centerLat - Math.toDegrees(radDist);
+    double newMaxLat = centerLat + Math.toDegrees(radDist);
 
-    // Calculate the min and max longitude
-    double deltaLon = Math.toDegrees(radDist / Math.cos(Math.toRadians(lat)));
-    double minLon = lon - deltaLon;
-    double maxLon = lon + deltaLon;
+    // Calculate new min and max longitude
+    double deltaLon = Math.toDegrees(radDist / Math.cos(Math.toRadians(centerLat)));
+    double newMinLon = centerLon - deltaLon;
+    double newMaxLon = centerLon + deltaLon;
 
-    // Formatting to 5 decimal places
-    minLat = Math.round(minLat * 100000.0) / 100000.0;
-    minLon = Math.round(minLon * 100000.0) / 100000.0;
-    maxLat = Math.round(maxLat * 100000.0) / 100000.0;
-    maxLon = Math.round(maxLon * 100000.0) / 100000.0;
+    // Round to 5 decimal places
+    newMinLat = Math.round(newMinLat * 100000.0) / 100000.0;
+    newMinLon = Math.round(newMinLon * 100000.0) / 100000.0;
+    newMaxLat = Math.round(newMaxLat * 100000.0) / 100000.0;
+    newMaxLon = Math.round(newMaxLon * 100000.0) / 100000.0;
 
-    return new double[]{minLat, minLon, maxLat, maxLon};
+    return new double[]{newMinLat, newMinLon, newMaxLat, newMaxLon};
   }
 
 

@@ -15,10 +15,8 @@ import {
   styleUrl: './basic-search-box.component.css'
 })
 export class BasicSearchBoxComponent {
-  selectedLocationPostcode = "";
 
   locationAutoCompleteChanged(value: PlaceSuggestion) {
-    this.selectedLocationPostcode = value.data.postcode;
   }
 
 }

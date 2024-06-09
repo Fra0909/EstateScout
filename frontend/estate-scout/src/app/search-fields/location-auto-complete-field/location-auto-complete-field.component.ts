@@ -5,7 +5,7 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
 import {AsyncPipe, NgClass, NgForOf} from "@angular/common";
 import {catchError, of, Subject, Subscription} from "rxjs";
-import {GeoService} from "../../services/geo-service.service";
+import {GeoService} from "../../services/geo.service";
 import {MatOptionSelectionChange} from "@angular/material/core";
 
 @Component({
@@ -79,7 +79,7 @@ export class LocationAutoCompleteFieldComponent implements OnDestroy {
           if (data) {
             const placeSuggestions = data.features.map(feature => {
               const property = feature.properties as GeocodingFeatureProperty;
-
+              property.bbox = feature.bbox;
               return {
                 shortAddress: this.generateShortAddress(property),
                 data: property
@@ -119,8 +119,5 @@ export interface PlaceSuggestion {
 interface GeocodingFeatureProperty {
   city: string;
   county: string;
-  postcode: string;
-  country: string;
-  lon: number;
-  lat: number;
+  bbox?: number[];
 }

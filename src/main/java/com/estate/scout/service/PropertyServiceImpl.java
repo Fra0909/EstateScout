@@ -87,13 +87,15 @@ public class PropertyServiceImpl implements PropertyService {
 
   @Override
   public List<PropertyDTO> getPropertiesByFilter(PropertyFilterDTO filter) {
-    if (filter.getPostcode() != null && filter.getRadius() != null) {
-      HashMap<String, Double> coordinates = getCoordinatesFromPostcode(filter.getPostcode());
-      double[] boundingBox = DistanceCalculator.calculateBoundingBox(coordinates.get("latitude"), coordinates.get("longitude"), filter.getRadius());
-      filter.setMinLatitude(boundingBox[0]);
-      filter.setMinLongitude(boundingBox[1]);
-      filter.setMaxLatitude(boundingBox[2]);
-      filter.setMaxLongitude(boundingBox[3]);
+    if (filter.getMinLongitude() != null && filter.getMinLatitude() != null && filter.getMaxLongitude() != null &&
+    filter.getMaxLatitude() != null) {
+      double[] expandedBoundingBox = DistanceCalculator.expandBoundingBox(filter.getMinLatitude(), filter.getMinLongitude(),
+              filter.getMaxLatitude(), filter.getMaxLongitude(), filter.getRadius());
+
+      filter.setMinLatitude(expandedBoundingBox[0]);
+      filter.setMinLongitude(expandedBoundingBox[1]);
+      filter.setMaxLatitude(expandedBoundingBox[2]);
+      filter.setMaxLongitude(expandedBoundingBox[3]);
     }
 
     List<Property> properties = propertyRepository.findByFilter(
@@ -110,35 +112,6 @@ public class PropertyServiceImpl implements PropertyService {
             filter.getPageSize() != null ? filter.getPageSize() : 10)).getContent();
     LOG.info("Retrieved properties with filter: " + filter);
     return properties.stream().map(PropertyConverter::convert).collect(Collectors.toList());
-  }
-
-  public HashMap<String, Double> getCoordinatesFromPostcode(String postcode) {
-    HashMap<String, Double> geoCoordinates = new HashMap<>();
-    HttpRequest request = HttpRequest.newBuilder(URI.create("https://api.postcodes.io/postcodes/" + postcode)).GET().build();
-    try {
-      HttpResponse<InputStream> response = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
-
-      int statusCode = response.statusCode();
-
-      if (statusCode == 200) {
-        InputStream responseBody = response.body();
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(responseBody);
-
-        double latitude = jsonNode.at("/result/latitude").asDouble();
-        double longitude = jsonNode.at("/result/longitude").asDouble();
-
-        geoCoordinates.put("latitude", latitude);
-        geoCoordinates.put("longitude", longitude);
-
-      }
-
-    }
-    catch (IOException | InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-
-    return geoCoordinates;
   }
 
 }
