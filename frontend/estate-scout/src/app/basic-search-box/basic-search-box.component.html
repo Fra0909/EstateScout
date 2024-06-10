@@ -3,7 +3,7 @@
   <div class="sb-inner">
     <app-location-auto-complete-field (locationChange)="locationAutoCompleteChanged($event)" class="location-search-field">
     </app-location-auto-complete-field>
-    <app-cta-button text="To Rent"></app-cta-button>
-    <app-cta-button text="For Sale"></app-cta-button>
+    <app-cta-button [buttonType]="PropertyType.forRent" text="To Rent" [initialPropertyFilter]="initialPropertyFilter"></app-cta-button>
+    <app-cta-button [buttonType]="PropertyType.forSale" text="For Sale" [initialPropertyFilter]="initialPropertyFilter"></app-cta-button>
   </div>
 </div>

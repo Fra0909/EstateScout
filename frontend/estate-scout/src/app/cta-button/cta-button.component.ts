@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
+import {PropertySearchFilter} from "../models/property-search-filter";
+import {PropertyType} from "../enums/property-type";
 
 @Component({
   selector: 'app-cta-button',
@@ -9,11 +11,14 @@ import {Router} from "@angular/router";
   styleUrl: './cta-button.component.css'
 })
 export class CtaButtonComponent {
-  @Input() text = "";
+  @Input() text: string = "";
+  @Input() buttonType!: PropertyType;
+  @Input() initialPropertyFilter: PropertySearchFilter = {};
 
   constructor(private router: Router) {}
 
   goToSearchResults() {
-    this.router.navigate(["/search-results"])
+    this.initialPropertyFilter.propertyType = this.buttonType;
+    this.router.navigate(["/search-results"], { queryParams: this.initialPropertyFilter });
   }
 }

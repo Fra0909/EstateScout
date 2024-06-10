@@ -28,10 +28,10 @@ import {Observable} from "rxjs";
   styleUrl: './advanced-search-box.component.css'
 })
 
-export class AdvancedSearchBoxComponent {
+export class AdvancedSearchBoxComponent implements OnInit {
   protected readonly DropdownFieldMenuType = DropdownFieldMenuType;
 
-  propertySearchFilter: PropertySearchFilter = { minBeds: 0, maxBeds: 0, minPrice: 0, maxPrice: 0, radius: 0.1 };
+  @Input() propertySearchFilter: PropertySearchFilter = { minBeds: 0, maxBeds: 0, minPrice: 0, maxPrice: 0, radius: 0.1 };
 
   radiusValues: number[] = [0.1, 0.5, 1, 3, 5, 10, 15, 20, 25, 30];
   radiusVariations: DropdownValue[] = [];
@@ -47,11 +47,18 @@ export class AdvancedSearchBoxComponent {
 
   @Output() propertySearchResults: EventEmitter<Property[]> = new EventEmitter<Property[]>();
 
+
+
   constructor(private currencyService: CurrencyService, private propertyService: PropertyService) {
     this.initRadiusVariations();
     this.initForSalePriceVariations();
     this.initForRentPriceVariations();
     this.initMinMaxBedVariations();
+  }
+
+  ngOnInit() {
+    console.log(this.propertySearchResults);
+    this.sendPropertySearchResultsToParent();
   }
 
   private initRadiusVariations() {
@@ -130,7 +137,7 @@ export class AdvancedSearchBoxComponent {
 
   minBedsSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minBeds = event.value;
-    if (this.propertySearchFilter.minBeds > this.propertySearchFilter.maxBeds) {
+    if (!!this.propertySearchFilter.minBeds > !!this.propertySearchFilter.maxBeds) {
       this.propertySearchFilter.maxBeds = this.propertySearchFilter.minBeds;
     }
     this.sendPropertySearchResultsToParent();
@@ -143,7 +150,7 @@ export class AdvancedSearchBoxComponent {
 
   minPriceSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minPrice = event.value;
-    if (this.propertySearchFilter.minPrice > this.propertySearchFilter.maxPrice) {
+    if (!!this.propertySearchFilter.minPrice > !!this.propertySearchFilter.maxPrice) {
       this.propertySearchFilter.maxPrice = this.propertySearchFilter.minPrice;
     }
     this.sendPropertySearchResultsToParent();

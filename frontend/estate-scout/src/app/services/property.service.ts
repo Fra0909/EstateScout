@@ -28,7 +28,6 @@ export class PropertyService {
   getPropertiesByFilter(searchFilter: PropertySearchFilter) : Observable<Property[]> {
     let params = new HttpParams()
 
-
     Object.keys(searchFilter).forEach(key => {
       const value = searchFilter[key];
       if (value) {

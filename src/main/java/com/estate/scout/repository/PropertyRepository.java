@@ -1,5 +1,6 @@
 package com.estate.scout.repository;
 
+import com.estate.scout.enums.PropertyType;
 import com.estate.scout.model.Property;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,7 +45,7 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 								@Param("petsAllowed") Boolean petsAllowed,
 								@Param("smokersAllowed") Boolean smokersAllowed,
 								@Param("studentsAllowed") Boolean studentsAllowed,
-								@Param("propertyType") String propertyType,
+								@Param("propertyType") PropertyType propertyType,
 								@Param("minPrice") Integer minPrice,
 								@Param("maxPrice") Integer maxPrice,
 								@Param("minLatitude") Double minLatitude,

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AdvancedSearchBoxComponent} from "../../advanced-search-box/advanced-search-box.component";
 import {PropertySearchResultsComponent} from "../../property-search-results/property-search-results.component";
 import {Property} from "../../models/property";
+import {ActivatedRoute} from "@angular/router";
+import {PropertySearchFilter} from "../../models/property-search-filter";
 
 @Component({
   selector: 'app-search-results',
@@ -13,8 +15,22 @@ import {Property} from "../../models/property";
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.css'
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnInit {
   propertySearchResults: Property[] = [];
+  initialPropertyFilter: PropertySearchFilter = {};
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(searchFilter => {
+      this.initialPropertyFilter.minLongitude = searchFilter["minLongitude"];
+      this.initialPropertyFilter.minLatitude = searchFilter["minLatitude"];
+      this.initialPropertyFilter.maxLongitude = searchFilter["maxLongitude"];
+      this.initialPropertyFilter.maxLatitude = searchFilter["maxLatitude"];
+      this.initialPropertyFilter.radius = searchFilter["radius"];
+      this.initialPropertyFilter.propertyType = searchFilter["propertyType"]
+    })
+  }
 
   propertySearchResultsChanged(properties: Property[]) {
     this.propertySearchResults = properties;

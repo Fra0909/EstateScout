@@ -1,5 +1,7 @@
 package com.estate.scout.dto;
 
+import com.estate.scout.enums.PropertyType;
+
 public class PropertyFilterDTO {
 
   private String addressLine1;
@@ -16,7 +18,7 @@ public class PropertyFilterDTO {
   private Boolean petsAllowed;
   private Boolean smokersAllowed;
   private Boolean studentsAllowed;
-  private String propertyType;
+  private PropertyType propertyType;
   private Integer minPrice;
   private Integer maxPrice;
   private Double minLatitude;
@@ -27,7 +29,7 @@ public class PropertyFilterDTO {
   private Integer page;
   private Double radius;
 
-  public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer minBeds, Integer maxBeds, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, String propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude, Integer pageSize, Integer page, Double radius) {
+  public PropertyFilterDTO(String addressLine1, String addressLine2, String addressLine3, String postcode, String town, Integer numberOfBathrooms, Integer minBeds, Integer maxBeds, Integer numberOfLivingRooms, Boolean hasGarden, Boolean hasParking, Boolean petsAllowed, Boolean smokersAllowed, Boolean studentsAllowed, PropertyType propertyType, Integer minPrice, Integer maxPrice, Double minLatitude, Double minLongitude, Double maxLatitude, Double maxLongitude, Integer pageSize, Integer page, Double radius) {
     this.addressLine1 = addressLine1;
     this.addressLine2 = addressLine2;
     this.addressLine3 = addressLine3;
@@ -166,11 +168,11 @@ public class PropertyFilterDTO {
     this.studentsAllowed = studentsAllowed;
   }
 
-  public String getPropertyType() {
+  public PropertyType getPropertyType() {
     return propertyType;
   }
 
-  public void setPropertyType(String propertyType) {
+  public void setPropertyType(PropertyType propertyType) {
     this.propertyType = propertyType;
   }
 

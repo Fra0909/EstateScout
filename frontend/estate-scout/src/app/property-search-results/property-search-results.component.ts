@@ -16,21 +16,7 @@ import {Subscription} from "rxjs";
   styleUrl: './property-search-results.component.css'
 })
 
-export class PropertySearchResultsComponent implements OnInit, OnDestroy {
+export class PropertySearchResultsComponent {
   @Input() propertySearchResults: Property[] = [];
-  subscription: Subscription | undefined;
-
-  constructor(private propertyService: PropertyService) {
-  }
-
-  ngOnInit() {
-    this.subscription = this.propertyService.getAllProperties().subscribe(property => {
-     this.propertySearchResults.push(...property);
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
-  }
 
 }
