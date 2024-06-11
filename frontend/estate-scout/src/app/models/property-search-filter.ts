@@ -1,6 +1,7 @@
 import {PropertyType} from "../enums/property-type";
 
 export interface PropertySearchFilter {
+  shortAddress?: string;
   radius?: number;
   minBeds?: number;
   maxBeds?: number;

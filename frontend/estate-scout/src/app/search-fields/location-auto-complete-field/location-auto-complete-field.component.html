@@ -1,6 +1,8 @@
 <form class="location-auto-complete-field">
   <input matInput [matAutocomplete]="auto" [formControl]="inputFieldFormControl"
-         class="search-field auto-complete-input text-clr" type="text" placeholder="e.g. Greenwich or SE10">
+         class="search-field auto-complete-input text-clr" type="text"
+         [placeholder]="initialText ? '' : 'e.g. Greenwich or SE10'"
+         [ngClass]="{'search-field-warning-border': showLocationFieldEmptyWarning}">
   <mat-autocomplete #auto="matAutocomplete" style="margin-top: 10px">
     <mat-option class="text-clr" *ngFor="let option of searchOptions | async" [value]="option.shortAddress"
     (onSelectionChange)="optionSelectionChange(option, $event)">

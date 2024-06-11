@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
-import {AsyncPipe, NgClass, NgForOf} from "@angular/common";
+import {AsyncPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {catchError, of, Subject, Subscription} from "rxjs";
 import {GeoService} from "../../services/geo.service";
 import {MatOptionSelectionChange} from "@angular/material/core";
@@ -20,23 +20,32 @@ import {MatOptionSelectionChange} from "@angular/material/core";
     MatOption,
     NgForOf,
     MatAutocompleteTrigger,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './location-auto-complete-field.component.html',
   styleUrl: './location-auto-complete-field.component.css'
 })
-export class LocationAutoCompleteFieldComponent implements OnDestroy {
+export class LocationAutoCompleteFieldComponent implements OnDestroy, OnInit {
   @Output() locationChange: EventEmitter<PlaceSuggestion> = new EventEmitter<PlaceSuggestion>();
+  @Input() initialText: string | undefined;
 
   searchOptions: Subject<PlaceSuggestion[]> = new Subject<PlaceSuggestion[]>();
   inputFieldFormControl: FormControl = new FormControl();
-  private valueChangesSub: Subscription;
+  private valueChangesSub: Subscription = new Subscription();
   private chosenOption: PlaceSuggestion | undefined;
   private userInputTimeout: number | undefined;
   private requestSub: Subscription | undefined;
   private MIN_LETTERS_FOR_SEARCH = 3;
 
+  @Input() showLocationFieldEmptyWarning: boolean = false;
+
   constructor(private geoService: GeoService) {
+  }
+
+  ngOnInit() {
+    this.inputFieldFormControl.setValue(this.initialText || '');
+
     this.valueChangesSub = this.inputFieldFormControl.valueChanges.subscribe((value) => {
       if (this.userInputTimeout) {
         window.clearTimeout(this.userInputTimeout);
@@ -54,7 +63,7 @@ export class LocationAutoCompleteFieldComponent implements OnDestroy {
       this.userInputTimeout = window.setTimeout(() => {
         this.generateSuggestions(value);
       }, 300)
-    })
+    });
   }
 
   ngOnDestroy() {

@@ -13,7 +13,7 @@ import {PropertySearchFilter} from "../models/property-search-filter";
 import {MatSelectChange} from "@angular/material/select";
 import {PropertyService} from "../services/property.service";
 import {Property} from "../models/property";
-import {Observable} from "rxjs";
+import {PropertyType} from "../enums/property-type";
 
 @Component({
   selector: 'app-advanced-search-box',
@@ -42,23 +42,25 @@ export class AdvancedSearchBoxComponent implements OnInit {
   minForSalePriceVariations: DropdownValue[] = [];
   maxForSalePriceVariations: DropdownValue[] = [];
 
-  forRentPriceValues: number[] = [];
-  forRentPriceVariations: DropdownValue[] = [];
+  minForRentPriceVariations: DropdownValue[] = [];
+  maxForRentPriceVariations: DropdownValue[] = [];
 
   @Output() propertySearchResults: EventEmitter<Property[]> = new EventEmitter<Property[]>();
 
-
-
   constructor(private currencyService: CurrencyService, private propertyService: PropertyService) {
     this.initRadiusVariations();
-    this.initForSalePriceVariations();
-    this.initForRentPriceVariations();
     this.initMinMaxBedVariations();
   }
 
   ngOnInit() {
-    console.log(this.propertySearchResults);
     this.sendPropertySearchResultsToParent();
+
+    if (this.propertySearchFilter.propertyType === PropertyType.forSale) {
+      this.initForSalePriceVariations();
+    }
+    else {
+      this.initForRentPriceVariations();
+    }
   }
 
   private initRadiusVariations() {
@@ -69,19 +71,24 @@ export class AdvancedSearchBoxComponent implements OnInit {
 
   private initForRentPriceVariations() {
     let forRentValue: number = 0;
-    this.forRentPriceVariations.push({value: 0, viewValue: "No minimum"});
+    this.minForRentPriceVariations.push({value: 0, viewValue: "No min"});
+    this.maxForRentPriceVariations.push({value: 0, viewValue: "No max"});
 
     while (forRentValue < 25000) {
       if (forRentValue < 1000) {
-        this.forRentPriceValues.push(forRentValue);
         forRentValue += 50;
       } else if (forRentValue < 15000) {
-        this.forRentPriceValues.push(250);
         forRentValue += 250;
       } else {
-        this.forRentPriceValues.push(2500);
         forRentValue += 2500;
       }
+
+      this.minForSalePriceVariations.push(
+        {value: forRentValue, viewValue: this.currencyService.convertNumberToGBP(forRentValue)});
+
+      this.maxForSalePriceVariations.push(
+        {value: forRentValue, viewValue: this.currencyService.convertNumberToGBP(forRentValue)});
+
     }
   }
 
@@ -166,4 +173,6 @@ export class AdvancedSearchBoxComponent implements OnInit {
       this.propertySearchResults.emit(properties);
     });
   }
+
+  protected readonly PropertyType = PropertyType;
 }

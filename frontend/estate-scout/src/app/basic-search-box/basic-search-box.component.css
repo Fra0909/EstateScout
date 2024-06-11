@@ -12,8 +12,16 @@
   row-gap: 30px;
 }
 
-.sb-inner {
+.sb-outer {
+  display: flex;
+  flex-direction: column;
   width: 90%;
+  justify-content: center;
+  gap: 15px;
+}
+
+.sb-inner {
+  width: 100%;
   height: 25%;
   border-radius: 10px;
   display: flex;
@@ -27,8 +35,22 @@ h2 {
   color: var(--secondary-clr);
   font-weight: 500;
   line-height: 0;
+  padding-top: 20px;
 }
 
 .location-search-field {
   flex-grow: 1;
+}
+
+.warning-text {
+  color: red;
+  line-height: 0;
+  align-self: flex-start;
+  font-size: 0.9rem;
+  opacity: 0;
+  cursor: default;
+}
+
+.warning-visible {
+  opacity: 1 !important;
 }

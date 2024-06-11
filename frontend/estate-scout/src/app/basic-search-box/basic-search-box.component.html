@@ -1,9 +1,13 @@
 <div class="sb-container">
   <h2>Search below to see homes you can rent or buy</h2>
-  <div class="sb-inner">
-    <app-location-auto-complete-field (locationChange)="locationAutoCompleteChanged($event)" class="location-search-field">
-    </app-location-auto-complete-field>
-    <app-cta-button [buttonType]="PropertyType.forRent" text="To Rent" [initialPropertyFilter]="initialPropertyFilter"></app-cta-button>
-    <app-cta-button [buttonType]="PropertyType.forSale" text="For Sale" [initialPropertyFilter]="initialPropertyFilter"></app-cta-button>
+  <div class="sb-outer">
+    <div class="sb-inner">
+      <app-location-auto-complete-field [showLocationFieldEmptyWarning]="showLocationFieldEmptyWarning" (locationChange)="locationAutoCompleteChanged($event)" class="location-search-field">
+      </app-location-auto-complete-field>
+      <app-cta-button [buttonType]="PropertyType.forRent" text="To Rent" [initialPropertyFilter]="initialPropertyFilter"
+                      (showLocationFieldEmptyWarning)="showLocationFieldEmptyWarningChanged($event)"></app-cta-button>
+      <app-cta-button [buttonType]="PropertyType.forSale" text="For Sale" [initialPropertyFilter]="initialPropertyFilter"></app-cta-button>
+    </div>
+    <p class="warning-text" [ngClass]="{'warning-visible': showLocationFieldEmptyWarning}">Please enter a search area first</p>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <div class="advanced-search-container">
     <div class="advanced-search-field-box">
       <b><p class="field-title">Enter a location</p></b>
-      <app-location-auto-complete-field  (locationChange)="locationAutoCompleteChanged($event)"></app-location-auto-complete-field>
+      <app-location-auto-complete-field [initialText]="propertySearchFilter.shortAddress"  (locationChange)="locationAutoCompleteChanged($event)"></app-location-auto-complete-field>
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Radius</p></b>
@@ -18,8 +18,8 @@
     <div class="advanced-search-field-box">
       <b><p class="field-title">Price</p></b>
       <app-min-max-field-menu defaultMenuValue="Any price" minSubDropdownTitle="Min price"
-                      maxSubDropdownTitle="Max price" [minSubDropdownValues]="minForSalePriceVariations"
-                      [maxSubDropdownValues]="maxForSalePriceVariations" [fieldMenuType]="DropdownFieldMenuType.Price"
+                      maxSubDropdownTitle="Max price" [minSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? minForSalePriceVariations : minForRentPriceVariations"
+                      [maxSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? maxForSalePriceVariations : maxForRentPriceVariations"
                       (minSelectionChange)="minPriceSelectionChanged($event)" (maxSelectionChange)="maxPriceSelectionChanged($event)"></app-min-max-field-menu>
     </div>
   </div>
