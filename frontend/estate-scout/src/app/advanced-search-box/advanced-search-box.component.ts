@@ -77,16 +77,16 @@ export class AdvancedSearchBoxComponent implements OnInit {
     while (forRentValue < 25000) {
       if (forRentValue < 1000) {
         forRentValue += 50;
-      } else if (forRentValue < 15000) {
+      } else if (forRentValue < 10000) {
         forRentValue += 250;
       } else {
         forRentValue += 2500;
       }
 
-      this.minForSalePriceVariations.push(
+      this.minForRentPriceVariations.push(
         {value: forRentValue, viewValue: this.currencyService.convertNumberToGBP(forRentValue)});
 
-      this.maxForSalePriceVariations.push(
+      this.maxForRentPriceVariations.push(
         {value: forRentValue, viewValue: this.currencyService.convertNumberToGBP(forRentValue)});
 
     }

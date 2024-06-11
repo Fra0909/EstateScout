@@ -48,7 +48,7 @@ export class MinMaxFieldMenuComponent implements OnInit {
     this.minSelectedDropdownValue = selectChange.value;
 
     this.maxSubDropdownValues = this.minSubDropdownValues.filter(
-      (bed: DropdownValue) => bed.value >= this.minSelectedDropdownValue);
+      (dropdownValue: DropdownValue) => dropdownValue.value >= this.minSelectedDropdownValue || dropdownValue.value === 0);
 
     if (this.maxSelectedDropdownValue < this.minSelectedDropdownValue) {
       this.maxSelectedDropdownValue = this.minSelectedDropdownValue;
@@ -82,6 +82,8 @@ export class MinMaxFieldMenuComponent implements OnInit {
     } else {
         this.fieldMenuValue = `${this.formatValue(this.minSelectedDropdownValue, this.fieldMenuType)} -
           ${this.formatValue(this.maxSelectedDropdownValue, this.fieldMenuType)}`;
+
     }
+    console.log(this.fieldMenuValue);
   }
 }

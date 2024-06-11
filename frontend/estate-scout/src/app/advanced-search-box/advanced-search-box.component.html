@@ -20,7 +20,8 @@
       <app-min-max-field-menu defaultMenuValue="Any price" minSubDropdownTitle="Min price"
                       maxSubDropdownTitle="Max price" [minSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? minForSalePriceVariations : minForRentPriceVariations"
                       [maxSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? maxForSalePriceVariations : maxForRentPriceVariations"
-                      (minSelectionChange)="minPriceSelectionChanged($event)" (maxSelectionChange)="maxPriceSelectionChanged($event)"></app-min-max-field-menu>
+                      (minSelectionChange)="minPriceSelectionChanged($event)" (maxSelectionChange)="maxPriceSelectionChanged($event)"
+                      [fieldMenuType]="DropdownFieldMenuType.Price"></app-min-max-field-menu>
     </div>
   </div>
 </div>
