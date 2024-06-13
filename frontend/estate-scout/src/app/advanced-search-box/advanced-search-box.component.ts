@@ -6,7 +6,9 @@ import {
 import {DropdownFieldComponent} from "../search-fields/dropdown-field/dropdown-field.component";
 import {DropdownValue} from "../models/dropdown-value";
 import {NgClass} from "@angular/common";
-import {MinMaxFieldMenuComponent} from "../search-fields/min-max-field-menu/min-max-field-menu-component";
+import {
+  MinMaxFieldMenuComponent
+} from "../search-fields/min-max-field-menu/min-max-field-menu-component";
 import {CurrencyService} from "../services/currency.service";
 import {DropdownFieldMenuType} from "../enums/dropdown-field-menu-type";
 import {PropertySearchFilter} from "../models/property-search-filter";
@@ -14,6 +16,12 @@ import {MatSelectChange} from "@angular/material/select";
 import {PropertyService} from "../services/property.service";
 import {Property} from "../models/property";
 import {PropertyType} from "../enums/property-type";
+import {
+  BEDROOM_OPTIONS,
+  RADIUS_OPTIONS,
+  RENT_PRICE_OPTIONS,
+  SALE_PRICE_OPTIONS
+} from "../price-options";
 
 @Component({
   selector: 'app-advanced-search-box',
@@ -31,102 +39,38 @@ import {PropertyType} from "../enums/property-type";
 export class AdvancedSearchBoxComponent implements OnInit {
   protected readonly DropdownFieldMenuType = DropdownFieldMenuType;
 
-  @Input() propertySearchFilter: PropertySearchFilter = { minBeds: 0, maxBeds: 0, minPrice: 0, maxPrice: 0, radius: 0.1 };
+  @Input() propertySearchFilter: PropertySearchFilter = {
+    minBeds: 0,
+    maxBeds: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    radius: 0.1
+  };
 
-  radiusValues: number[] = [0.1, 0.5, 1, 3, 5, 10, 15, 20, 25, 30];
-  radiusVariations: DropdownValue[] = [];
+  radiusVariations: DropdownValue[] = RADIUS_OPTIONS;
 
-  minBedVariations: DropdownValue[] = [];
-  maxBedVariations: DropdownValue[] = [];
+  NO_MIN_OPTION: DropdownValue = {value: 0, viewValue: "No min"};
+  NO_MAX_OPTION: DropdownValue = {value: 0, viewValue: "No max"};
 
-  minForSalePriceVariations: DropdownValue[] = [];
-  maxForSalePriceVariations: DropdownValue[] = [];
+  minBedVariations: DropdownValue[] = [this.NO_MIN_OPTION].concat(BEDROOM_OPTIONS);
+  maxBedVariations: DropdownValue[] = [this.NO_MAX_OPTION].concat(BEDROOM_OPTIONS);
 
-  minForRentPriceVariations: DropdownValue[] = [];
-  maxForRentPriceVariations: DropdownValue[] = [];
+  minForSalePriceVariations: DropdownValue[] = [this.NO_MIN_OPTION].concat(SALE_PRICE_OPTIONS);
+  maxForSalePriceVariations: DropdownValue[] = [this.NO_MAX_OPTION].concat(SALE_PRICE_OPTIONS);
+
+  minForRentPriceVariations: DropdownValue[] = [this.NO_MIN_OPTION].concat(RENT_PRICE_OPTIONS);
+  maxForRentPriceVariations: DropdownValue[] = [this.NO_MAX_OPTION].concat(RENT_PRICE_OPTIONS);
 
   @Output() propertySearchResults: EventEmitter<Property[]> = new EventEmitter<Property[]>();
 
   constructor(private currencyService: CurrencyService, private propertyService: PropertyService) {
-    this.initRadiusVariations();
-    this.initMinMaxBedVariations();
   }
 
   ngOnInit() {
-    this.sendPropertySearchResultsToParent();
-
-    if (this.propertySearchFilter.propertyType === PropertyType.forSale) {
-      this.initForSalePriceVariations();
-    }
-    else {
-      this.initForRentPriceVariations();
-    }
+    this.onFilterChanged();
   }
 
-  private initRadiusVariations() {
-    this.radiusVariations = this.radiusValues.map(value => ({
-      value, viewValue: value > 0.1 ? `Within ${value} mile${value != 1 ? "s" : ""}` : "This area only"
-    }));
-  }
-
-  private initForRentPriceVariations() {
-    let forRentValue: number = 0;
-    this.minForRentPriceVariations.push({value: 0, viewValue: "No min"});
-    this.maxForRentPriceVariations.push({value: 0, viewValue: "No max"});
-
-    while (forRentValue < 25000) {
-      if (forRentValue < 1000) {
-        forRentValue += 50;
-      } else if (forRentValue < 10000) {
-        forRentValue += 250;
-      } else {
-        forRentValue += 2500;
-      }
-
-      this.minForRentPriceVariations.push(
-        {value: forRentValue, viewValue: this.currencyService.convertNumberToGBP(forRentValue)});
-
-      this.maxForRentPriceVariations.push(
-        {value: forRentValue, viewValue: this.currencyService.convertNumberToGBP(forRentValue)});
-
-    }
-  }
-
-  private initForSalePriceVariations() {
-    let forSaleValue: number = 0;
-    this.minForSalePriceVariations.push({value: 0, viewValue: "No min"});
-    this.maxForSalePriceVariations.push({value: 0, viewValue: "No max"});
-
-    while (forSaleValue < 10000000) {
-      if (forSaleValue < 250000){
-        forSaleValue += 10000;
-      }
-      else if (forSaleValue < 500000) {
-        forSaleValue += 25000;
-      }
-      else {
-        forSaleValue += 100000;
-      }
-
-      this.minForSalePriceVariations.push(
-        {value: forSaleValue, viewValue: this.currencyService.convertNumberToGBP(forSaleValue)});
-
-      this.maxForSalePriceVariations.push(
-        {value: forSaleValue, viewValue: this.currencyService.convertNumberToGBP(forSaleValue)});
-    }
-  }
-
-  private initMinMaxBedVariations() {
-    this.minBedVariations.push({value: 0, viewValue: "No min"});
-    this.maxBedVariations.push({value: 0, viewValue: "No max"})
-
-    for (let i: number = 1; i <= 6; i++) {
-      this.minBedVariations.push({value: i, viewValue: `${i === 6 ? "6+" : i}`})
-      this.maxBedVariations.push({value: i, viewValue: `${i === 6 ? "6+" : i}`});
-    }
-  }
-
-  locationAutoCompleteChanged(place: PlaceSuggestion) {
+  onLocationAutoCompleteChanged(place: PlaceSuggestion) {
     if (place.data.bbox) {
       // bbox = left,bottom,right,top
       this.propertySearchFilter.minLongitude = place.data.bbox[0];
@@ -134,41 +78,41 @@ export class AdvancedSearchBoxComponent implements OnInit {
       this.propertySearchFilter.maxLongitude = place.data.bbox[2];
       this.propertySearchFilter.maxLatitude = place.data.bbox[3];
     }
-    this.sendPropertySearchResultsToParent();
+    this.onFilterChanged();
   }
 
-  radiusSelectionChanged(event: MatSelectChange) {
+  onRadiusSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.radius = event.value;
-    this.sendPropertySearchResultsToParent();
+    this.onFilterChanged();
   }
 
-  minBedsSelectionChanged(event: MatSelectChange) {
+  onMinBedsSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minBeds = event.value;
     if (!!this.propertySearchFilter.minBeds > !!this.propertySearchFilter.maxBeds) {
       this.propertySearchFilter.maxBeds = this.propertySearchFilter.minBeds;
     }
-    this.sendPropertySearchResultsToParent();
+    this.onFilterChanged();
   }
 
-  maxBedsSelectionChanged(event: MatSelectChange) {
+  onMaxBedsSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.maxBeds = event.value;
-    this.sendPropertySearchResultsToParent();
+    this.onFilterChanged();
   }
 
-  minPriceSelectionChanged(event: MatSelectChange) {
+  onMinPriceSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minPrice = event.value;
     if (!!this.propertySearchFilter.minPrice > !!this.propertySearchFilter.maxPrice) {
       this.propertySearchFilter.maxPrice = this.propertySearchFilter.minPrice;
     }
-    this.sendPropertySearchResultsToParent();
+    this.onFilterChanged();
   }
 
-  maxPriceSelectionChanged(event: MatSelectChange) {
+  onMaxPriceSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.maxPrice = event.value;
-    this.sendPropertySearchResultsToParent();
+    this.onFilterChanged();
   }
 
-  sendPropertySearchResultsToParent() {
+  onFilterChanged() {
     this.propertyService.getPropertiesByFilter(this.propertySearchFilter).subscribe(properties => {
       this.propertySearchResults.emit(properties);
     });
@@ -176,3 +120,4 @@ export class AdvancedSearchBoxComponent implements OnInit {
 
   protected readonly PropertyType = PropertyType;
 }
+
