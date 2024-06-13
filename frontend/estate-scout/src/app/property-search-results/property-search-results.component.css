@@ -3,8 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 4%;
-  padding-bottom: 4%;
+  padding-top: 1%;
+  padding-bottom: 3%;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .property-search-results {
@@ -17,4 +19,9 @@
 
 .property-container {
   width: calc(50% - 25px);
+}
+
+.properties-found-container {
+  display: flex;
+  width: 70%;
 }

@@ -1,4 +1,7 @@
 <div class="property-search-results-section">
+  <div class="properties-found-container">
+    <p class="text-clr properties-found-text">{{propertySearchResults.length}} properties found</p>
+  </div>
   <div class="property-search-results">
     <app-property-listing class="property-container" *ngFor="let property of propertySearchResults"
       [propertyListing]="property"></app-property-listing>
