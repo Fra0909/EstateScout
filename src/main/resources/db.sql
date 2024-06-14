@@ -50,7 +50,7 @@ VALUES ('221B Baker Street', '', '', 'NW1 6XE', 'Greater London', 2, 3, 2, TRUE,
         'FOR_SALE', 800000, 51.504733, -0.080775),
        ('1 Canada Square', '', '', 'E14 5AB', 'Canada Water', 3, 4, 3, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 1800000, 51.504500, -0.019501),
-       ('2 Savoy Place', '', '', 'WC2R 0BL', 'Aylesbury', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
+       ('2 Savoy Place', '', '', 'WC2R 0BL', 'Covent Garden', 2, 3, 2, TRUE, TRUE, TRUE, TRUE, TRUE,
         'FOR_SALE', 1300000, 51.510894, -0.119668);
 
 

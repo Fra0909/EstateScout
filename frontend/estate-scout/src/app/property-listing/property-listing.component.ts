@@ -4,6 +4,7 @@ import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Property} from "../models/property";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-property-listing',
@@ -25,7 +26,7 @@ import {Property} from "../models/property";
 export class PropertyListingComponent {
   @Input() propertyListing!: Property;
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private router: Router) {
     this.matIconRegistry.addSvgIcon("bed", this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/bed.svg"));
     this.matIconRegistry.addSvgIcon("bath", this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/bath.svg"));
     this.matIconRegistry.addSvgIcon("couch", this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/couch.svg"));
@@ -33,5 +34,9 @@ export class PropertyListingComponent {
 
   formatPropertyType(propertyType: string) : string {
     return propertyType == "FOR_SALE" ? "For Sale" : "To Rent";
+  }
+
+  propertyListingClicked() {
+    this.router.navigate(["/individual-property"]);
   }
 }
