@@ -1,8 +1,9 @@
 import {TestBed} from '@angular/core/testing';
 
 import {PropertyService} from './property.service';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import { HttpTestingController, provideHttpClientTesting } from "@angular/common/http/testing";
 import {Property} from "../models/property";
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('PropertyService', () => {
   let service: PropertyService;
@@ -11,8 +12,9 @@ describe('PropertyService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
-    });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(PropertyService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });

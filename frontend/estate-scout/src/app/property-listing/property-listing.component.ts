@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {CurrencyPipe, NgIf, NgOptimizedImage, TitleCasePipe} from "@angular/common";
 import {MatIconModule, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {Property} from "../models/property";
 import {Router} from "@angular/router";
 import {PropertyType} from "../enums/property-type";
@@ -15,14 +15,11 @@ import {PropertyType} from "../enums/property-type";
     NgOptimizedImage,
     CurrencyPipe,
     MatIconModule,
-    HttpClientModule,
     TitleCasePipe
   ],
   templateUrl: './property-listing.component.html',
   styleUrl: './property-listing.component.css',
-  providers: [
-    HttpClientModule
-  ]
+  providers: []
 })
 export class PropertyListingComponent {
   @Input() propertyListing!: Property;

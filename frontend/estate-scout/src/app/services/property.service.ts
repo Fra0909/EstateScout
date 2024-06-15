@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Property } from "../models/property";
 import { Observable } from "rxjs";
 import {PropertySearchFilter} from "../models/property-search-filter";
