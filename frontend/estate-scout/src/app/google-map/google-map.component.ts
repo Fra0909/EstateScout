@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GoogleMap} from "@angular/google-maps";
+import {GoogleMap, MapMarker} from "@angular/google-maps";
 
 @Component({
   selector: 'app-google-map',
   standalone: true,
   imports: [
-    GoogleMap
+    GoogleMap,
+    MapMarker
   ],
   templateUrl: './google-map.component.html',
   styleUrl: './google-map.component.css'
@@ -19,8 +20,13 @@ export class GoogleMapComponent implements OnInit{
     disableDefaultUI: true
   }
 
+  marker = {
+    position: { lat: 0, lng: 0 }
+  };
+
   ngOnInit() {
     this.mapOptions.center = { lat: this.latitude, lng: this.longitude };
+    this.marker = { position: { lat: this.latitude, lng: this.longitude }}
   }
 
   }
