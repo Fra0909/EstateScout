@@ -18,6 +18,6 @@ export interface Property {
   propertyType: string;
   priceInPence: number;
   images: Image[];
-  latitude?: number;
-  longitude?: number;
+  latitude: number;
+  longitude: number;
 }

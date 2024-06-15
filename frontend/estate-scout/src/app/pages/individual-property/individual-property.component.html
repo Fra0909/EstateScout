@@ -43,7 +43,10 @@
         </div>
       </div>
       <div class="map-container">
-        <app-google-map></app-google-map>
+        <h2 class="sub-heading">Property area</h2>
+        <div class="map">
+          <app-google-map [latitude]="property.latitude" [longitude]="property.longitude"></app-google-map>
+        </div>
       </div>
     </div>
   </div>
