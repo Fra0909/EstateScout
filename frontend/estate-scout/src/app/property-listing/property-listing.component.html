@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <p>{{ propertyListing.priceInPence | currency:"GBP"  : 'symbol' :'1.0-0' }}</p>
+    <p>{{ propertyListing.priceInPence | currency:"GBP"  : 'symbol' :'1.0-0' }} {{ propertyListing.propertyType == PropertyType.forRent ? "pm" : "" }}</p>
     <p>{{ formatPropertyType(propertyListing.propertyType) }}</p>
   </div>
 </div>

@@ -7,10 +7,43 @@
         <img [src]="property.images[2].path" class="small-image" alt="secondary-image">
       </div>
     </div>
-    <div class="property-info-container">
-      <div class="property-title">
-        <h1 class="title-text text-clr">{{ property.addressLine1 }}, {{ property.postcode }}, {{ property.town }}</h1>
-        <h2 class="text-clr price-text">{{ property.priceInPence | currency: "GBP"  : 'symbol' :'1.0-0' }}</h2>
+    <div class="info-container">
+      <div class="title-price-container">
+        <h1 class="title-text">{{ property.addressLine1 }}, {{ property.postcode }}, {{ property.town }}</h1>
+        <h2 class="price-text">{{ property.priceInPence | currency: "GBP"  : 'symbol' :'1.0-0' }}</h2>
+      </div>
+      <div class="features-container">
+        <div class="feature">
+          <p class="feature-text">BEDROOMS</p>
+          <div class="property-icon">
+            <mat-icon svgIcon="bed"></mat-icon>
+            <p>{{ property.numberOfBedrooms }}</p>
+          </div>
+        </div>
+        <div class="feature">
+          <p class="feature-text">BATHROOMS</p>
+          <div class="property-icon">
+            <mat-icon svgIcon="bath"></mat-icon>
+            <p>{{ property.numberOfBathrooms }}</p>
+          </div>
+        </div>
+        <div class="feature">
+          <p class="feature-text">LIVING ROOMS</p>
+          <div class="property-icon">
+            <mat-icon svgIcon="couch"></mat-icon>
+            <p>{{ property.numberOfLivingRooms }}</p>
+          </div>
+        </div>
+        <div class="feature">
+          <p class="feature-text">PARKING</p>
+          <div class="property-icon">
+            <mat-icon svgIcon="car"></mat-icon>
+            <p>{{ property.hasParking ? "Yes" : "No" }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="map-container">
+        <app-google-map></app-google-map>
       </div>
     </div>
   </div>

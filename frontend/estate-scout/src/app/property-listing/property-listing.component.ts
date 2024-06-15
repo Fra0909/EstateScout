@@ -5,6 +5,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Property} from "../models/property";
 import {Router} from "@angular/router";
+import {PropertyType} from "../enums/property-type";
 
 @Component({
   selector: 'app-property-listing',
@@ -39,4 +40,6 @@ export class PropertyListingComponent {
   propertyListingClicked() {
     this.router.navigate(["/individual-property"], { queryParams: {propertyId: this.propertyListing.id } });
   }
+
+  protected readonly PropertyType = PropertyType;
 }

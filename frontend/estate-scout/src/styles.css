@@ -24,6 +24,7 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   overflow-y: scroll;
+  color: #00243d;
 }
 
 .search-field {
@@ -83,10 +84,6 @@ div.mat-mdc-autocomplete-panel {
   border: 1px solid #35A7FF !important;
 }
 
-.text-clr {
-  color: #00243d !important;
-}
-
 .mat-mdc-select {
   color: var(--secondary-clr) !important;
 }
@@ -99,4 +96,13 @@ div.mat-mdc-autocomplete-panel {
 
 .mat-mdc-menu-panel {
   max-width: none !important;
+}
+
+.property-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 5px;
+  line-height: 0;
 }

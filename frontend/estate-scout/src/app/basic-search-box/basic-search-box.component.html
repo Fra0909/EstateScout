@@ -6,7 +6,8 @@
       </app-location-auto-complete-field>
       <app-cta-button [buttonType]="PropertyType.forRent" text="To Rent" [initialPropertyFilter]="initialPropertyFilter"
                       (showLocationFieldEmptyWarning)="showLocationFieldEmptyWarningChanged($event)"></app-cta-button>
-      <app-cta-button [buttonType]="PropertyType.forSale" text="For Sale" [initialPropertyFilter]="initialPropertyFilter"></app-cta-button>
+      <app-cta-button [buttonType]="PropertyType.forSale" text="For Sale" [initialPropertyFilter]="initialPropertyFilter"
+                      (showLocationFieldEmptyWarning)="showLocationFieldEmptyWarningChanged($event)"></app-cta-button>
     </div>
     <p class="warning-text" [ngClass]="{'warning-visible': showLocationFieldEmptyWarning}">Please enter a search area first</p>
   </div>

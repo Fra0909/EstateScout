@@ -1,6 +1,6 @@
 <div class="field-menu-container">
   <div class="field-menu" [matMenuTriggerFor]="fieldMenu">
-    <span class="text-clr">{{ fieldMenuValue }}</span>
+    <span>{{ fieldMenuValue }}</span>
     <mat-icon fontIcon="arrow_drop_down" style="color: #757575;"></mat-icon>
     <mat-menu #fieldMenu="matMenu">
       <div class="left-container" (click)="$event.stopPropagation()">
