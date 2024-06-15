@@ -1,15 +1,16 @@
 <div class="individual-property-section">
   <div class="individual-property-container">
     <div class="images-container">
-      <img src="assets/imgs/1_1.webp" class="big-image">
+      <img [src]="property.images[0].path" class="big-image" alt="primary-image">
       <div class="small-image-container">
-        <img src="assets/imgs/1_2.webp" class="small-image">
-        <img src="assets/imgs/1_3.webp" class="small-image">
+        <img [src]="property.images[1].path" class="small-image" alt="secondary-image">
+        <img [src]="property.images[2].path" class="small-image" alt="secondary-image">
       </div>
     </div>
     <div class="property-info-container">
       <div class="property-title">
-        <h1>{{ property.addressLine1 }}, {{ property.postcode }}, {{ property.town }}</h1>
+        <h1 class="title-text text-clr">{{ property.addressLine1 }}, {{ property.postcode }}, {{ property.town }}</h1>
+        <h2 class="text-clr price-text">{{ property.priceInPence | currency: "GBP"  : 'symbol' :'1.0-0' }}</h2>
       </div>
     </div>
   </div>

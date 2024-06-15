@@ -3,28 +3,29 @@ import {Property} from "../../models/property";
 import {ActivatedRoute} from "@angular/router";
 import {PropertyService} from "../../services/property.service";
 import {Subscription} from "rxjs";
+import {CurrencyPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-individual-property',
   standalone: true,
-  imports: [],
+  imports: [
+    CurrencyPipe,
+    NgIf
+  ],
   templateUrl: './individual-property.component.html',
   styleUrl: './individual-property.component.css'
 })
-export class IndividualPropertyComponent implements OnDestroy {
-  private readonly routeSubscription: Subscription;
-  private readonly propertySubscription: Subscription;
+export class IndividualPropertyComponent implements OnInit, OnDestroy {
+  private readonly routeSubscription!: Subscription;
+  private readonly propertySubscription!: Subscription;
   property!: Property;
 
-  constructor(private route: ActivatedRoute, private propertyService: PropertyService) {
-      let propertyId = 0;
-      this.routeSubscription = this.route.queryParams.subscribe(params => {
-        propertyId = params["propertyId"];
-      });
+  constructor(private route: ActivatedRoute) {}
 
-    this.propertySubscription = this.propertyService.getProperty(propertyId).subscribe(property => {
-      this.property = property;
-    });
+  ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.property = data["property"];
+    })
   }
 
   ngOnDestroy() {

@@ -20,21 +20,25 @@ public class PropertyController {
     this.propertyService = propertyService;
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping
   public List<PropertyDTO> getAllProperties() {
     return propertyService.getAllProperties();
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/{id}")
   public PropertyDTO getPropertyById(@PathVariable Long id) {
     return propertyService.getPropertyById(id);
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @PostMapping
   public PropertyDTO createProperty(@RequestBody PropertyDTO propertyDTO) {
     return propertyService.createProperty(propertyDTO);
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @DeleteMapping("/{id}")
   public void deletePropertyById(@PathVariable Long id) {
     propertyService.deletePropertyById(id);

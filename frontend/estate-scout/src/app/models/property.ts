@@ -17,7 +17,7 @@ export interface Property {
   studentsAllowed: boolean;
   propertyType: string;
   priceInPence: number;
-  images?: Image[];
+  images: Image[];
   latitude?: number;
   longitude?: number;
 }

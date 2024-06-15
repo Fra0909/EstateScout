@@ -37,6 +37,6 @@ export class PropertyListingComponent {
   }
 
   propertyListingClicked() {
-    this.router.navigate(["/individual-property"]);
+    this.router.navigate(["/individual-property"], { queryParams: {propertyId: this.propertyListing.id } });
   }
 }
