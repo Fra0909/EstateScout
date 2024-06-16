@@ -1,11 +1,9 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {PropertyListingComponent} from "../property-listing/property-listing.component";
-import {Property} from "../models/property";
-import {PropertyService} from "../services/property.service";
 import {NgForOf} from "@angular/common";
-import {Subscription} from "rxjs";
-import {MatPaginator} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {PropertySearchResults} from "../models/property-search-results";
+import {PaginationService} from "../services/pagination.service";
 
 @Component({
   selector: 'app-property-search-results',
@@ -21,5 +19,11 @@ import {PropertySearchResults} from "../models/property-search-results";
 
 export class PropertySearchResultsComponent {
   @Input() propertySearchResults!: PropertySearchResults;
+
+  constructor(private paginationService: PaginationService) {}
+
+    pageChanged(pageEvent: PageEvent) {
+      this.paginationService.updatePageOptions(pageEvent);
+  }
 
 }

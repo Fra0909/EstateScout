@@ -23,6 +23,8 @@ import {
   SALE_PRICE_OPTIONS
 } from "../price-options";
 import {PropertySearchResults} from "../models/property-search-results";
+import {PaginationService} from "../services/pagination.service";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-advanced-search-box',
@@ -64,11 +66,14 @@ export class AdvancedSearchBoxComponent implements OnInit {
 
   @Output() propertySearchResults: EventEmitter<PropertySearchResults> = new EventEmitter<PropertySearchResults>();
 
-  constructor(private currencyService: CurrencyService, private propertyService: PropertyService) {
-  }
+  constructor(private propertyService: PropertyService, private paginationService: PaginationService) {}
 
   ngOnInit() {
     this.onFilterChanged();
+
+    this.paginationService.event$.subscribe(pageEvent => {
+      this.onPageOptionsChanged(pageEvent);
+    })
   }
 
   onLocationAutoCompleteChanged(place: PlaceSuggestion) {
@@ -117,6 +122,12 @@ export class AdvancedSearchBoxComponent implements OnInit {
     this.propertyService.getPropertiesByFilter(this.propertySearchFilter).subscribe(properties => {
       this.propertySearchResults.emit(properties);
     });
+  }
+
+  onPageOptionsChanged(pageEvent: PageEvent) {
+    this.propertySearchFilter.page = pageEvent.pageIndex;
+    this.propertySearchFilter.pageSize = pageEvent.pageSize;
+    this.onFilterChanged();
   }
 
   protected readonly PropertyType = PropertyType;

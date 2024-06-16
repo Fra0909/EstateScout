@@ -12,5 +12,7 @@ export interface PropertySearchFilter {
   minLongitude?: number;
   maxLongitude?: number;
   propertyType?: PropertyType;
+  page?: number;
+  pageSize?: number;
   [key: string]: string | number | undefined;
 }
