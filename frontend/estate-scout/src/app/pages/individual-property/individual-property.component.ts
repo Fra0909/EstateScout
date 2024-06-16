@@ -7,6 +7,7 @@ import {CurrencyPipe, NgIf} from "@angular/common";
 import {MatIcon, MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {GoogleMapComponent} from "../../google-map/google-map.component";
+import {PropertyType} from "../../enums/property-type";
 
 @Component({
   selector: 'app-individual-property',
@@ -47,4 +48,6 @@ export class IndividualPropertyComponent implements OnInit, OnDestroy {
       this.propertySubscription.unsubscribe();
     }
   }
+
+    protected readonly PropertyType = PropertyType;
 }

@@ -2,6 +2,7 @@ package com.estate.scout.service;
 
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
+import com.estate.scout.dto.PropertySearchResultsDTO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,5 +12,5 @@ public interface PropertyService {
   PropertyDTO getPropertyById(Long id);
   PropertyDTO createProperty(PropertyDTO propertyDTO);
   void deletePropertyById(Long id);
-  List<PropertyDTO> getPropertiesByFilter(PropertyFilterDTO filter);
+  PropertySearchResultsDTO getPropertiesByFilter(PropertyFilterDTO filter);
 }

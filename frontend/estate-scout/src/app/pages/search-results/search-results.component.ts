@@ -4,6 +4,7 @@ import {PropertySearchResultsComponent} from "../../property-search-results/prop
 import {Property} from "../../models/property";
 import {ActivatedRoute} from "@angular/router";
 import {PropertySearchFilter} from "../../models/property-search-filter";
+import {PropertySearchResults} from "../../models/property-search-results";
 
 @Component({
   selector: 'app-search-results',
@@ -16,7 +17,7 @@ import {PropertySearchFilter} from "../../models/property-search-filter";
   styleUrl: './search-results.component.css'
 })
 export class SearchResultsComponent implements OnInit {
-  propertySearchResults: Property[] = [];
+  propertySearchResults!: PropertySearchResults;
   initialPropertyFilter: PropertySearchFilter = {};
 
   constructor(private route: ActivatedRoute) {}
@@ -33,7 +34,7 @@ export class SearchResultsComponent implements OnInit {
     })
   }
 
-  propertySearchResultsChanged(properties: Property[]) {
-    this.propertySearchResults = properties;
+  propertySearchResultsChanged(propertyResults: PropertySearchResults) {
+    this.propertySearchResults = propertyResults;
   }
 }

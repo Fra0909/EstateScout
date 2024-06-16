@@ -10,7 +10,7 @@
     <div class="info-container">
       <div class="title-price-container">
         <h1 class="title-text">{{ property.addressLine1 }}, {{ property.postcode }}, {{ property.town }}</h1>
-        <h2 class="price-text">{{ property.priceInPence | currency: "GBP"  : 'symbol' :'1.0-0' }}</h2>
+        <h2 class="price-text">{{ property.price | currency: "GBP"  : 'symbol' :'1.0-0' }} {{ property.propertyType == PropertyType.forRent ? "pm" : "" }}</h2>
       </div>
       <div class="features-container">
         <div class="feature">
@@ -47,6 +47,10 @@
         <div class="map">
           <app-google-map [latitude]="property.latitude" [longitude]="property.longitude"></app-google-map>
         </div>
+      </div>
+      <div class="description-container">
+        <h2 class="sub-heading">Description</h2>
+        <p class="description">{{ property.description }}</p>
       </div>
     </div>
   </div>

@@ -106,3 +106,11 @@ div.mat-mdc-autocomplete-panel {
   gap: 5px;
   line-height: 0;
 }
+
+.mat-mdc-paginator-container {
+  padding: 0 !important;
+}
+
+.mat-mdc-paginator-outer-container {
+  color: var(--secondary-clr) !important;
+}

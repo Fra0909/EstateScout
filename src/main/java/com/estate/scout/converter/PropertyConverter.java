@@ -24,12 +24,13 @@ public class PropertyConverter {
         property.isSmokersAllowed(),
         property.isStudentsAllowed(),
         property.getPropertyType(),
-        property.getPriceInPence(),
+        property.getPrice(),
         property.getImages() != null ? property.getImages().stream()
             .map(ImageConverter::convert)
             .collect(Collectors.toList()) : null,
         property.getLatitude(),
-        property.getLongitude()
+        property.getLongitude(),
+            property.getDescription()
     );
   }
 
@@ -50,9 +51,10 @@ public class PropertyConverter {
     property.setSmokersAllowed(propertyDTO.areSmokersAllowed());
     property.setStudentsAllowed(propertyDTO.areStudentsAllowed());
     property.setPropertyType(propertyDTO.getPropertyType());
-    property.setPriceInPence(propertyDTO.getPriceInPence());
+    property.setPrice(propertyDTO.getPrice());
     property.setLatitude(propertyDTO.getLatitude());
     property.setLongitude(propertyDTO.getLongitude());
+    property.setDescription(propertyDTO.getDescription());
     if (propertyDTO.getImages() != null) {
       property.setImages(propertyDTO.getImages().stream()
           .map(ImageConverter::convert)

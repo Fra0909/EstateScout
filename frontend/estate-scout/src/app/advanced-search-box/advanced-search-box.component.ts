@@ -22,6 +22,7 @@ import {
   RENT_PRICE_OPTIONS,
   SALE_PRICE_OPTIONS
 } from "../price-options";
+import {PropertySearchResults} from "../models/property-search-results";
 
 @Component({
   selector: 'app-advanced-search-box',
@@ -61,7 +62,7 @@ export class AdvancedSearchBoxComponent implements OnInit {
   minForRentPriceVariations: DropdownValue[] = [this.NO_MIN_OPTION].concat(RENT_PRICE_OPTIONS);
   maxForRentPriceVariations: DropdownValue[] = [this.NO_MAX_OPTION].concat(RENT_PRICE_OPTIONS);
 
-  @Output() propertySearchResults: EventEmitter<Property[]> = new EventEmitter<Property[]>();
+  @Output() propertySearchResults: EventEmitter<PropertySearchResults> = new EventEmitter<PropertySearchResults>();
 
   constructor(private currencyService: CurrencyService, private propertyService: PropertyService) {
   }

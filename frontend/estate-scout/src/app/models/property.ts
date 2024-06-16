@@ -16,8 +16,9 @@ export interface Property {
   smokersAllowed: boolean;
   studentsAllowed: boolean;
   propertyType: string;
-  priceInPence: number;
+  price: number;
   images: Image[];
   latitude: number;
   longitude: number;
+  description: string;
 }

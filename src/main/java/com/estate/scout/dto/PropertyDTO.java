@@ -21,15 +21,16 @@ public class PropertyDTO {
 	private boolean smokersAllowed;
 	private boolean studentsAllowed;
 	private PropertyType propertyType;
-	private int priceInPence;
+	private int price;
 	private List<ImageDTO> images;
 	private Double latitude;
 	private Double longitude;
+	private String description;
 
 	public PropertyDTO() {
 	}
 
-	public PropertyDTO(Long id, String addressLine1, String addressLine2, String addressLine3, String postcode, String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms, boolean hasGarden, boolean hasParking, boolean petsAllowed, boolean smokersAllowed, boolean studentsAllowed, PropertyType propertyType, int priceInPence, List<ImageDTO> images, Double latitude, Double longitude) {
+	public PropertyDTO(Long id, String addressLine1, String addressLine2, String addressLine3, String postcode, String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms, boolean hasGarden, boolean hasParking, boolean petsAllowed, boolean smokersAllowed, boolean studentsAllowed, PropertyType propertyType, int price, List<ImageDTO> images, Double latitude, Double longitude, String description) {
 		this.id = id;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
@@ -45,10 +46,11 @@ public class PropertyDTO {
 		this.smokersAllowed = smokersAllowed;
 		this.studentsAllowed = studentsAllowed;
 		this.propertyType = propertyType;
-		this.priceInPence = priceInPence;
+		this.price = price;
 		this.images = images;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.description = description;
 	}
 
 	public Long getId() {
@@ -171,12 +173,12 @@ public class PropertyDTO {
 		this.propertyType = propertyType;
 	}
 
-	public int getPriceInPence() {
-		return priceInPence;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setPriceInPence(int priceInPence) {
-		this.priceInPence = priceInPence;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public List<ImageDTO> getImages() {
@@ -203,6 +205,14 @@ public class PropertyDTO {
 		this.longitude = longitude;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "PropertyDTO{" +
@@ -221,10 +231,11 @@ public class PropertyDTO {
 				", smokersAllowed=" + smokersAllowed +
 				", studentsAllowed=" + studentsAllowed +
 				", propertyType=" + propertyType +
-				", priceInPence=" + priceInPence +
+				", price=" + price +
 				", images=" + images +
 				", latitude=" + latitude +
 				", longitude=" + longitude +
+				", description='" + description + '\'' +
 				'}';
 	}
 
@@ -241,13 +252,13 @@ public class PropertyDTO {
 				&& numberOfLivingRooms == that.numberOfLivingRooms && hasGarden == that.hasGarden
 				&& hasParking == that.hasParking && petsAllowed == that.petsAllowed
 				&& smokersAllowed == that.smokersAllowed && studentsAllowed == that.studentsAllowed
-				&& priceInPence == that.priceInPence && Objects.equals(id, that.id)
+				&& price == that.price && Objects.equals(id, that.id)
 				&& Objects.equals(addressLine1, that.addressLine1) && Objects.equals(
 				addressLine2, that.addressLine2) && Objects.equals(addressLine3, that.addressLine3)
 				&& Objects.equals(postcode, that.postcode) && Objects.equals(town,
 				that.town) && propertyType == that.propertyType && Objects.equals(images,
 				that.images) && Objects.equals(latitude, that.latitude) && Objects.equals(
-				longitude, that.longitude);
+				longitude, that.longitude) && Objects.equals(description, that.description);
 	}
 
 	@Override
@@ -255,6 +266,6 @@ public class PropertyDTO {
 		return Objects.hash(id, addressLine1, addressLine2, addressLine3, postcode, town,
 				numberOfBathrooms, numberOfBedrooms, numberOfLivingRooms, hasGarden, hasParking,
 				petsAllowed,
-				smokersAllowed, studentsAllowed, propertyType, priceInPence, images, latitude, longitude);
+				smokersAllowed, studentsAllowed, propertyType, price, images, latitude, longitude, description);
 	}
 }

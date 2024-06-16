@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Property } from "../models/property";
 import { Observable } from "rxjs";
 import {PropertySearchFilter} from "../models/property-search-filter";
+import {PropertySearchResults} from "../models/property-search-results";
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,11 @@ export class PropertyService {
     return this.http.get<Property[]>(`${this.baseURL}/api/property`);
   }
 
-  getFeaturedProperties() : Observable<Property[]>{
-    return this.http.get<Property[]>(`${this.baseURL}/api/property/filter?page=0&pageSize=3`);
+  getFeaturedProperties() : Observable<PropertySearchResults>{
+    return this.http.get<PropertySearchResults>(`${this.baseURL}/api/property/filter?page=0&pageSize=3`);
   }
 
-  getPropertiesByFilter(searchFilter: PropertySearchFilter) : Observable<Property[]> {
+  getPropertiesByFilter(searchFilter: PropertySearchFilter) : Observable<PropertySearchResults> {
     let params = new HttpParams()
 
     Object.keys(searchFilter).forEach(key => {
@@ -35,6 +36,6 @@ export class PropertyService {
       }
     });
 
-    return this.http.get<Property[]>(`${this.baseURL}/api/property/filter`, { params });
+    return this.http.get<PropertySearchResults>(`${this.baseURL}/api/property/filter`, { params });
   }
 }

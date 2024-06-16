@@ -12,12 +12,12 @@ public class PropertyConverterTest {
   @Test
   public void convertPropertyToPropertyDtoTest() {
     Property property = new Property(1L, "addressLine1", "addressLine2", "addressLine3", "postcode",
-        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0);
+        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0, "Test description");
 
     PropertyDTO actual = PropertyConverter.convert(property);
     PropertyDTO expected = new PropertyDTO(1L, "addressLine1", "addressLine2", "addressLine3",
         "postcode",
-        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0);
+        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0, "Test description");
 
     assertEquals(expected, actual);
   }
@@ -26,12 +26,13 @@ public class PropertyConverterTest {
   public void convertPropertyDtoToPropertyTest() {
     PropertyDTO property = new PropertyDTO(1L, "addressLine1", "addressLine2", "addressLine3",
         "postcode",
-        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0);
+        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0, "Test description");
 
     Property actual = PropertyConverter.convert(property);
     Property expected = new Property(1L, "addressLine1", "addressLine2", "addressLine3",
         "postcode",
-        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0);
+        "town", 1, 1, 1, true, true, true, true, true, PropertyType.FOR_RENT, 1, null, 1.0, 1.0,
+             "Test description");
 
     assertEquals(expected, actual);
   }

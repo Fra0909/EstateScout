@@ -57,8 +57,8 @@ public class Property {
   @Enumerated(EnumType.STRING)
   private PropertyType propertyType;
 
-  @Column(name = "price_in_pence")
-  private int priceInPence;
+  @Column(name = "price")
+  private int price;
 
   @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Image> images;
@@ -69,16 +69,13 @@ public class Property {
   @Column(name = "longitude")
   private Double longitude;
 
+  @Column(name = "description")
+  private String description;
+
   public Property() {
   }
 
-  public Property(Long id, String addressLine1, String addressLine2, String addressLine3,
-      String postcode,
-      String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms,
-      boolean hasGarden,
-      boolean hasParking, boolean petsAllowed, boolean smokersAllowed, boolean studentsAllowed,
-      PropertyType propertyType, int priceInPence, List<Image> images, Double latitude,
-      Double longitude) {
+  public Property(Long id, String addressLine1, String addressLine2, String addressLine3, String postcode, String town, int numberOfBathrooms, int numberOfBedrooms, int numberOfLivingRooms, boolean hasGarden, boolean hasParking, boolean petsAllowed, boolean smokersAllowed, boolean studentsAllowed, PropertyType propertyType, int price, List<Image> images, Double latitude, Double longitude, String description) {
     this.id = id;
     this.addressLine1 = addressLine1;
     this.addressLine2 = addressLine2;
@@ -94,10 +91,11 @@ public class Property {
     this.smokersAllowed = smokersAllowed;
     this.studentsAllowed = studentsAllowed;
     this.propertyType = propertyType;
-    this.priceInPence = priceInPence;
+    this.price = price;
     this.images = images;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.description = description;
   }
 
   public Long getId() {
@@ -220,12 +218,12 @@ public class Property {
     this.propertyType = propertyType;
   }
 
-  public int getPriceInPence() {
-    return priceInPence;
+  public int getPrice() {
+    return price;
   }
 
-  public void setPriceInPence(int priceInPence) {
-    this.priceInPence = priceInPence;
+  public void setPrice(int price) {
+    this.price = price;
   }
 
   public List<Image> getImages() {
@@ -252,29 +250,38 @@ public class Property {
     this.longitude = longitude;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   @Override
   public String toString() {
     return "Property{" +
-        "id=" + id +
-        ", addressLine1='" + addressLine1 + '\'' +
-        ", addressLine2='" + addressLine2 + '\'' +
-        ", addressLine3='" + addressLine3 + '\'' +
-        ", postcode='" + postcode + '\'' +
-        ", town='" + town + '\'' +
-        ", numberOfBathrooms=" + numberOfBathrooms +
-        ", numberOfBedrooms=" + numberOfBedrooms +
-        ", numberOfLivingRooms=" + numberOfLivingRooms +
-        ", hasGarden=" + hasGarden +
-        ", hasParking=" + hasParking +
-        ", petsAllowed=" + petsAllowed +
-        ", smokersAllowed=" + smokersAllowed +
-        ", studentsAllowed=" + studentsAllowed +
-        ", propertyType=" + propertyType +
-        ", priceInPence=" + priceInPence +
-        ", images=" + images +
-        ", latitude=" + latitude +
-        ", longitude=" + longitude +
-        '}';
+            "id=" + id +
+            ", addressLine1='" + addressLine1 + '\'' +
+            ", addressLine2='" + addressLine2 + '\'' +
+            ", addressLine3='" + addressLine3 + '\'' +
+            ", postcode='" + postcode + '\'' +
+            ", town='" + town + '\'' +
+            ", numberOfBathrooms=" + numberOfBathrooms +
+            ", numberOfBedrooms=" + numberOfBedrooms +
+            ", numberOfLivingRooms=" + numberOfLivingRooms +
+            ", hasGarden=" + hasGarden +
+            ", hasParking=" + hasParking +
+            ", petsAllowed=" + petsAllowed +
+            ", smokersAllowed=" + smokersAllowed +
+            ", studentsAllowed=" + studentsAllowed +
+            ", propertyType=" + propertyType +
+            ", price=" + price +
+            ", images=" + images +
+            ", latitude=" + latitude +
+            ", longitude=" + longitude +
+            ", description='" + description + '\'' +
+            '}';
   }
 
   @Override
@@ -291,13 +298,13 @@ public class Property {
         && numberOfLivingRooms == property.numberOfLivingRooms && hasGarden == property.hasGarden
         && hasParking == property.hasParking && petsAllowed == property.petsAllowed
         && smokersAllowed == property.smokersAllowed && studentsAllowed == property.studentsAllowed
-        && priceInPence == property.priceInPence && Objects.equals(id, property.id)
+        && price == property.price && Objects.equals(id, property.id)
         && Objects.equals(addressLine1, property.addressLine1) && Objects.equals(addressLine2,
         property.addressLine2) && Objects.equals(addressLine3, property.addressLine3)
         && Objects.equals(postcode, property.postcode) && Objects.equals(town, property.town)
         && propertyType == property.propertyType && Objects.equals(images, property.images)
         && Objects.equals(latitude, property.latitude) && Objects.equals(longitude,
-        property.longitude);
+        property.longitude) && Objects.equals(description, property.description);
   }
 
   @Override
@@ -305,7 +312,7 @@ public class Property {
     return Objects.hash(id, addressLine1, addressLine2, addressLine3, postcode, town,
         numberOfBathrooms,
         numberOfBedrooms, numberOfLivingRooms, hasGarden, hasParking, petsAllowed, smokersAllowed,
-        studentsAllowed, propertyType, priceInPence, images, latitude, longitude);
+        studentsAllowed, propertyType, price, images, latitude, longitude, description);
   }
 }
 

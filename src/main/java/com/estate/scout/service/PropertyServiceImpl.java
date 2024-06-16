@@ -3,6 +3,7 @@ package com.estate.scout.service;
 import com.estate.scout.converter.PropertyConverter;
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
+import com.estate.scout.dto.PropertySearchResultsDTO;
 import com.estate.scout.exception.InvalidParamException;
 import com.estate.scout.helper.DistanceCalculator;
 import com.estate.scout.model.Property;
@@ -65,7 +66,7 @@ public class PropertyServiceImpl implements PropertyService {
   @Override
   public PropertyDTO createProperty(PropertyDTO propertyDTO) {
     if (propertyDTO.getNumberOfBathrooms() < 1 || propertyDTO.getNumberOfBedrooms() < 1
-        || propertyDTO.getNumberOfLivingRooms() < 1 || propertyDTO.getPriceInPence() < 1
+        || propertyDTO.getNumberOfLivingRooms() < 1 || propertyDTO.getPrice() < 1
         || propertyDTO.getPropertyType() == null || propertyDTO.getPostcode() == null) {
       throw new InvalidParamException(
           "The request body has invalid/missing values. Not creating new property.");
@@ -86,7 +87,7 @@ public class PropertyServiceImpl implements PropertyService {
   }
 
   @Override
-  public List<PropertyDTO> getPropertiesByFilter(PropertyFilterDTO filter) {
+  public PropertySearchResultsDTO getPropertiesByFilter(PropertyFilterDTO filter) {
     if (filter.getMinLongitude() != null && filter.getMinLatitude() != null && filter.getMaxLongitude() != null &&
     filter.getMaxLatitude() != null) {
       double[] expandedBoundingBox = DistanceCalculator.expandBoundingBox(filter.getMinLatitude(), filter.getMinLongitude(),
@@ -98,20 +99,15 @@ public class PropertyServiceImpl implements PropertyService {
       filter.setMaxLongitude(expandedBoundingBox[3]);
     }
 
-    List<Property> properties = propertyRepository.findByFilter(
-        filter.getAddressLine1(), filter.getAddressLine2(), filter.getAddressLine3(), filter.getTown(),
-        filter.getNumberOfBathrooms(), filter.getMinBeds(), filter.getMaxBeds(),
-        filter.getNumberOfLivingRooms(),
-        filter.getHasGarden(), filter.getHasParking(), filter.getPetsAllowed(),
-        filter.getSmokersAllowed(),
-        filter.getStudentsAllowed(), filter.getPropertyType(),
-        filter.getMinPrice(), filter.getMaxPrice(), filter.getMinLatitude(),
-        filter.getMaxLatitude(),
-        filter.getMinLongitude(), filter.getMaxLongitude(),
-        PageRequest.of(filter.getPage() != null ? filter.getPage() : 0,
-            filter.getPageSize() != null ? filter.getPageSize() : 10)).getContent();
+    long propertiesFoundByFilter = propertyRepository.countByFilter(filter);
+    LOG.info("Found " + propertiesFoundByFilter + " properties");
+
+    List<Property> properties = propertyRepository.findByFilter(filter,PageRequest.of(filter.getPage() != null ?
+                    filter.getPage() : 0, filter.getPageSize() != null ? filter.getPageSize() : 10)).getContent();
     LOG.info("Retrieved properties with filter: " + filter);
-    return properties.stream().map(PropertyConverter::convert).collect(Collectors.toList());
+
+    List<PropertyDTO> propertyDTOs = properties.stream().map(PropertyConverter::convert).collect(Collectors.toList());
+    return new PropertySearchResultsDTO(propertiesFoundByFilter, propertyDTOs);
   }
 
 }

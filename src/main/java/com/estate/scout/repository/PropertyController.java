@@ -2,6 +2,7 @@ package com.estate.scout.repository;
 
 import com.estate.scout.dto.PropertyDTO;
 import com.estate.scout.dto.PropertyFilterDTO;
+import com.estate.scout.dto.PropertySearchResultsDTO;
 import com.estate.scout.service.PropertyService;
 import java.util.List;
 import java.util.logging.Logger;
@@ -46,7 +47,7 @@ public class PropertyController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/filter")
-  public List<PropertyDTO> getPropertiesByFilter(@ModelAttribute PropertyFilterDTO filter) {
+  public PropertySearchResultsDTO getPropertiesByFilter(@ModelAttribute PropertyFilterDTO filter) {
     return propertyService.getPropertiesByFilter(filter);
   }
 

@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.propertyService.getFeaturedProperties().subscribe(
-      property => {
-        this.featuredProperties.push(...property)
+      propertiesResults => {
+        this.featuredProperties.push(...propertiesResults.properties)
       });
   }
 }
