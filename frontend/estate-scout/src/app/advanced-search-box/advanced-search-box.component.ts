@@ -131,5 +131,6 @@ export class AdvancedSearchBoxComponent implements OnInit {
   }
 
   protected readonly PropertyType = PropertyType;
+  protected readonly Number = Number;
 }
 

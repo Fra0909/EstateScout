@@ -41,16 +41,3 @@ h2 {
 .location-search-field {
   flex-grow: 1;
 }
-
-.warning-text {
-  color: red;
-  line-height: 0;
-  align-self: flex-start;
-  font-size: 0.9rem;
-  opacity: 0;
-  cursor: default;
-}
-
-.warning-visible {
-  opacity: 1 !important;
-}

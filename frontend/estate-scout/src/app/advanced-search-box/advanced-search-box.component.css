@@ -17,10 +17,7 @@
   gap: 20px;
 }
 
-.advanced-search-field-box {
-  flex-grow: 1;
-}
 
-.test {
-  width: 500px !important;
+.advanced-search-field-box {
+  width: 25%;
 }

@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {NavigationEnd, Router} from "@angular/router";
-import {filter} from "rxjs";
+import {filter, Subscription} from "rxjs";
+import {PropertyType} from "../enums/property-type";
 
 @Component({
   selector: 'app-navbar',
@@ -12,23 +13,40 @@ import {filter} from "rxjs";
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   @Input() boxShadowEnabled = true;
+  subscription?: Subscription;
 
   constructor(private router: Router) {
     this.checkRoute();
   }
 
   ngOnInit(): void {
-    this.router.events.pipe(
+    this.subscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.checkRoute();
     })
   }
 
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
+  }
+
   checkRoute(): void {
     this.boxShadowEnabled = this.router.url !== '/';
+  }
+
+  homeClicked() {
+    this.router.navigate(["/"]);
+  }
+
+  forSaleClicked() {
+    this.router.navigate(["/pre-search"], { queryParams: { propertyType: PropertyType.forSale } });
+  }
+
+  forRentClicked() {
+    this.router.navigate(["/pre-search"], { queryParams: { propertyType: PropertyType.forRent } });
   }
 
 }

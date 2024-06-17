@@ -74,14 +74,15 @@ a {
   column-gap: 50px;
 }
 
-.nav-list a {
+.nav-list-item {
   font-size: 1rem;
   font-weight: 500;
   color: var(--secondary-clr);
   transition: color 250ms ease-in-out;
+  cursor: pointer;
 }
 
-.nav-list a:hover {
+.nav-list-item:hover {
   color: dimgray;
 }
 

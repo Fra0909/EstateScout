@@ -22,8 +22,7 @@ import {PropertyType} from "../../enums/property-type";
   styleUrl: './individual-property.component.css'
 })
 export class IndividualPropertyComponent implements OnInit, OnDestroy {
-  private readonly routeSubscription!: Subscription;
-  private readonly propertySubscription!: Subscription;
+  private routeSubscription?: Subscription;
   property!: Property;
 
   constructor(private route: ActivatedRoute, private domSanitizer: DomSanitizer, private matIconRegistry: MatIconRegistry) {
@@ -34,20 +33,14 @@ export class IndividualPropertyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
+    this.routeSubscription = this.route.data.subscribe(data => {
       this.property = data["property"];
     })
   }
 
   ngOnDestroy() {
-    if (this.routeSubscription) {
-      this.routeSubscription.unsubscribe();
-    }
-
-    if (this.propertySubscription) {
-      this.propertySubscription.unsubscribe();
-    }
+    this.routeSubscription?.unsubscribe();
   }
 
-    protected readonly PropertyType = PropertyType;
+  protected readonly PropertyType = PropertyType;
 }

@@ -2,26 +2,30 @@
   <div class="advanced-search-container">
     <div class="advanced-search-field-box">
       <b><p class="field-title">Enter a location</p></b>
-      <app-location-auto-complete-field [initialText]="propertySearchFilter.shortAddress"  (locationChange)="onLocationAutoCompleteChanged($event)"></app-location-auto-complete-field>
+      <app-location-auto-complete-field [initialText]="propertySearchFilter.shortAddress"
+                                        (locationChange)="onLocationAutoCompleteChanged($event)"></app-location-auto-complete-field>
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Radius</p></b>
-      <app-dropdown-field [dropdownValues]="radiusVariations" [selectedValue]="radiusVariations[0].value" (selectionChange)="onRadiusSelectionChanged($event)"></app-dropdown-field>
+      <app-dropdown-field [dropdownValues]="radiusVariations" [selectedValue]="radiusVariations[0].value"
+                          (selectionChange)="onRadiusSelectionChanged($event)" [fieldWidth]="'250px'"></app-dropdown-field>
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Bedrooms</p></b>
       <app-min-max-field-menu defaultMenuValue="Any beds" minSubDropdownTitle="Min beds"
-                              maxSubDropdownTitle="Max beds" [minSubDropdownValues]="minBedVariations"
-                              [maxSubDropdownValues]="maxBedVariations" [fieldMenuType]="DropdownFieldMenuType.Bedrooms"
-                              (minSelectionChange)="onMinBedsSelectionChanged($event)" (maxSelectionChange)="onMaxBedsSelectionChanged($event)"></app-min-max-field-menu>
+                              maxSubDropdownTitle="Max beds" [sourceMinSubDropdownValues]="minBedVariations"
+                              [sourceMaxSubDropdownValues]="maxBedVariations" [fieldMenuType]="DropdownFieldMenuType.Bedrooms"
+                              (minSelectionChange)="onMinBedsSelectionChanged($event)" (maxSelectionChange)="onMaxBedsSelectionChanged($event)"
+                              [minSelectedDropdownValue]="propertySearchFilter.minBeds ? Number(propertySearchFilter.minBeds) : 0"></app-min-max-field-menu>
     </div>
     <div class="advanced-search-field-box">
       <b><p class="field-title">Price</p></b>
       <app-min-max-field-menu defaultMenuValue="Any price" minSubDropdownTitle="Min price"
-                              maxSubDropdownTitle="Max price" [minSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? minForSalePriceVariations : minForRentPriceVariations"
-                              [maxSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? maxForSalePriceVariations : maxForRentPriceVariations"
+                              maxSubDropdownTitle="Max price" [sourceMinSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? minForSalePriceVariations : minForRentPriceVariations"
+                              [sourceMaxSubDropdownValues]="propertySearchFilter.propertyType === PropertyType.forSale ? maxForSalePriceVariations : maxForRentPriceVariations"
                               (minSelectionChange)="onMinPriceSelectionChanged($event)" (maxSelectionChange)="onMaxPriceSelectionChanged($event)"
-                              [fieldMenuType]="DropdownFieldMenuType.Price"></app-min-max-field-menu>
+                              [fieldMenuType]="DropdownFieldMenuType.Price"
+                              [maxSelectedDropdownValue]="propertySearchFilter.maxPrice ? Number(propertySearchFilter.maxPrice) : 0"></app-min-max-field-menu>
     </div>
   </div>
 </div>

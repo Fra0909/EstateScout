@@ -1,11 +1,11 @@
 <div class="property-search-results-section">
   <div class="properties-found-container">
-    <p class="properties-found-text">{{propertySearchResults.totalProperties}} properties found</p>
-    <mat-paginator [length]="propertySearchResults.totalProperties" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"
+    <p class="properties-found-text">{{ propertySearchResults?.totalProperties || 0 }} properties found</p>
+    <mat-paginator [length]="propertySearchResults?.totalProperties" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"
                    (page)="pageChanged($event)" ></mat-paginator>
   </div>
   <div class="property-search-results">
-    <app-property-listing class="property-container" *ngFor="let property of propertySearchResults.properties"
+    <app-property-listing class="property-container" *ngFor="let property of propertySearchResults?.properties"
       [propertyListing]="property"></app-property-listing>
   </div>
 </div>

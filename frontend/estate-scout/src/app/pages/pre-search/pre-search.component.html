@@ -1,0 +1,37 @@
+<div class="pre-search-section">
+  <div class="pre-search-container">
+    <div class="search-container">
+      <div class="title-subtitle-container">
+        <h1 class="search-title">Properties for {{ propertyType === PropertyType.forSale ? 'sale' : 'rent' }}</h1>
+        <p>Search for properties that are for {{ propertyType === PropertyType.forSale ? 'sale' : 'rent' }}.</p>
+      </div>
+      <div class="options-container">
+        <div class="search-fields-container">
+          <div class="location-field-container">
+            <b><p class="field-title">Enter a location</p></b>
+            <app-location-auto-complete-field [showLocationFieldEmptyWarning]="showLocationFieldEmptyWarning" (locationChange)="locationAutoCompleteChanged($event)"></app-location-auto-complete-field>
+            <p class="warning-text" [ngClass]="{'warning-visible': showLocationFieldEmptyWarning}">Please enter a search area first</p>
+          </div>
+          <div class="min-max-container">
+            <div class="min-max-field-box">
+              <b><p class="field-title">Min beds</p></b>
+              <app-dropdown-field class="dropdown-search-field" [dropdownValues]="minBedVariations" [selectedValue]="minBedVariations[0].value"
+                                  (selectionChange)="minBedDropdownChanged($event)" ></app-dropdown-field>
+            </div>
+            <div class="min-max-field-box">
+              <b><p class="field-title">Max price</p></b>
+              <app-dropdown-field class="dropdown-search-field"
+                                  [dropdownValues]="propertyType === PropertyType.forSale ? maxForSalePriceVariations : maxForRentPriceVariations"
+                                  [selectedValue]="propertyType === PropertyType.forSale ? maxForSalePriceVariations[0].value : maxForRentPriceVariations[0].value"
+                                  (selectionChange)="maxPriceDropdownChanged($event)"></app-dropdown-field>
+            </div>
+        </div>
+        </div>
+        <div class="search-button-container">
+          <app-cta-button [buttonType]="propertyType!!" text="Search" [initialPropertyFilter]="initialPropertyFilter"
+                          (showLocationFieldEmptyWarning)="showLocationFieldEmptyWarningChanged($event)"></app-cta-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

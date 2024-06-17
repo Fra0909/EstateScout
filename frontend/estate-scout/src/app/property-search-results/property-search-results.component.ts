@@ -18,7 +18,7 @@ import {PaginationService} from "../services/pagination.service";
 })
 
 export class PropertySearchResultsComponent {
-  @Input() propertySearchResults!: PropertySearchResults;
+  @Input() propertySearchResults?: PropertySearchResults;
 
   constructor(private paginationService: PaginationService) {}
 

@@ -27,41 +27,62 @@ export class MinMaxFieldMenuComponent implements OnInit {
   @Input() fieldMenuValue: string = "";
 
   @Input() minSubDropdownTitle: string = "";
-  @Input() minSubDropdownValues: any = [];
-  minSelectedDropdownValue: number = 0;
+  @Input() sourceMinSubDropdownValues: DropdownValue[] = [];
+  filteredMinSubDropdownValues: DropdownValue[] = [];
+  @Input() minSelectedDropdownValue: number = 0;
 
   @Input() maxSubDropdownTitle: string = "";
-  @Input() maxSubDropdownValues: any = [];
-  maxSelectedDropdownValue: number = 0;
+  @Input() sourceMaxSubDropdownValues: DropdownValue[] = [];
+  filteredMaxSubDropdownValues: DropdownValue[] = [];
+  @Input() maxSelectedDropdownValue: number = 0;
 
   @Output() minSelectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
   @Output() maxSelectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
 
-  constructor(private currencyService: CurrencyService) {
-  }
+  constructor(private currencyService: CurrencyService) {}
 
   ngOnInit() {
-    this.fieldMenuValue = this.defaultMenuValue;
+    this.filteredMinSubDropdownValues = this.sourceMinSubDropdownValues;
+    this.filteredMaxSubDropdownValues = this.sourceMaxSubDropdownValues;
+    if (this.minSelectedDropdownValue || this.maxSelectedDropdownValue) {
+      this.createViewValueForFieldMenu();
+    }
+    else {
+      this.fieldMenuValue = this.defaultMenuValue;
+    }
+  }
+
+  filterMinSubDropdown() {
+    if (this.minSelectedDropdownValue !== 0 && this.maxSelectedDropdownValue != 0) {
+      this.filteredMinSubDropdownValues = this.sourceMinSubDropdownValues.filter(
+        (dropdownValue: DropdownValue) => dropdownValue.value <= this.maxSelectedDropdownValue || dropdownValue.value === 0);
+    }
+    else {
+      this.filteredMinSubDropdownValues = this.sourceMinSubDropdownValues;
+    }
+  }
+
+  filterMaxSubDropdown() {
+    this.filteredMaxSubDropdownValues = this.sourceMaxSubDropdownValues.filter(
+      (dropdownValue: DropdownValue) => dropdownValue.value >= this.minSelectedDropdownValue || dropdownValue.value === 0);
+
+    if (this.maxSelectedDropdownValue !== 0 && this.maxSelectedDropdownValue < this.minSelectedDropdownValue) {
+      this.maxSelectedDropdownValue = this.minSelectedDropdownValue;
+    }
   }
 
   minSubDropdownValueChanged(selectChange: MatSelectChange) {
     this.minSelectedDropdownValue = selectChange.value;
-
-    this.maxSubDropdownValues = this.minSubDropdownValues.filter(
-      (dropdownValue: DropdownValue) => dropdownValue.value >= this.minSelectedDropdownValue || dropdownValue.value === 0);
-
-    if (this.maxSelectedDropdownValue < this.minSelectedDropdownValue) {
-      this.maxSelectedDropdownValue = this.minSelectedDropdownValue;
-    }
-
-    this.minSelectionChange.emit(selectChange);
+    this.filterMaxSubDropdown()
     this.createViewValueForFieldMenu();
+    this.minSelectionChange.emit(selectChange);
   }
 
   maxSubDropdownValueChanged(selectChange: MatSelectChange) {
     this.maxSelectedDropdownValue = selectChange.value;
-    this.maxSelectionChange.emit(selectChange);
+    this.filterMinSubDropdown();
     this.createViewValueForFieldMenu();
+    this.maxSelectionChange.emit(selectChange);
   }
 
   private formatValue(value: number, type: DropdownFieldMenuType, suffix: string = ""): string {
@@ -84,6 +105,5 @@ export class MinMaxFieldMenuComponent implements OnInit {
           ${this.formatValue(this.maxSelectedDropdownValue, this.fieldMenuType)}`;
 
     }
-    console.log(this.fieldMenuValue);
   }
 }

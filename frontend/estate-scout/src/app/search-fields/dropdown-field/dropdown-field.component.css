@@ -4,7 +4,6 @@
   border: 1px solid var(--secondary-clr);
   outline: none;
   display: flex;
-  width: 250px;
   flex-grow: 1;
 }
 

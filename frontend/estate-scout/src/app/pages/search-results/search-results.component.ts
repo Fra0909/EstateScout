@@ -31,6 +31,8 @@ export class SearchResultsComponent implements OnInit {
       this.initialPropertyFilter.radius = searchFilter["radius"];
       this.initialPropertyFilter.propertyType = searchFilter["propertyType"]
       this.initialPropertyFilter.shortAddress = searchFilter["shortAddress"];
+      this.initialPropertyFilter.maxPrice = searchFilter["maxPrice"];
+      this.initialPropertyFilter.minBeds = searchFilter["minBeds"];
     })
   }
 

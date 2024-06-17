@@ -114,3 +114,16 @@ div.mat-mdc-autocomplete-panel {
 .mat-mdc-paginator-outer-container {
   color: var(--secondary-clr) !important;
 }
+
+.warning-text {
+  color: red;
+  line-height: 0;
+  align-self: flex-start;
+  font-size: 0.9rem;
+  opacity: 0;
+  cursor: default;
+}
+
+.warning-visible {
+  opacity: 1 !important;
+}
