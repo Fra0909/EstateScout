@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PropertyType} from "../../enums/property-type";
 import {Subscription} from "rxjs";
 import {MinMaxFieldMenuComponent} from "../../search-fields/min-max-field-menu/min-max-field-menu-component";

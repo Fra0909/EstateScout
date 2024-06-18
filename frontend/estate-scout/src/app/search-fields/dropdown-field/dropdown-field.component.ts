@@ -18,11 +18,12 @@ import {NgStyle} from "@angular/common";
 
 export class DropdownFieldComponent {
   @Input() dropdownValues: DropdownValue[] = []
-  @Input() selectedValue: number = 10;
+  @Input() selectedValue: number = 0;
   @Input() fieldWidth: string = "";
   @Output() selectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
 
   onSelectionChange(event: MatSelectChange) {
+    console.log(this.selectedValue);
     this.selectionChange.emit(event);
   }
 

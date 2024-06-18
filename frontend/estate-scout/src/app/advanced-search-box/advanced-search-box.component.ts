@@ -94,7 +94,7 @@ export class AdvancedSearchBoxComponent implements OnInit {
 
   onMinBedsSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minBeds = event.value;
-    if (!!this.propertySearchFilter.minBeds > !!this.propertySearchFilter.maxBeds) {
+    if (this.propertySearchFilter.maxBeds !== 0 && !!this.propertySearchFilter.minBeds > !!this.propertySearchFilter.maxBeds) {
       this.propertySearchFilter.maxBeds = this.propertySearchFilter.minBeds;
     }
     this.onFilterChanged();
@@ -107,7 +107,7 @@ export class AdvancedSearchBoxComponent implements OnInit {
 
   onMinPriceSelectionChanged(event: MatSelectChange) {
     this.propertySearchFilter.minPrice = event.value;
-    if (!!this.propertySearchFilter.minPrice > !!this.propertySearchFilter.maxPrice) {
+    if (this.propertySearchFilter.maxPrice !== 0 && !!this.propertySearchFilter.minPrice > !!this.propertySearchFilter.maxPrice) {
       this.propertySearchFilter.maxPrice = this.propertySearchFilter.minPrice;
     }
     this.onFilterChanged();

@@ -1,5 +1,5 @@
 <div class="pre-search-section">
-  <div class="pre-search-container">
+  <div class="pre-search-container" [ngClass]="propertyType === PropertyType.forSale ? 'couple-painting-img' : 'couple-carrying-sofa-img'">
     <div class="search-container">
       <div class="title-subtitle-container">
         <h1 class="search-title">Properties for {{ propertyType === PropertyType.forSale ? 'sale' : 'rent' }}</h1>
