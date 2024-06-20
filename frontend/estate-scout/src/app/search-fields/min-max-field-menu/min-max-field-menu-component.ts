@@ -65,7 +65,6 @@ export class MinMaxFieldMenuComponent implements OnInit {
   }
 
   filterMaxSubDropdown() {
-    console.log("in filter method:" + this.maxSelectedDropdownValue)
     this.filteredMaxSubDropdownValues = this.sourceMaxSubDropdownValues.filter(
       (dropdownValue: DropdownValue) => dropdownValue.value >= this.minSelectedDropdownValue || dropdownValue.value === 0);
 
@@ -75,12 +74,10 @@ export class MinMaxFieldMenuComponent implements OnInit {
   }
 
   minSubDropdownValueChanged(selectChange: MatSelectChange) {
-    console.log("before sub value change:" + this.maxSelectedDropdownValue)
     this.minSelectedDropdownValue = selectChange.value;
     this.filterMaxSubDropdown()
     this.createViewValueForFieldMenu();
     this.minSelectionChange.emit(selectChange);
-    console.log("after sub value change:" + this.maxSelectedDropdownValue)
   }
 
   maxSubDropdownValueChanged(selectChange: MatSelectChange) {

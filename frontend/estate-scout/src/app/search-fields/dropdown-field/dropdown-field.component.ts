@@ -23,7 +23,6 @@ export class DropdownFieldComponent {
   @Output() selectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
 
   onSelectionChange(event: MatSelectChange) {
-    console.log(this.selectedValue);
     this.selectionChange.emit(event);
   }
 

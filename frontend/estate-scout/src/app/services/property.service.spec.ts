@@ -41,10 +41,11 @@ describe('PropertyService', () => {
         smokersAllowed: true,
         studentsAllowed: true,
         propertyType: "FOR_SALE",
-        priceInPence: 733425,
+        price: 733425,
         images: [],
         longitude: 2492512,
-        latitude: 28323232
+        latitude: 28323232,
+        description: "Nice property"
       },
     ];
 
