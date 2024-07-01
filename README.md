@@ -13,5 +13,5 @@ It's now live and hosted on a server for demo purposes, feel free to check it ou
 - HTML/CSS
 
 ## Designed and developed by
-[Edwin Rad](https://github.com/EdwinUK)
-[Francesco Romano](https://github.com/Fra0909)
+- [Edwin Rad](https://github.com/EdwinUK)
+- [Francesco Romano](https://github.com/Fra0909)
