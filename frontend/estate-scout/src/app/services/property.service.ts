@@ -10,7 +10,7 @@ import {PropertySearchResults} from "../models/property-search-results";
 })
 export class PropertyService {
 
-  private baseURL: string = "http://localhost:8080";
+  private baseURL: string = "https://estatescout.co.uk:8443";
 
   constructor(private http: HttpClient) { }
 

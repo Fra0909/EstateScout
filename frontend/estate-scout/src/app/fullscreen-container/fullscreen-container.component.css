@@ -34,3 +34,9 @@ h1 {
   text-align: center;
   line-height: 0;
 }
+
+@media only screen and (max-width: 1366px) {
+  h1 {
+    font-size: var(--h2);
+  }
+}

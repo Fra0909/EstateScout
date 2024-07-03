@@ -17,6 +17,12 @@
   gap: 20px;
 }
 
+@media only screen and (max-width: 1600px) {
+  .advanced-search-container {
+    width: 80%;
+  }
+}
+
 
 .advanced-search-field-box {
   width: 25%;

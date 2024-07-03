@@ -41,3 +41,17 @@ h2 {
 .location-search-field {
   flex-grow: 1;
 }
+
+@media only screen and (max-width: 1600px) {
+  .sb-container {
+    width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .sb-container {
+    width: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

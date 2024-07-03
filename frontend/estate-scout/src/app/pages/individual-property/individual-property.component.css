@@ -13,6 +13,12 @@
   gap: 30px;
 }
 
+@media only screen and (max-width: 1366px) {
+  .individual-property-container {
+    width: 80%;
+  }
+}
+
 .images-container {
   display: flex;
   justify-content: center;

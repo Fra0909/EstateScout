@@ -14,6 +14,12 @@
   background-size: cover;
 }
 
+@media only screen and (max-width: 1600px) {
+  .pre-search-container {
+    width: 80%;
+  }
+}
+
 .couple-painting-img {
   background-image: url("/assets/imgs/couple-painting.jpg");
 }
